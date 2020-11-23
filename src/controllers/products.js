@@ -3,9 +3,9 @@ const productsModel = require('../models/products')
 const form = require('../helpers/form')
 
 module.exports = {
-	getAllProducts : (_, res) => {
+	getAllProducts : (req, res) => {
 		productsModel
-			.getAllProducts
+			.getAllProducts(req.query)
 			.then((data) => {
 				productsModel.updateAllProducts(data)
 				.then((products) => {
