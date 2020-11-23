@@ -1,5 +1,4 @@
 const productsModel = require('../models/products')
-
 const form = require('../helpers/form')
 
 module.exports = {
@@ -7,9 +6,11 @@ module.exports = {
 		productsModel
 			.getAllProducts(req.query)
 			.then((data) => {
-				productsModel.updateAllProducts(data)
+				productsModel.updatePropertyProduct(data)
 				.then((products) => {
 					form.success(res, products)
+				}).catch((e) => {
+					form.error(res, e)
 				})
 			})
 			.catch((e) => {

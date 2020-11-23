@@ -28,8 +28,8 @@ module.exports = {
 				where += `ORDER BY ${selectedTable} ${sort.toUpperCase()}`
 			} 
 
-			const qs = "SELECT p.product_id, p.product_title, b.brand_name, c.category_name, p.product_price, p.product_qty, p.product_condition, p.product_description, p.created_at, p.updated_at FROM products AS p JOIN categories AS c ON c.category_id = p.category_id JOIN brands AS b ON b.brand_id = p.brand_id " + where
-			db.query(qs, (err, data) => {
+			const queryS = qs.queryProduct + where
+			db.query(queryS, (err, data) => {
 				if(!err) {
 					resolve(data)
 				} else {
@@ -38,7 +38,7 @@ module.exports = {
 			})
 		})
 	},
-	updateAllProducts: async (data) => {
+	updatePropertyProduct: async (data) => {
 		try {
 			for (let i = 0; i < data.length; i++) {
 				const productColor = await getProductAttribute(query('product_colors', 'product_color_name', 'product_id', data[i].product_id))
