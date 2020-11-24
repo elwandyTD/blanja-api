@@ -1,4 +1,5 @@
 # blanja-api
+simple REST API for basic e-commerce website
 
 ## About The Project
 
