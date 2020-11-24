@@ -60,5 +60,17 @@ module.exports = {
 				}
 			})
 		})
+	},
+	insertAttrProduct: (body, table) => {
+		return new Promise((resolve, reject) => {
+			const queryS = `INSERT INTO ${table} SET ?`
+			db.query(queryS, body, (err, data) => {
+				if(!err) {
+					resolve(data)
+				} else {
+					reject(err)
+				}
+			})
+		})
 	}
 }

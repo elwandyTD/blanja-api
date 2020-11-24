@@ -6,6 +6,7 @@ module.exports = {
 		productsModel
 		.getAllProducts(req.query)
 		.then((data) => {
+			console.log(data)
 			productsModel.updatePropertyProduct(data)
 			.then((products) => {
 				form.success(res, products)

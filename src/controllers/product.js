@@ -38,6 +38,36 @@ module.exports = {
 			form.error(res, e)
 		})
 	},
+	insertProductAttr: async (req, res) => {
+		const {params: {id, attr}, body} = req
+		const insertBody = {
+			product_id: id,
+			...body
+		}
+	
+		try {
+			let insert
+			if (attr == 'color') {
+				insert = await productModel.insertAttrProduct(insertBody, 'product_colors')
+			} else if (attr == 'size') {
+				insert = await productModel.insertAttrProduct(insertBody, 'product_sizes')
+			} else if (attr == 'image') {
+				insert = await productModel.insertAttrProduct(insertBody, 'product_images')
+			} else {
+				res.json({
+					msg: 'Attribut tidak ditemukan'
+				})
+			}
+
+			const resObj = {
+				msg: 'Data berhasil dimasukkan',
+				data: {id: insert.insertId, ...body}
+			}
+			res.json(resObj);
+		} catch(e) {
+			form.error(res, e)
+		}
+	},
 	updateProduct: (req, res) => {
 		const {params: {id}, body} = req
 		const insertBody = {
