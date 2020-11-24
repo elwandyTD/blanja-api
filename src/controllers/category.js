@@ -7,7 +7,7 @@ module.exports = {
 		.then((categories) => {
 			form.success(res, categories)
 		}).catch((e) => {
-			form.error(res, e)
+			form.error(res, e, 'ambil')
 		})
 	},
 	getCategoryById: (req, res) => {
@@ -16,7 +16,7 @@ module.exports = {
 		categoryModel
 		.getCategoryById(id)
 		.then((category) => {
-			form.success(res, category)
+			form.success(res, category, 'ambil')
 		}).catch((e) => {
 			form.error(res, e)
 		})

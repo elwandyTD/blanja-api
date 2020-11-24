@@ -6,7 +6,7 @@ module.exports = {
 	getAllHistory: (_, res) => {
 		historyModel.getAllHistory()
 		.then((histories) => {
-			form.success(res, histories)
+			form.success(res, histories, 'ambil')
 		}).catch((e) => {
 			form.error(res, e)
 		})
