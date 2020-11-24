@@ -69,6 +69,5 @@ module.exports = {
 		}).catch((e) => {
 			form.error(res, e)
 		})
-		
 	}
 }
