@@ -49,7 +49,7 @@ Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
 ## Documentation - Endpoint
 
-Dokumentation endpoint Postmen [here](https://identity.getpostman.com/handover/multifactor?user=9490220&handover_token=6d87e404-1078-4211-9fcb-57b5d50a7fe3)
+Dokumentation endpoint Postmen [here](https://www.getpostman.com/collections/a7b600896cda5ff98f75)
 
 ## License
 
