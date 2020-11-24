@@ -5,9 +5,9 @@ simple REST API for basic e-commerce website
 
 API build in Express.js and mySQL for [elwandyTD/blanja](https://github.com/elwandyTD/blanja)
 
-### Endpoint
+## Documentation - Endpoint
 
-Dokumentasi endpoint Postmen [here](https://identity.getpostman.com/handover/multifactor?user=9490220&handover_token=6d87e404-1078-4211-9fcb-57b5d50a7fe3)
+Dokumentation endpoint Postmen [here](https://identity.getpostman.com/handover/multifactor?user=9490220&handover_token=6d87e404-1078-4211-9fcb-57b5d50a7fe3)
 
 ### Built With
 
