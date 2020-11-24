@@ -29,6 +29,10 @@ API build in Express.js and mySQL for [elwandyTD/blanja](https://github.com/elwa
    ```sh
    npm install
    ```
+2. Install Nodemon packages
+   ```sh
+   npm i nodemon
+   ```
    This will install the dependencies inside `node_modules`
 
 ### MySQL configuration
