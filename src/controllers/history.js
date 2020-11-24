@@ -1,4 +1,5 @@
 const historyModel = require('../models/history')
+const productModel = require('../models/product')
 const form = require('../helpers/form')
 
 module.exports = {
@@ -21,10 +22,13 @@ module.exports = {
 			form.error(res, e)
 		})
 	},
-	insertHistory: (req, res) => {
+	insertHistory: async (req, res) => {
 		const {body} = req
+
+		const productPrice = await productModel.getProductById(body.product_id).then((data)=> data[0].product_price)
 		const insertBody = {
 			...body,
+			history_subtotal: productPrice * body.history_qty,
 			history_code: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
 			created_at: new Date(Date.now()),
 		}
