@@ -25,6 +25,7 @@ module.exports = {
 		const {body} = req
 		const insertBody = {
 			...body,
+			history_code: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
 			created_at: new Date(Date.now()),
 		}
 		historyModel
