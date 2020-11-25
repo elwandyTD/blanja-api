@@ -5,9 +5,9 @@ module.exports = {
 	getAllCategory: (_, res) => {
 		categoryModel.getAllCategory()
 		.then((categories) => {
-			form.success(res, categories)
+			form.success(res, categories, 'ambil')
 		}).catch((e) => {
-			form.error(res, e, 'ambil')
+			form.error(res, e)
 		})
 	},
 	getCategoryById: (req, res) => {
