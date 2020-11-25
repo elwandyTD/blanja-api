@@ -43,7 +43,7 @@ module.exports = {
 		.updateCategory(id, body)
 		.then(() => {
 			const resObj = {
-				msg: 'Data berhasil diupdte',
+				msg: 'Data berhasil diupdate',
 				data: body
 			}
 			res.json(resObj);

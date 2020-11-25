@@ -10,7 +10,7 @@ module.exports = {
 		.then((product) => {
 			productsModel.updatePropertyProduct(product)
 			.then((product) => {
-				form.success(res, product)
+				form.success(res, product, 'ambil')
 			}).catch((e) => {
 				form.error(res, e)
 			})

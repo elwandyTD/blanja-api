@@ -15,6 +15,17 @@ module.exports = {
 			})
 		})
 	},
+	getTotalCartByUserId: (id) => {
+		return new Promise((resolve, reject) => {
+			db.query(qs.queryGet('cart', 'SUM(product_subtotal) AS product_total', `WHERE user_id=${id}`), (err, data) => {
+				if(!err) {
+					resolve(data)
+				} else {
+					reject(err)
+				}
+			})
+		})
+	},
 	insertToCart: (body) => {
 		return new Promise((resolve, reject) => {
 			db.query(qs.queryInsert('cart'), body, (err, data) => {

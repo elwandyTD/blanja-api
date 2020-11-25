@@ -54,7 +54,7 @@ module.exports = {
 			.then(() => {
 				form.success(res, [], 'hapus')
 			}).catch((e) => {
-				res.json(e)
+				form.error(res, e)
 			})
 		}
 	}

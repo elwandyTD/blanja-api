@@ -2,7 +2,7 @@ module.exports = {
   getQueryWhere: (table, column_needed, column_where, value_where) => {
 		return `SELECT ${column_needed} FROM ${table} WHERE ${column_where}=${value_where}`
 	},
-	queryGet: (table, column_needed, extra) => {
+	queryGet: (table, column_needed, extra = '') => {
 		return `SELECT ${column_needed} FROM ${table} ${extra}`
 	},
 	queryInsert: (table) => {
