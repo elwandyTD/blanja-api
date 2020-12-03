@@ -31,17 +31,8 @@ module.exports = {
 			...body,
 			product_subtotal: productPrice * body.product_qty
 		}
-		
-		cartModel
-		.insertToCart(insertBody)
-		.then((insert) => {
-			form.success(res, {
-				id: insert.insertId,
-				...insertBody
-			}, 'tambah')
-		}).catch((e) => {
-			form.error(res, e)
-		})
+
+		res.json(insertBody)
 	},
 	deleteProductCartById: (req, res) => {
 		const {id} = req.params

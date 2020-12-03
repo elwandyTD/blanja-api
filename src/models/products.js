@@ -9,15 +9,30 @@ const query = qs.getQueryWhere
 module.exports = {
 	getAllProducts: (query) => {
 		return new Promise((resolve, reject) => {
-			const {q, order, sort} = query
-			let where = ''
+			const {key, order, sort, color, brand, size} = query
+			let where = 'WHERE '
 			
-			if (typeof q !== 'undefined') {
-				where += `WHERE p.product_title LIKE '%${q}%' OR c.category_name LIKE '%${q}%' `
+			if (typeof key !== 'undefined') {
+				where += `p.product_title LIKE '%${key}%' OR c.category_name='${key}' AND`
 			} 
+			if (typeof color !== 'undefined') {
+				where += `pc.product_attr_value='${color}' AND`
+			}
+			if (typeof brand !== 'undefined') {
+				where += `b.brand_name='${brand}' AND`
+			}
+			if (typeof size !== 'undefined') {
+				where += `ps.product_attr_value='${brand}' AND`
+			}
 			
+			if (where !== '') {
+				let p = where.split('AND')
+				p.splice(p.length - 1, 1)
+				where = p.join('AND ')
+			}
+
 			if (typeof order !== 'undefined' && typeof sort !== 'undefined') {
-				let selectedTable = ''
+				let selectedTable = '', nSort
 				if (order.toLowerCase() == 'name') {
 					selectedTable += 'product_title'
 				} else if (order.toLowerCase() == 'newest') {
@@ -25,7 +40,8 @@ module.exports = {
 				} else if (order.toLowerCase() == 'price') {
 					selectedTable += 'product_price'
 				} 
-				where += `ORDER BY ${selectedTable} ${sort.toUpperCase()}`
+				nSort = sort.toUpperCase()
+				where += `ORDER BY ${selectedTable} ${nSort} `
 			} 
 
 			const queryS = qs.queryProduct + where

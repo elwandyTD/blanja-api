@@ -29,10 +29,11 @@ module.exports = {
 	insertHistory: async (req, res) => {
 		const {body} = req
 		
-		const totalProduct = await cartModel.getTotalCartByUserId(body.user_id).then((total) => total[0].product_total).catch((e) => res.json(e))
+		// const totalProduct = await cartModel.getTotalCartByUserId(body.user_id).then((total) => total[0].product_total).catch((e) => res.json(e))
 		const insertBody = {
 			...body,
-			history_subtotal: totalProduct,
+			// history_subtotal: totalProduct,
+			// history_subtotal: body.product_price,
 			history_code: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
 			created_at: new Date(Date.now()),
 		}
@@ -42,17 +43,17 @@ module.exports = {
 		.then((data) => {
 			const id = data.insertId
 			
-			historyModel
-			.insertSelectProductUser(parseInt(body.user_id), id)
-			.then(() => {
+			// historyModel
+			// .insertSelectProductUser(parseInt(body.user_id), id)
+			// .then(() => {
 				const resObj = {
-					msg: 'Data berhasil dimasukkan',
-					data: {id: data.insertId, ...insertBody}
+					msg: 'sukses',
+					data: {id: id, ...insertBody}
 				}
 				res.json(resObj);
-			}).catch((e) => {
-				form.error(res, e)
-			})
+			// }).catch((e) => {
+			// 	form.error(res, e)
+			// })
 		}).catch((e) => {
 			form.error(res, e)
 		})
