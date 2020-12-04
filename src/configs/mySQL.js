@@ -1,11 +1,13 @@
 const mySQL = require('mysql') 
 
+const { HOST, DB, USER, PASS } = process.env
+
 const db = mySQL.createConnection({
 	// Setting DB
-	host: 'localhost',
-	user: 'root',
-	password: '',
-	database: 'blanja-api',
+	host: HOST,
+	user: USER,
+	password: PASS,
+	database: DB,
 })
 
 db.connect((err) => {
