@@ -5,7 +5,7 @@ module.exports = {
 			message: `Data berhasil di${msg}`,
 			data: data.length == 0 ? 'Data kosong silahkan input baru' : data,
 		}
-		res.json(resObj)
+		res.status(200).json(resObj)
 	},
 	errorUndefined: (res) => {
 		res.json({
