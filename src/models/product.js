@@ -2,6 +2,11 @@ const db = require('../configs/mySQL')
 const qs = require('../helpers/query')
 
 module.exports = {
+	getAllProduct: () => {
+		return new Promise((resolve, reject) => {
+			
+		})
+	},
 	getProductAttributeByQuery: (qs) => {
 		return new Promise((resolve, reject) => {
 			db.query(qs, (err, data) => {

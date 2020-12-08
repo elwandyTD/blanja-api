@@ -3,6 +3,11 @@ const productsModel = require('../models/products')
 const form = require('../helpers/form')
 
 module.exports = {
+	getAllProduct: (req, res) => {
+		// const { bro } = req.query
+		
+		
+	},
 	getProductById: (req, res) => {
 		const {id} = req.params	
 
