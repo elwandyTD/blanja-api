@@ -4,14 +4,20 @@ const form = require('../helpers/form')
 
 module.exports = {
 	getAllProduct: (req, res) => {
-		// const { bro } = req.query
-		
-		
+		productModel
+		.getAllProduct(req.query)
+		.then((data) => {
+			res.send(data)
+		})
+		.catch((err) => {
+			form.error(res, err)
+		})
 	},
 	getProductById: (req, res) => {
 		const {id} = req.params	
 
-		productModel.getProductById(id)
+		productModel
+		.getProductById(id)
 		.then((product) => {
 			productsModel.updatePropertyProduct(product)
 			.then((product) => {

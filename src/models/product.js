@@ -1,10 +1,74 @@
 const db = require('../configs/mySQL')
 const qs = require('../helpers/query')
+const concat = require('../helpers/concat')
 
 module.exports = {
-	getAllProduct: () => {
+	getAllProduct: (query) => {
 		return new Promise((resolve, reject) => {
+			const { search, category, size, color, order, sort } = query
+			const limit = Number(query.limit) || 5
+			const page = Number(query.page) || 1
+			const offset = (page - 1) * limit || 0
+			let selectedTable = ''
+			let where = 'WHERE '
+			let joins = ''
+			const ordering = order || 'newest'
+			let sorting = sort && sort.toUpperCase() || 'ASC'
+
+			if (search) {
+				if (category) {
+					where += `p.product_title LIKE '%${search}%' AND `
+				} else {
+					where += `p.product_title LIKE '%${search}%' OR c.category_name LIKE '%${search}%' AND `
+				}
+			}
+
+			if (category) {
+				where += concat.concatManyWhere(category, 'c.category_link')
+			}
+			if (size) {
+				joins += ` JOIN product_sizes AS ps ON ps.product_id = p.product_id `
+				where += concat.concatManyWhere(size, 'ps.size_code')
+			}
+			if (color) {
+				joins += ` JOIN product_colors AS pc ON pc.product_id = p.product_id `
+				where += concat.concatOneWhere('#' + color, 'pc.color_code')
+			}
+
+			if (where !== '') {
+				let p = where.split('AND')
+				p.splice(p.length - 1, 1)
+				where = p.join('AND ')
+			}
+
+			if (ordering == 'name') {
+				selectedTable = 'p.product_title'
+			} else if (ordering == 'newest') {
+				selectedTable = 'p.created_at'
+			} else if (ordering == 'price') {
+				selectedTable = 'p.product_price'
+			} else {
+				selectedTable = 'p.created_at'
+			}
+
+			if (sorting !== 'DESC' && sorting !== 'ASC') {
+				console.log(sorting)
+				sorting = 'ASC'
+			}
+
+			console.log(qs.queryProduct(joins, where, `ORDER BY ${selectedTable} ${sorting} LIMIT ${limit} OFFSET ${offset}`))
+
+			db.query(qs.queryProduct(joins, where, `ORDER BY ${selectedTable} ${sorting} LIMIT ${limit} OFFSET ${offset}`), (err, data) => {
+				if(!err) {
+					resolve(data)
+				} else {
+					reject(err)
+				}
+			})
+			// console.log(where)
+			// console.log(joins)
 			
+			// resolve('lah')
 		})
 	},
 	getProductAttributeByQuery: (qs) => {
