@@ -56,10 +56,11 @@ module.exports = {
 	},
 	updatePropertyProduct: async (data) => {
 		try {
+			
 			for (let i = 0; i < data.length; i++) {
-				const productColor = await getProductAttribute(query('product_colors', 'product_color_id, product_attr_value', 'product_id', data[i].product_id))
-				const productSize = await getProductAttribute(query('product_sizes', 'product_size_id, product_attr_value', 'product_id', data[i].product_id))
-				const productImage = await getProductAttribute(query('product_images', 'product_image_id, product_attr_value', 'product_id', data[i].product_id))
+				const productColor = await getProductAttribute(query('product_colors', 'product_color_id, color_code', 'product_id', data[i].product_id))
+				const productSize = await getProductAttribute(query('product_sizes', 'product_size_id, size_code', 'product_id', data[i].product_id))
+				const productImage = await getProductAttribute(query('product_images', 'product_image_id, image_path', 'product_id', data[i].product_id))
 
 				data[i].product_colors = productColor
 				data[i].product_sizes = productSize

@@ -8,7 +8,7 @@ module.exports = {
 		res.status(200).json(resObj)
 	},
 	errorUndefined: (res) => {
-		res.json({
+		res.status(500).json({
 			message: `Data tidak ditemukan`,
 		})
 	},

@@ -1,5 +1,6 @@
 const productModel = require('../models/product')
 const productsModel = require('../models/products')
+const attrModel = require('../models/attribute')
 const form = require('../helpers/form')
 
 module.exports = {
@@ -17,10 +18,9 @@ module.exports = {
 			let limiter = limit || 2
 
 			const totalPage = (Math.ceil(data.totalProducts / limiter))
-			
 			const nextPage = `/product?page=${ (Number(page) || 1) + 1 }${ limit ? '&limit=' + limiter  : '' }${ '&' + removeLast }`
 			const prevPage = `/product?page=${ (Number(page) || 1) - 1 }${ limit ? '&limit=' + limiter  : '' }${ '&' + removeLast }`
-			console.log(removeQueryLimit)
+			
 			form.success(res, {
 				products: data.products,
 				pageInfo: {
@@ -52,21 +52,40 @@ module.exports = {
 		})
 	},
 	insertProduct: (req, res) => {
-		const {body} = req
+		const { body } = req
 		const insertBody = {
 			...body,
 			created_at: new Date(Date.now()),
 			updated_at: new Date(Date.now()),
 		}
 
+		if (!req.files[0]) {
+			form.error(res, {
+				msg: "Silahkan masukkan gambar",
+			})
+		}
+		
 		productModel
 		.insertProduct(insertBody)
 		.then((data) => {
-			const resObj = {
-				msg: 'Data berhasil dimasukkan',
-				data: {id: data.insertId, ...insertBody}
-			}
-			res.json(resObj);
+			const imagesArr = req.files.map((i) => {
+				const filepath = 'public/example/' + i.filename
+				return [data.insertId, filepath]
+			})
+			// res.json(imagesArr)
+			attrModel
+			.insertUploadImages(imagesArr)
+			.then(() => {
+				const resObj = {
+					msg: 'Data berhasil dimasukkan',
+					data: {id: data.insertId, ...insertBody, images: imagesArr}
+				}
+				res.json(resObj);
+			})
+			.catch((err) => {
+				form.error(res, err)
+			})
+			// res.send(imagesArr)
 		}).catch((e) => {
 			form.error(res, e)
 		})

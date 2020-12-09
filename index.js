@@ -11,6 +11,7 @@ app.listen(port, () => {
 	console.log(`Server is running at port ${port}`)
 })
 
+app.use(express.static("public"))
 
 app.use(cors())
 app.use(logger('dev'))

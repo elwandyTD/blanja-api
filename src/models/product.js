@@ -90,7 +90,7 @@ module.exports = {
 	},
 	getProductById: (id) => {
 		return new Promise((resolve, reject) => {
-			const queryS = qs.queryProduct + `WHERE product_id=${id}`
+			const queryS = qs.queryProduct() + `WHERE product_id=${id}`
 			db.query(queryS, (err, data) => {
 				if(!err) {
 					resolve(data)
