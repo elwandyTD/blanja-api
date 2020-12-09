@@ -7,7 +7,29 @@ module.exports = {
 		productModel
 		.getAllProduct(req.query)
 		.then((data) => {
-			res.send(data)
+			const { page, limit } = req.query
+			const url = req.originalUrl.split('?')[1]
+			const removeQueryPage = page && url.split('page=' + page)[1] || url
+			const removeQueryLimit = limit && removeQueryPage.split('limit=' + limit).join('') || removeQueryPage
+			const removeFirst = removeQueryLimit[0] == '&' ? removeQueryLimit.slice(1, removeQueryLimit.length ) : removeQueryLimit
+			const removeLast = removeFirst[removeFirst.length - 1] == '&' ? removeFirst.slice(0, removeFirst.length - 1) : removeFirst
+			const currentPage = Number(page || 1)
+			let limiter = limit || 2
+
+			const totalPage = (Math.ceil(data.totalProducts / limiter))
+			
+			const nextPage = `/product?page=${ (Number(page) || 1) + 1 }${ limit ? '&limit=' + limiter  : '' }${ '&' + removeLast }`
+			const prevPage = `/product?page=${ (Number(page) || 1) - 1 }${ limit ? '&limit=' + limiter  : '' }${ '&' + removeLast }`
+			console.log(removeQueryLimit)
+			form.success(res, {
+				products: data.products,
+				pageInfo: {
+					currentPage,
+					nextPage: (currentPage == totalPage) ? null : nextPage,
+					prevPage: (currentPage == 1) ? null : prevPage,
+					totalPage,
+				}
+			}, 'ambil')
 		})
 		.catch((err) => {
 			form.error(res, err)
