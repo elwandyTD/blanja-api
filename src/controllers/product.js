@@ -2,25 +2,30 @@ const productModel = require('../models/product')
 const productsModel = require('../models/products')
 const attrModel = require('../models/attribute')
 const form = require('../helpers/form')
+const fs = require('fs')
+const product = require('../models/product')
+const { json } = require('express')
 
 module.exports = {
 	getAllProduct: (req, res) => {
 		productModel
-		.getAllProduct(req.query)
+		.getAllProduct(req.query && req.query)
 		.then((data) => {
 			const { page, limit } = req.query
-			const url = req.originalUrl.split('?')[1]
+			const url = req.originalUrl.split('?')[1] || ''
 			const removeQueryPage = page && url.split('page=' + page)[1] || url
 			const removeQueryLimit = limit && removeQueryPage.split('limit=' + limit).join('') || removeQueryPage
 			const removeFirst = removeQueryLimit[0] == '&' ? removeQueryLimit.slice(1, removeQueryLimit.length ) : removeQueryLimit
 			const removeLast = removeFirst[removeFirst.length - 1] == '&' ? removeFirst.slice(0, removeFirst.length - 1) : removeFirst
+			// console.log(removeLast.split('limit=' + limit).join(''))
+			const removeLimit = removeLast.includes('limit=' + limit) ? removeLast.split('limit=' + limit).join('') : removeLast
+			const removePage = removeLast.includes('page=' + page) ? removeLimit.split('page=' + page).join('') : removeLimit
 			const currentPage = Number(page || 1)
-			let limiter = limit || 2
+			let limiter = limit || 15
 
 			const totalPage = (Math.ceil(data.totalProducts / limiter))
-			const nextPage = `/product?page=${ (Number(page) || 1) + 1 }${ limit ? '&limit=' + limiter  : '' }${ '&' + removeLast }`
-			const prevPage = `/product?page=${ (Number(page) || 1) - 1 }${ limit ? '&limit=' + limiter  : '' }${ '&' + removeLast }`
-			
+			const nextPage = `/product?page=${ (Number(page) || 1) + 1 }${ limit ? '&limit=' + limiter  : '' }${ '&' + removePage }`
+			const prevPage = `/product?page=${ (Number(page) || 1) - 1 }${ limit ? '&limit=' + limiter  : '' }${ '&' + removePage }`
 			form.success(res, {
 				products: data.products,
 				pageInfo: {
@@ -32,6 +37,7 @@ module.exports = {
 			}, 'ambil')
 		})
 		.catch((err) => {
+			console.log(err)
 			form.error(res, err)
 		})
 	},
@@ -150,6 +156,32 @@ module.exports = {
 			res.json(resObj);
 		}).catch((e) => {
 			form.error(res, e)
+		})
+	},
+	deleteProductImage: (req, res) => {
+		const { imageId, productId } = req.params
+
+		productModel
+		.getProductImageById(imageId, productId)
+		.then((data) => {
+			productModel
+			.deleteProductImageById(imageId, productId)
+			.then(() => {
+				fs.unlink('./' + data[0].image_path, (err) => {
+					form.error(res, err)	
+				})
+				// res.setHeader("Content-Type", "text/html");
+				res.status(200).json({
+					message: 'data berhasil dihapus'
+				})
+				// return res.end();
+			})
+			.catch((err) => {
+				form.error(res, err)
+			})
+		})
+		.catch((err) => {
+			form.error(res, err)
 		})
 	}
 }

@@ -10,5 +10,6 @@ productRouter.post('/', uploadImages, productController.insertProduct)
 productRouter.post('/:id/:attr', productController.insertProductAttr)
 productRouter.patch('/:id', productController.updateProduct)
 productRouter.delete('/:id', productController.deleteProduct)
+productRouter.delete('/:productId/image/:imageId', productController.deleteProductImage)
 
 module.exports = productRouter

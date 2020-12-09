@@ -6,7 +6,7 @@ module.exports = {
 	getAllProduct: (query) => {
 		return new Promise((resolve, reject) => {
 			const { search, category, brand, size, color, order, sort } = query
-			const limit = Number(query.limit) || 5
+			const limit = Number(query.limit) || 15
 			const page = Number(query.page) || 1
 			const offset = (page - 1) * limit || 0
 			let selectedTable = ''
@@ -147,5 +147,29 @@ module.exports = {
 				}
 			})
 		})
-	}
+	},
+	getProductImageById: (imageId, productId) => {
+		return new Promise((resolve, reject) => {
+			const queryS = `SELECT * FROM product_images WHERE product_image_id=${imageId} AND product_id=${productId}`
+			db.query(queryS, (err, data) => {
+				if(!err) {
+					resolve(data)
+				} else {
+					reject(err)
+				}
+			})
+		})
+	},
+	deleteProductImageById: (imageId, productId) => {
+		return new Promise((resolve, reject) => {
+			// const queryS = `DELETE FROM product_images WHERE product_image_id=${imageId}`
+			db.query(qs.queryDelete('product_images', `product_image_id=${imageId} AND product_id=${productId}`), (err, data) => {
+				if(!err) {
+					resolve(data)
+				} else {
+					reject(err)
+				}
+			})
+		})
+	},
 }
