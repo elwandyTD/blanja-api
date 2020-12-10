@@ -11,7 +11,7 @@ module.exports = {
 					reject(err)
 				} 
 				if (data.length) {
-					reject('email sudah terdaftar')
+					return reject('email sudah terdaftar')
 				}
 				const saltRounds = 10
 				bcrypt.genSalt(saltRounds, (err, salt) => {
@@ -34,6 +34,40 @@ module.exports = {
 							}
 						})
 					})
+				})
+			})
+		})
+	},
+	checkUserLogin: (body, table) => {
+		return new Promise((resolve, reject) => {
+			const { user_email, user_password } = body
+			db.query(query.queryGet(table, 'user_password, user_name ', `WHERE user_email='${user_email}'`), (err, data) => {
+				if (err) {
+					reject(err)
+				}
+				// return resolve(data)
+				if (!data.length) {
+					return reject('user tidak ditemukan')
+				}
+				bcrypt.compare(user_password, data[0].user_password, (err, result) => {
+					if (err) {
+						return reject(err)
+					}
+					if (!result) {
+						return reject('password salah')
+					} else {
+						const level = table.slice(0, table.length - 1)
+						const payload = {
+							user_name: data[0].user_name,
+							user_email,
+							level,
+						}
+						const secret = process.env.SECRET_KEY;
+						const token = jwt.sign(payload, secret, {
+							expiresIn: "10h"
+						});
+						resolve({ token });
+					}
 				})
 			})
 		})

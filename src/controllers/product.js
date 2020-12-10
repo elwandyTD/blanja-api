@@ -17,7 +17,6 @@ module.exports = {
 			const removeQueryLimit = limit && removeQueryPage.split('limit=' + limit).join('') || removeQueryPage
 			const removeFirst = removeQueryLimit[0] == '&' ? removeQueryLimit.slice(1, removeQueryLimit.length ) : removeQueryLimit
 			const removeLast = removeFirst[removeFirst.length - 1] == '&' ? removeFirst.slice(0, removeFirst.length - 1) : removeFirst
-			// console.log(removeLast.split('limit=' + limit).join(''))
 			const removeLimit = removeLast.includes('limit=' + limit) ? removeLast.split('limit=' + limit).join('') : removeLast
 			const removePage = removeLast.includes('page=' + page) ? removeLimit.split('page=' + page).join('') : removeLimit
 			const currentPage = Number(page || 1)
