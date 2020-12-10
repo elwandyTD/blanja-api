@@ -15,8 +15,7 @@ module.exports = {
 			const table = route + 's'
 
 			authModel.addNewUser(insertBody, table)
-			.then((data) => {
-				form.success(res, data, 'tambah')
+			.then(() => {
 				res.json({
 					status: 200,
 					message: 'User berhasil ditambahkan'

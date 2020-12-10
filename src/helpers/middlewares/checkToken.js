@@ -35,5 +35,21 @@ module.exports = {
 			} 
 			return next()
 		}
-	}
+	},
+	isCustomer: (req, res, next) => {
+		const { decodedToken } = req
+		if (!decodedToken) {
+			return res.status(401).json({
+				message: 'Silahkan login dahulu'
+			})
+		} else {
+			if (decodedToken.level !== "customer") {
+				return res.status(401).json({
+					message: 'Role anda tidak memadai'
+				})
+			} 
+			return next()
+		}
+	},
+	
 }

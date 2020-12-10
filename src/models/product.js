@@ -1,6 +1,9 @@
 const db = require('../configs/mySQL')
 const qs = require('../helpers/query')
 const concat = require('../helpers/concat')
+const fs = require('fs')
+
+const attrModel = require('../models/attribute')
 
 module.exports = {
 	getAllProduct: (query) => {
@@ -112,26 +115,75 @@ module.exports = {
 			})
 		})
 	},
-	updateProduct: (id, body) => {
+	updateProduct: (id, body, isFile) => {
 		return new Promise((resolve, reject) => {
 			const queryS = `UPDATE products SET ? WHERE product_id=${id}`
 			db.query(queryS, body, (err, data) => {
-				if(!err) {
-					resolve(data)
+				if ( isFile !== false ) {
+					db.query(`SELECT * FROM product_images WHERE product_id=${id}`, (err, imagesData) => {
+						if(err) {
+							return reject(err)
+						} else {
+							resolve(imagesData)
+							db.query(`DELETE FROM product_images WHERE product_id=${id}`, (err, _) => {
+								if (err) {
+									return reject(err)
+								} else {
+									if (imagesData.length) {
+										imagesData.map((image) => {
+											fs.unlink('./' + image.image_path, (err) => {
+												return reject(err)
+											})
+										})
+										const imagesArr = isFile.map((i) => {
+											const filepath = 'public/example/' + i.filename
+											return [id, filepath]
+										})
+										attrModel
+										.insertUploadImages(imagesArr)
+										.then(() => {
+											return resolve(data)
+										})
+										.catch((err) => {
+											return reject(err)
+										})
+									}
+									return resolve(data)
+								}
+							})
+						}
+					})
 				} else {
-					reject(err)
+					if(!err) {
+						resolve(data)
+					} else {
+						reject(err)
+					}
 				}
 			})
 		})
 	},
 	deleteProduct: (id) => {
 		return new Promise((resolve, reject) => {
-			const queryS = `DELETE FROM products WHERE product_id=${id}`
-			db.query(queryS, (err, data) => {
-				if(!err) {
-					resolve(data)
+			db.query(`SELECT * FROM product_images WHERE product_id=${id}`, (err, imagesData) => {
+				if(err) {
+					return reject(err)
 				} else {
-					reject(err)
+					const queryS = `DELETE FROM products WHERE product_id=${id}`
+					db.query(queryS, (err, data) => {
+						if(err) {
+							return reject(err)
+						} else {
+							if (imagesData.length) {
+								imagesData.map((image) => {
+									fs.unlink('./' + image.image_path, (err) => {
+										return reject(err)
+									})
+								})
+							}
+							return resolve(data)
+						}
+					})
 				}
 			})
 		})

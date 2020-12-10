@@ -30,7 +30,7 @@ const uploadImages = (req, res, next) => {
         err,
       })
     } else {
-      next()
+      return next()
     }
 	})
 }

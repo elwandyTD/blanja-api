@@ -132,7 +132,7 @@ module.exports = {
 			updated_at: new Date(Date.now()),
 		}
 		productModel
-		.updateProduct(id, insertBody)
+		.updateProduct(id, insertBody, req.files.length && req.files || false)
 		.then(() => {
 			const resObj = {
 				msg: 'Data berhasil diupdte',
