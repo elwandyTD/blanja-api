@@ -5,7 +5,7 @@ const form = require("../form");
 
 const multerStorage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, "./public/example");
+    callback(null, "./public/images/products");
   },
   filename: function (req, file, callback) {
 		const fieldname = file.fieldname.replace('[]', '')

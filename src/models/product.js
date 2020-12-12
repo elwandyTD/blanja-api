@@ -131,12 +131,12 @@ module.exports = {
 								} else {
 									if (imagesData.length) {
 										imagesData.map((image) => {
-											fs.unlink('./' + image.image_path, (err) => {
+											fs.unlink('./public' + image.image_path, (err) => {
 												return reject(err)
 											})
 										})
 										const imagesArr = isFile.map((i) => {
-											const filepath = 'public/example/' + i.filename
+											const filepath = '/images/products/' + i.filename
 											return [id, filepath]
 										})
 										attrModel
@@ -176,7 +176,7 @@ module.exports = {
 						} else {
 							if (imagesData.length) {
 								imagesData.map((image) => {
-									fs.unlink('./' + image.image_path, (err) => {
+									fs.unlink('./public' + image.image_path, (err) => {
 										return reject(err)
 									})
 								})
@@ -200,9 +200,9 @@ module.exports = {
 			})
 		})
 	},
-	getProductImageById: (imageId, productId) => {
+	getImageByProductId: (productId) => {
 		return new Promise((resolve, reject) => {
-			const queryS = `SELECT * FROM product_images WHERE product_image_id=${imageId} AND product_id=${productId}`
+			const queryS = `SELECT * FROM product_images WHERE product_id=${productId}`
 			db.query(queryS, (err, data) => {
 				if(!err) {
 					resolve(data)

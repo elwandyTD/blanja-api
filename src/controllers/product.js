@@ -3,28 +3,35 @@ const productsModel = require('../models/products')
 const attrModel = require('../models/attribute')
 const form = require('../helpers/form')
 const fs = require('fs')
-const product = require('../models/product')
-const { json } = require('express')
+const string = require('../helpers/concat')
+// const { json } = require('express')
 
 module.exports = {
 	getAllProduct: (req, res) => {
 		productModel
-		.getAllProduct(req.query && req.query)
+		.getAllProduct(req.query)
 		.then((data) => {
 			const { page, limit } = req.query
 			const url = req.originalUrl.split('?')[1] || ''
-			const removeQueryPage = page && url.split('page=' + page)[1] || url
-			const removeQueryLimit = limit && removeQueryPage.split('limit=' + limit).join('') || removeQueryPage
-			const removeFirst = removeQueryLimit[0] == '&' ? removeQueryLimit.slice(1, removeQueryLimit.length ) : removeQueryLimit
-			const removeLast = removeFirst[removeFirst.length - 1] == '&' ? removeFirst.slice(0, removeFirst.length - 1) : removeFirst
-			const removeLimit = removeLast.includes('limit=' + limit) ? removeLast.split('limit=' + limit).join('') : removeLast
-			const removePage = removeLast.includes('page=' + page) ? removeLimit.split('page=' + page).join('') : removeLimit
-			const currentPage = Number(page || 1)
-			let limiter = limit || 15
+			const remove1 = string.removeString(url, `&page=${page}`)
+			const remove2 = string.removeString(remove1, `page=${page}`)
+			const remove3 = string.removeString(remove2, `&limit=${limit}`)
+			const remove4 = string.removeString(remove3, `limit=${limit}`)
+			const currentPage = Number(page) || 1
+			const limiter = limit || 15
 
 			const totalPage = (Math.ceil(data.totalProducts / limiter))
-			const nextPage = `/product?page=${ (Number(page) || 1) + 1 }${ limit ? '&limit=' + limiter  : '' }${ '&' + removePage }`
-			const prevPage = `/product?page=${ (Number(page) || 1) - 1 }${ limit ? '&limit=' + limiter  : '' }${ '&' + removePage }`
+			const paramsPage = remove4 == '' ? `page=` : `&page=`
+			const paramsLimit = paramsPage == '' ? `limit=` : `&limit=`
+			const nextPage = `/product?${remove4}${ paramsPage + ((Number(page) || 1) + 1) }${ limit ? paramsLimit + limit : '' }`
+			const prevPage = `/product?${remove4}${ paramsPage + ((Number(page) || 1) - 1) }${ limit ? paramsLimit + limit : '' }`
+
+			if (!data.products.length) {
+				return res.json({
+					message: "Page not Found"
+				})
+			}
+
 			form.success(res, {
 				products: data.products,
 				pageInfo: {
@@ -74,7 +81,7 @@ module.exports = {
 		.insertProduct(insertBody)
 		.then((data) => {
 			const imagesArr = req.files.map((i) => {
-				const filepath = 'public/example/' + i.filename
+				const filepath = '/images/products/' + i.filename
 				return [data.insertId, filepath]
 			})
 			// res.json(imagesArr)
@@ -148,11 +155,10 @@ module.exports = {
 
 		productModel
 		.deleteProduct(id)
-		.then(() => {
-			const resObj = {
-				msg: 'Data berhasil dihapus',
-			}
-			res.json(resObj);
+		.then((data) => {
+			return res.json({
+				msg: data.affectedRow == 1 ? 'Data berhasil dihapus' : 'Data tidak ditemukan',
+			});
 		}).catch((e) => {
 			form.error(res, e)
 		})
@@ -163,14 +169,22 @@ module.exports = {
 		productModel
 		.getProductImageById(imageId, productId)
 		.then((data) => {
+			console.log(data)
 			productModel
 			.deleteProductImageById(imageId, productId)
 			.then(() => {
-				fs.unlink('./' + data[0].image_path, (err) => {
-					form.error(res, err)	
-				})
+				if (data.length) {
+					data.map((image) => {
+						fs.unlink('.public/' + image.image_path, (err) => {
+							return form.error(res, err)
+						})
+					})
+				}
+				// fs.unlink('./public' + data[0].image_path, (err) => {
+				// 	form.error(res, err)	
+				// })
 				// res.setHeader("Content-Type", "text/html");
-				res.status(200).json({
+				return res.status(200).json({
 					message: 'data berhasil dihapus'
 				})
 				// return res.end();

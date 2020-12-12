@@ -8,5 +8,11 @@ module.exports = {
 	},
 	concatOneWhere: (value, column) => {
 		return `${column}='${value}' AND`
+	},
+	removeString: (url, stringFindReplace) => {
+		if (url.includes(stringFindReplace)) {
+			return url.replace(stringFindReplace, '')
+		} 
+		return url
 	}
 }
