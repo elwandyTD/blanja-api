@@ -200,6 +200,19 @@ module.exports = {
 			})
 		})
 	},
+	updateProperty: async (data) => {
+		try {
+			for (let i = 0; i < data.length; i++) {
+				const productImage = await attrModel.getProductAttributeByQuery(qs.getQueryWhere('product_images', 'product_image_id, image_path', 'product_id', data[i].product_id))
+
+				data[i].product_images = productImage
+			}
+			return data
+
+		} catch (e) {
+			return e
+		}
+	},
 	getImageByProductId: (productId) => {
 		return new Promise((resolve, reject) => {
 			const queryS = `SELECT * FROM product_images WHERE product_id=${productId}`

@@ -22,5 +22,17 @@ module.exports = {
 				}
 			})
 		})
-	}
+	},
+	
+	getProductAttributeByQuery: (qs) => {
+		return new Promise((resolve, reject) => {
+			db.query(qs, (err, data) => {
+				if(!err) {
+					resolve(data)
+				} else {
+					reject(err)
+				}
+			})
+		})
+	},
 }

@@ -32,18 +32,24 @@ module.exports = {
 				})
 			}
 
-			form.success(res, {
-				products: data.products,
-				pageInfo: {
-					currentPage,
-					nextPage: (currentPage == totalPage) ? null : nextPage,
-					prevPage: (currentPage == 1) ? null : prevPage,
-					totalPage,
-				}
-			}, 'ambil')
+			productModel
+			.updateProperty(data.products)
+			.then((products) => {
+				form.success(res, {
+					products: products,
+					pageInfo: {
+						currentPage,
+						nextPage: (currentPage == totalPage) ? null : nextPage,
+						prevPage: (currentPage == 1) ? null : prevPage,
+						totalPage,
+					}
+				}, 'ambil')
+			})
+			.catch((err) => {
+				form.error(res, err)
+			})
 		})
 		.catch((err) => {
-			console.log(err)
 			form.error(res, err)
 		})
 	},
