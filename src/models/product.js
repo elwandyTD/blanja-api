@@ -16,7 +16,7 @@ module.exports = {
 			let where = 'WHERE '
 			let joins = ''
 			const ordering = order || 'newest'
-			let sorting = sort && sort.toUpperCase() || 'ASC'
+			let sorting = sort && sort.toUpperCase() || 'DESC'
 
 			if (search) {
 				if (category) {
