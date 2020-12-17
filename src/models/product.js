@@ -8,7 +8,7 @@ const attrModel = require('../models/attribute')
 module.exports = {
 	getAllProduct: (query) => {
 		return new Promise((resolve, reject) => {
-			const { search, category, brand, size, color, order, sort } = query
+			const { search, category, brand, size, color, order, sort, user_id } = query
 			const limit = Number(query.limit) || 15
 			const page = Number(query.page) || 1
 			const offset = (page - 1) * limit || 0
@@ -31,6 +31,9 @@ module.exports = {
 			}
 			if (brand) {
 				where += concat.concatOneWhere(brand, 'b.brand_name')
+			}
+			if (user_id) {
+				where += concat.concatOneWhere(user_id, 'p.user_id')
 			}
 			if (size) {
 				joins += ` JOIN product_sizes AS ps ON ps.product_id = p.product_id `

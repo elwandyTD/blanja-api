@@ -13,7 +13,8 @@ module.exports = {
 
         if (attr == 'colors') table = 'colors'
         else if (attr == 'brands') table = 'brands'
-        else if (attr == 'condition') table = 'conditions'
+		else if (attr == 'condition') table = 'conditions'
+		else if (attr == 'sizes') table = 'sizes'
         
 				AttrModel
 				.getDataByTable(table)

@@ -8,7 +8,8 @@ const multerStorage = multer.diskStorage({
     callback(null, "./public/images/products");
   },
   filename: function (req, file, callback) {
-		const fieldname = file.fieldname.replace('[]', '')
+		// const fieldname = file.fieldname.replace('[]', '')
+		const fieldname = file.fieldname
     const formatName = `${Date.now()}-${fieldname}${path.extname(
       file.originalname
     )}`
@@ -22,7 +23,7 @@ const upload = multer({
 })
 
 const uploadImages = (req, res, next) => {
-	const imagesUpload = upload.array("upload_images[]", 5)
+	const imagesUpload = upload.array("upload_images", 5)
 	imagesUpload(req, res, (err) => {
 		if (err) {
       form.error(res, {

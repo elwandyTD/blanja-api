@@ -5,6 +5,6 @@ const authController = require('../controllers/auth')
 
 authRouter.post('/register/:route', authController.registerUser)
 authRouter.post('/login/:route', authController.loginUser)
-// authRouter.post('/logout', authController)
+authRouter.delete('/logout', authController.logoutUser)
 
 module.exports = authRouter

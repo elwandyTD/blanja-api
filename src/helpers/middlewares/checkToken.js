@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const authModel = require('../../models/auth')
 
 module.exports = {
 	isValid: (req, res, next) => {
@@ -9,16 +10,32 @@ module.exports = {
 			})
 		} else {
 			const token = bearerToken.split(" ")[1]
-			try {
-				const decodedToken = jwt.verify(token, process.env.SECRET_KEY)
-				req.decodedToken = decodedToken
-				return next()
-			} catch (err) {
+			authModel
+			.getToken(token)
+			.then((isToken) => {
+				if (!isToken.length) {
+					return res.status(401).json({
+						message: 'Token tidak teridentifikasi',
+					})
+				} else {
+					try {
+						const decodedToken = jwt.verify(token, process.env.SECRET_KEY)
+						req.decodedToken = decodedToken
+						return next()
+					} catch (err) {
+						return res.status(401).json({
+							message: 'Token tidak teridentifikasi',
+							error: err
+						})
+					}
+				}
+			})
+			.catch((err) => {
 				return res.status(401).json({
 					message: 'Token tidak teridentifikasi',
 					error: err
 				})
-			}
+			})
 		}
 	},
 	isSeller: (req, res, next) => {

@@ -14,13 +14,15 @@ module.exports = {
 	},
 	insertUploadImages: (images) => {
 		return new Promise((resolve, reject) => {
-			db.query(`INSERT INTO product_images (product_id, image_path) VALUES ?`, [images], (err, data) => {
-				if(!err) {
-					resolve(data)
-				} else {
-					reject(err)
-				}
-			})
+			// for (let i = 0; i < images.length; i++) {
+				db.query(`INSERT INTO product_images (product_id, image_path) VALUES ?`, [images], (err, data) => {
+				// db.query(`INSERT INTO product_images VALUES (,${Number(images[i][0])}, ${images[i][1]}) ?`, (err, data) => {
+					if (err) {
+						reject(err)
+					}
+				})
+			// }
+			resolve(true)
 		})
 	},
 	

@@ -77,11 +77,14 @@ module.exports = {
 			updated_at: new Date(Date.now()),
 		}
 
-		if (!req.files[0]) {
-			form.error(res, {
-				msg: "Silahkan masukkan gambar",
-			})
-		}
+		
+		// if (!req.files[0]) {
+		// 	return res.json({
+		// 		msg: "Silahkan masukkan gambar",
+		// 	})
+		// }
+		// console.log(req.files)
+		// return res.json(body)
 		
 		productModel
 		.insertProduct(insertBody)
@@ -90,6 +93,7 @@ module.exports = {
 				const filepath = '/images/products/' + i.filename
 				return [data.insertId, filepath]
 			})
+			// console.log(imagesArr)
 			// res.json(imagesArr)
 			attrModel
 			.insertUploadImages(imagesArr)

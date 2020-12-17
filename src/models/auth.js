@@ -66,9 +66,46 @@ module.exports = {
 						const token = jwt.sign(payload, secret, {
 							expiresIn: "10h"
 						});
-						resolve({ token });
+						resolve({ 
+							token,
+							user_email,
+							level
+						});
 					}
 				})
+			})
+		})
+	},
+	getToken: (token) => {
+		return new Promise((resolve, reject) => {
+			db.query(query.queryGet('token_whitelist', '*', `WHERE token='${token}'`), (err, data) => {
+				if (!err) {
+					resolve(data)
+				} else {
+					reject(err)
+				}
+			})
+		})
+	},
+	insertToken: (token) => {
+		return new Promise((resolve, reject) => {
+			db.query(query.queryInsert('token_whitelist'), token, (err, data) => {
+				if (!err) {
+					resolve(data)
+				} else {
+					reject(err)
+				}
+			})
+		})
+	},
+	deleteToken: (token) => {
+		return new Promise((resolve, reject) => {
+			db.query(query.queryDelete('token_whitelist', `token='${token}'`), (err, data) => {
+				if (!err) {
+					resolve(data)
+				} else {
+					reject(err)
+				}
 			})
 		})
 	}
