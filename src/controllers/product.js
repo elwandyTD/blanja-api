@@ -42,6 +42,7 @@ module.exports = {
 						nextPage: (currentPage == totalPage) ? null : nextPage,
 						prevPage: (currentPage == 1) ? null : prevPage,
 						totalPage,
+						query: '?' + remove4,
 					}
 				}, 'ambil')
 			})
@@ -77,15 +78,6 @@ module.exports = {
 			updated_at: new Date(Date.now()),
 		}
 
-		
-		// if (!req.files[0]) {
-		// 	return res.json({
-		// 		msg: "Silahkan masukkan gambar",
-		// 	})
-		// }
-		// console.log(req.files)
-		// return res.json(body)
-		
 		productModel
 		.insertProduct(insertBody)
 		.then((data) => {

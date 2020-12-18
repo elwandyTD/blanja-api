@@ -41,6 +41,11 @@ module.exports = {
 	checkUserLogin: (body, table) => {
 		return new Promise((resolve, reject) => {
 			const { user_email, user_password } = body
+
+			if ( user_password == '' ) {
+				return reject('silahkan isi password')
+			}
+
 			db.query(query.queryGet(table, 'user_password, user_name ', `WHERE user_email='${user_email}'`), (err, data) => {
 				if (err) {
 					reject(err)
