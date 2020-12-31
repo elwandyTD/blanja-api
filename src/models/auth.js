@@ -46,7 +46,7 @@ module.exports = {
 				return reject('silahkan isi password')
 			}
 
-			db.query(query.queryGet(table, 'user_password, user_name ', `WHERE user_email='${user_email}'`), (err, data) => {
+			db.query(query.queryGet(table, 'user_id, user_password, user_name ', `WHERE user_email='${user_email}'`), (err, data) => {
 				if (err) {
 					reject(err)
 				}
@@ -62,6 +62,8 @@ module.exports = {
 						return reject('password salah')
 					} else {
 						const level = table.slice(0, table.length - 1)
+						const user_id = data[0].user_id
+						console.log(data[0])
 						const payload = {
 							user_name: data[0].user_name,
 							user_email,
@@ -71,8 +73,9 @@ module.exports = {
 						const token = jwt.sign(payload, secret, {
 							expiresIn: "10h"
 						});
-						resolve({ 
+						resolve({
 							token,
+							user_id,
 							user_email,
 							level
 						});
