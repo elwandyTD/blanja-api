@@ -1,7 +1,9 @@
 const form = require("../helpers/form");
+const query = require("../helpers/concat");
 const auth = require("../models/auth");
 const authModel = require("../models/auth");
 const nodemailer = require("nodemailer");
+const { json } = require("express");
 
 module.exports = {
   registerUser: (req, res) => {
@@ -95,29 +97,92 @@ module.exports = {
         });
     }
   },
-  sendEmail: (_, res) => {
-    const transporter = nodemailer.createTransport({
-      service: "Gmail",
-      auth: {
-        user: "elwanditirtana1945a@gmail.com",
-        pass: "ETDldTS123",
-      },
-    });
+  sendEmail: (req, res) => {
+    const {
+      params: { route },
+      body,
+    } = req;
+    const availableTables = ["customer", "seller"];
 
-    const mailOptions = {
-      from: "elwanditirtana1945a@gmail.com",
-      to: "medaco4758@yutongdt.com",
-      subject: "Test Node Mailer",
-      text: "Hai hai hai test test",
-      html: "<b>Hello world?</b>",
-    };
+    if (!body.user_email) {
+      return form.error(res, "Please input email");
+    }
 
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        res.send(error);
-      } else {
-        res.send(info);
-      }
-    });
+    if (availableTables.includes(route)) {
+      const table = route + "s";
+
+      authModel
+        .getUserByEmail(table, body.user_email)
+        .then((data) => {
+          const otp = query.generateOTP(6);
+          const body = {
+            otp,
+            created_at: new Date(Date.now()),
+            removed_at: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
+          };
+          authModel
+            .insertOTP(body)
+            .then(() => {
+              const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                auth: {
+                  user: "elwanditirtana1945a@gmail.com",
+                  pass: "ETDldTS123",
+                },
+              });
+
+              const mailOptions = {
+                from: "Admin Blanja",
+                to: "medaco4758@yutongdt.com",
+                subject: "Code OTP",
+                // text: "Your code OTP is " + otp,
+                html: "<p>Your code OTP is <b>" + otp + "</b></p>",
+              };
+
+              transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                  res.send(error);
+                } else {
+                  res.send(info);
+                }
+              });
+            })
+            .catch((err) => {
+              form.error(res, err);
+            });
+        })
+        .catch((error) => {
+          return form.error(res, error);
+        });
+    } else {
+      return res.json({
+        err: "URL is error",
+      });
+    }
+  },
+  verifyOTP: (req, res) => {
+    const { body } = req;
+
+    if (!body.otp) {
+      return form.error(res, "Please input otp");
+    } else {
+      authModel
+        .getOTP(body.otp)
+        .then((data) => {
+          authModel
+            .deleteOTP(data.otp)
+            .then(() => {
+              return res.send({
+                message: "OTP is verified",
+              });
+            })
+            .catch((err) => {
+              return form.error(res, err);
+            });
+        })
+        .catch((err) => {
+          form.error(res, err);
+        });
+    }
   },
 };

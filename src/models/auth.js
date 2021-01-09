@@ -4,6 +4,23 @@ const query = require("../helpers/query");
 const db = require("../configs/mySQL");
 
 module.exports = {
+  getUserByEmail: (table, email) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        query.queryGet(table, "*", `WHERE user_email='${email}'`),
+        (err, data) => {
+          if (err) {
+            reject(err);
+          }
+          if (!data.length) {
+            return reject("Email is not match in our record");
+          } else {
+            return resolve(data);
+          }
+        }
+      );
+    });
+  },
   addNewUser: (body, table) => {
     return new Promise((resolve, reject) => {
       db.query(
@@ -136,6 +153,45 @@ module.exports = {
           }
         }
       );
+    });
+  },
+  getOTP: (otp) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        query.queryGet("otp", "*", `WHERE otp='${otp}'`),
+        (err, data) => {
+          if (err) {
+            reject(err);
+          }
+          if (!data.length) {
+            reject("OTP is not match in our record");
+          } else {
+            resolve(data[0]);
+          }
+        }
+      );
+    });
+  },
+  insertOTP: (body) => {
+    return new Promise((resolve, reject) => {
+      db.query(query.queryInsert("otp"), body, (err, data) => {
+        if (!err) {
+          resolve(data);
+        } else {
+          reject(err);
+        }
+      });
+    });
+  },
+  deleteOTP: (otp) => {
+    return new Promise((resolve, reject) => {
+      db.query(query.queryDelete("otp", `otp='${otp}'`), (err, data) => {
+        if (!err) {
+          resolve(data);
+        } else {
+          reject(err);
+        }
+      });
     });
   },
 };
