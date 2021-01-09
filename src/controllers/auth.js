@@ -139,11 +139,11 @@ module.exports = {
                 html: "<p>Your code OTP is <b>" + otp + "</b></p>",
               };
 
-              transporter.sendMail(mailOptions, function (error, info) {
+              transporter.sendMail(mailOptions, function (error, _) {
                 if (error) {
                   res.send(error);
                 } else {
-                  res.send(info);
+                  form.success(res, data, "ambil");
                 }
               });
             })
@@ -179,6 +179,24 @@ module.exports = {
             .catch((err) => {
               return form.error(res, err);
             });
+        })
+        .catch((err) => {
+          form.error(res, err);
+        });
+    }
+  },
+  resetPassword: (req, res) => {
+    const { body } = req;
+
+    if (!body.user_email || !body.role) {
+      form.error(res, "Please fill the form");
+    } else {
+      authModel
+        .resetPassword(body)
+        .then(() => {
+          res.send({
+            message: "Reset password berhasil",
+          });
         })
         .catch((err) => {
           form.error(res, err);

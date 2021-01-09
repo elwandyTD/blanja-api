@@ -7,7 +7,11 @@ module.exports = {
   getUserByEmail: (table, email) => {
     return new Promise((resolve, reject) => {
       db.query(
-        query.queryGet(table, "*", `WHERE user_email='${email}'`),
+        query.queryGet(
+          table,
+          "user_id, user_email",
+          `WHERE user_email='${email}'`
+        ),
         (err, data) => {
           if (err) {
             reject(err);
@@ -15,7 +19,7 @@ module.exports = {
           if (!data.length) {
             return reject("Email is not match in our record");
           } else {
-            return resolve(data);
+            return resolve({ ...data[0], role: table });
           }
         }
       );
@@ -56,6 +60,44 @@ module.exports = {
           });
         }
       );
+    });
+  },
+  resetPassword: (body) => {
+    return new Promise((resolve, reject) => {
+      const { user_email, role, user_password } = body;
+
+      const saltRounds = 10;
+      bcrypt.genSalt(saltRounds, (err, salt) => {
+        if (err) {
+          reject(err);
+        }
+        bcrypt.hash(user_password, salt, (err, hashedPassword) => {
+          if (err) {
+            reject(err);
+          }
+          const newBody = {
+            user_password: hashedPassword,
+          };
+          db.query(
+            query.queryUpdate(role, `WHERE user_email='${user_email}'`),
+            newBody,
+            (err, data) => {
+              if (!err) {
+                resolve(data);
+              } else {
+                reject(err);
+              }
+            }
+          );
+          // db.query(query.queryInsert(table), newBody, (err, data) => {
+          //   if (!err) {
+          //     resolve(data);
+          //   } else {
+          //     reject(err);
+          //   }
+          // });
+        });
+      });
     });
   },
   checkUserLogin: (body, table) => {
