@@ -133,7 +133,7 @@ module.exports = {
 
               const mailOptions = {
                 from: "Admin Blanja",
-                to: "medaco4758@yutongdt.com",
+                to: data.user_email,
                 subject: "Code OTP",
                 // text: "Your code OTP is " + otp,
                 html: "<p>Your code OTP is <b>" + otp + "</b></p>",
