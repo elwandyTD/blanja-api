@@ -57,4 +57,15 @@ module.exports = {
         form.error(res, e);
       });
   },
+  deleteAddress: (req, res) => {
+    const { id } = req.params;
+
+    AttrModel.updateAddress(id)
+      .then((data) => {
+        form.success(res, data, "ambil");
+      })
+      .catch((e) => {
+        form.error(res, e);
+      });
+  },
 };
