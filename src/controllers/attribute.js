@@ -25,7 +25,22 @@ module.exports = {
         form.error(res, e);
       });
   },
-  // insertAddress: (req, res) => {
+  insertAddress: (req, res) => {
+    const { body } = req;
 
-  // },
+    AttrModel.insertAddress(body)
+      .then((data) => {
+        const id = data.insertId;
+        AttrModel.updateUserAddress(body.user_id, id)
+          .then((update) => {
+            form.success(res, update, "ambil");
+          })
+          .catch((e) => {
+            form.error(res, e);
+          });
+      })
+      .catch((e) => {
+        form.error(res, e);
+      });
+  },
 };
