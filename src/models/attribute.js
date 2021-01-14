@@ -52,10 +52,10 @@ module.exports = {
       });
     });
   },
-  updateAddress: (idUser, idAddress) => {
+  updateAddress: (id, body) => {
     return new Promise((resolve, reject) => {
-      const queryS = `UPDATE address SET id_address=${idAddress} WHERE user_id=${idUser}`;
-      db.query(queryS, (err, data) => {
+      const queryS = `UPDATE address SET ? WHERE id=${id}`;
+      db.query(queryS, body, (err, data) => {
         if (!err) {
           resolve(data);
         } else {

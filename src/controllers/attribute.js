@@ -43,4 +43,18 @@ module.exports = {
         form.error(res, e);
       });
   },
+  updateAddress: (req, res) => {
+    const {
+      body,
+      params: { id },
+    } = req;
+
+    AttrModel.updateAddress(id, body)
+      .then((data) => {
+        form.success(res, data, "ambil");
+      })
+      .catch((e) => {
+        form.error(res, e);
+      });
+  },
 };
