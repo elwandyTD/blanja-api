@@ -25,6 +25,17 @@ module.exports = {
         form.error(res, e);
       });
   },
+  getAddressByUser: (req, res) => {
+    const { id } = req.params;
+
+    AttrModel.getAddressByUser(id)
+      .then((data) => {
+        form.success(res, data, "ambil");
+      })
+      .catch((e) => {
+        form.error(res, e);
+      });
+  },
   insertAddress: (req, res) => {
     const { body } = req;
 

@@ -11,7 +11,7 @@ module.exports = {
     } = req;
 
     profileModel
-      .getAddress(id, id_address)
+      .getActiveAddress(id, id_address)
       .then((data) => {
         form.success(res, data, "ambil");
       })

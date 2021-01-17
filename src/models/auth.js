@@ -111,7 +111,7 @@ module.exports = {
       db.query(
         query.queryGet(
           table,
-          "user_id, user_password, user_name ",
+          "user_id, user_password, user_name, id_address",
           `WHERE user_email='${user_email}'`
         ),
         (err, data) => {
@@ -141,7 +141,9 @@ module.exports = {
                   user_email,
                   level,
                 };
+                // console.log(data[0]);
                 const secret = process.env.SECRET_KEY;
+                const id_address = data[0].id_address;
                 const token = jwt.sign(payload, secret, {
                   expiresIn: "10h",
                 });
@@ -151,6 +153,7 @@ module.exports = {
                   user_email,
                   user_name: data[0].user_name,
                   level,
+                  id_address: id_address ? id_address : false,
                 });
               }
             }
