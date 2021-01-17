@@ -82,7 +82,13 @@ module.exports = {
 
       authModel
         .deleteToken(token)
-        .then(() => {
+        .then((data) => {
+          if (data.affectedRows === 0) {
+            return res.json({
+              isLogout: false,
+              message: "User gagal logout",
+            });
+          }
           return res.json({
             isLogout: true,
             message: "User berhasil logout",

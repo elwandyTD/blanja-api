@@ -149,6 +149,7 @@ module.exports = {
                   token,
                   user_id,
                   user_email,
+                  user_name: data[0].user_name,
                   level,
                 });
               }
