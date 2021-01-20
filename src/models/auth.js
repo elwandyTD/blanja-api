@@ -111,14 +111,16 @@ module.exports = {
       db.query(
         query.queryGet(
           table,
-          "user_id, user_password, user_name, id_address",
+          `user_id, user_password, user_name ${
+            table === "customers" ? ", id_address" : ""
+          }`,
           `WHERE user_email='${user_email}'`
         ),
         (err, data) => {
           if (err) {
             reject(err);
           }
-          // return resolve(data)
+          // return resolve(data);
           if (!data.length) {
             return reject("Email or password is not match");
             // return reject("User not found !");
@@ -135,7 +137,7 @@ module.exports = {
               } else {
                 const level = table.slice(0, table.length - 1);
                 const user_id = data[0].user_id;
-                console.log(data[0]);
+                // console.log(data[0]);
                 const payload = {
                   user_name: data[0].user_name,
                   user_email,
