@@ -75,10 +75,10 @@ module.exports = {
       });
     });
   },
-  updateAddress: (id) => {
+  updateAddress: (id, body) => {
     return new Promise((resolve, reject) => {
-      const queryS = `DELETE FROM address WHERE id=${id}`;
-      db.query(queryS, (err, data) => {
+      const queryS = `UPDATE address SET ? WHERE id=${id}`;
+      db.query(queryS, body, (err, data) => {
         if (!err) {
           resolve(data);
         } else {

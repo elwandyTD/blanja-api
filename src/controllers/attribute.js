@@ -79,4 +79,15 @@ module.exports = {
         form.error(res, e);
       });
   },
+  updateActiveAddress: (req, res) => {
+    const { id, id_user } = req.params;
+
+    AttrModel.updateUserAddress(id_user, id)
+      .then((data) => {
+        form.success(res, data, "ambil");
+      })
+      .catch((e) => {
+        form.error(res, e);
+      });
+  },
 };
