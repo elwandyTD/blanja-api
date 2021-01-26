@@ -42,13 +42,16 @@ module.exports = {
   },
   getAddressByUser: (id) => {
     return new Promise((resolve, reject) => {
-      db.query(`SELECT * FROM address WHERE user_id=${id}`, (err, data) => {
-        if (!err) {
-          resolve(data);
-        } else {
-          reject(err);
+      db.query(
+        `SELECT * FROM address WHERE user_id=${id} ORDER BY id DESC`,
+        (err, data) => {
+          if (!err) {
+            resolve(data);
+          } else {
+            reject(err);
+          }
         }
-      });
+      );
     });
   },
   insertAddress: (body) => {
