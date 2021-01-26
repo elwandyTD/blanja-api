@@ -54,6 +54,24 @@ module.exports = {
       );
     });
   },
+  getHistoryByUserId: (id) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        qs.queryGet(
+          "histories",
+          "*",
+          `WHERE user_id=${id} ORDER BY history_id DESC`
+        ),
+        (err, data) => {
+          if (!err) {
+            resolve(data);
+          } else {
+            reject(err);
+          }
+        }
+      );
+    });
+  },
   insertHistory: (body) => {
     return new Promise((resolve, reject) => {
       const queryS = "INSERT INTO histories SET ?";

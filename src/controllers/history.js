@@ -33,6 +33,22 @@ module.exports = {
         form.error(res, e);
       });
   },
+  getHistoryByUserId: (req, res) => {
+    const { user_id } = req.params;
+
+    historyModel
+      .getHistoryByUserId(user_id)
+      .then(async (history) => {
+        const detailHistories = await historyModel.updateHistoryAttribute(
+          history
+        );
+
+        form.success(res, detailHistories, "ambil");
+      })
+      .catch((e) => {
+        form.error(res, e);
+      });
+  },
   insertHistory: async (req, res) => {
     const { body } = req;
 
