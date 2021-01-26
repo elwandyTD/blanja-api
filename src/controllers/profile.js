@@ -5,7 +5,7 @@ module.exports = {
   updatePhoto: (req, res) => {
     res.send(req.file);
   },
-  getUser: (req, res) => {
+  getUserAndAddress: (req, res) => {
     const {
       params: { id, id_address },
     } = req;

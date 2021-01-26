@@ -1,22 +1,18 @@
 const db = require("../configs/mySQL");
 const qs = require("../helpers/query");
 
-const queryS = "SELECT * FROM categories ";
-
 module.exports = {
-  updatePhoto: (file, id) => {},
+  // updatePhoto: (file, id) => {},
   getActiveAddress: (id, idAddress) => {
     return new Promise((resolve, reject) => {
-      db.query(
-        qs.queryGet("address", "*", `WHERE user_id=${id} AND id=${idAddress}`),
-        (err, data) => {
-          if (!err) {
-            resolve(data[0]);
-          } else {
-            reject(err);
-          }
+      const q = `SELECT * FROM customers AS c JOIN address AS a ON a.user_id = c.user_id WHERE a.user_id =${id} AND a.id = ${idAddress}`;
+      db.query(q, (err, data) => {
+        if (!err) {
+          resolve(data[0]);
+        } else {
+          reject(err);
         }
-      );
+      });
     });
   },
 };
