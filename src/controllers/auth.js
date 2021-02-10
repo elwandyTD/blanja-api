@@ -166,6 +166,69 @@ module.exports = {
       });
     }
   },
+  forgotPass: (req, res) => {
+    const {
+      params: { route },
+      body,
+    } = req;
+    const availableTables = ["customer", "seller"];
+
+    if (!body.user_email) {
+      return form.error(res, "Please input email");
+    }
+
+    if (availableTables.includes(route)) {
+      const table = route + "s";
+
+      authModel
+        .getUserByEmail(table, body.user_email)
+        .then((data) => {
+          const otp = query.generateOTP(6);
+          const body = {
+            otp,
+            created_at: new Date(Date.now()),
+            removed_at: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
+          };
+          authModel
+            .insertOTP(body)
+            .then(() => {
+              const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                auth: {
+                  user: "elwanditirtana1945a@gmail.com",
+                  pass: "ETDldTS321",
+                },
+              });
+
+              const mailOptions = {
+                from: "Admin Blanja",
+                to: data.user_email,
+                subject: "Code OTP",
+                // text: "Your code OTP is " + otp,
+                html: "<p>Your code OTP is <b>" + otp + "</b></p>",
+              };
+
+              transporter.sendMail(mailOptions, function (error, _) {
+                if (error) {
+                  res.send(error);
+                } else {
+                  form.success(res, data, "ambil");
+                }
+              });
+            })
+            .catch((err) => {
+              form.error(res, err);
+            });
+        })
+        .catch((error) => {
+          return form.error(res, error);
+        });
+    } else {
+      return res.json({
+        err: "URL is error",
+      });
+    }
+  },
   verifyOTP: (req, res) => {
     const { body } = req;
 
