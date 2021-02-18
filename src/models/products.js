@@ -59,20 +59,10 @@ module.exports = {
     try {
       for (let i = 0; i < data.length; i++) {
         const productColor = await getProductAttribute(
-          query(
-            "product_colors",
-            "product_color_id, color_code, color_name",
-            "product_id",
-            data[i].product_id
-          )
+          `SELECT c.color_id, c.color_name, c.color_code FROM product_colors AS pc JOIN colors AS c ON c.color_id = pc.color_id WHERE product_id = ${data[i].product_id}`
         );
         const productSize = await getProductAttribute(
-          query(
-            "product_sizes",
-            "product_size_id, size_code",
-            "product_id",
-            data[i].product_id
-          )
+          `SELECT s.size_id, s.size_value AS size_code FROM product_sizes AS ps JOIN sizes AS s ON s.size_id = ps.size_id WHERE ps.product_id = ${data[i].product_id}`
         );
         const productImage = await getProductAttribute(
           query(
