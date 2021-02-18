@@ -15,4 +15,28 @@ module.exports = {
       });
     });
   },
+  insertReview: (body) => {
+    return new Promise((resolve, reject) => {
+      const q = "INSERT INTO reviews SET ?";
+      db.query(q, body, (err, data) => {
+        if (!err) {
+          resolve(data);
+        } else {
+          reject(err);
+        }
+      });
+    });
+  },
+  updateUsername: (table, name, id) => {
+    return new Promise((resolve, reject) => {
+      const q = `UPDATE ${table} SET user_name='${name}' WHERE user_id='${id}'`;
+      db.query(q, (err, data) => {
+        if (!err) {
+          resolve(data);
+        } else {
+          reject(err);
+        }
+      });
+    });
+  },
 };

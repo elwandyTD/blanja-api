@@ -18,12 +18,20 @@ module.exports = {
       .catch((e) => {
         form.error(res, e);
       });
+  },
+  addReview: (req, res) => {
+    const { body } = req;
 
-    // if (availableTables.includes(route)) {
-    //   const table = route;
-
-    // } else {
-    //   form.error(res, "rute tidak ditemukan");
-    // }
+    profileModel
+      .insertReview(body)
+      .then(() => {
+        form.success(res, "success insert", "tambah");
+      })
+      .catch((e) => {
+        form.error(res, e);
+      });
+  },
+  changeUsername: (req, res) => {
+    const { body } = req;
   },
 };

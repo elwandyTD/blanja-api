@@ -9,5 +9,6 @@ profileRouter.get(
   "/address/:id/:id_address",
   profileController.getUserAndAddress
 );
+profileRouter.post("/review", profileController.addReview);
 
 module.exports = profileRouter;

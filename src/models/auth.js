@@ -25,6 +25,23 @@ module.exports = {
       );
     });
   },
+  getUserById: (table, id) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        query.queryGet(table, "*", `WHERE user_id='${id}'`),
+        (err, data) => {
+          if (err) {
+            reject(err);
+          }
+          if (!data.length) {
+            return reject("Email is not match in our record");
+          } else {
+            return resolve({ ...data[0], role: table });
+          }
+        }
+      );
+    });
+  },
   addNewUser: (body, table) => {
     return new Promise((resolve, reject) => {
       db.query(

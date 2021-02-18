@@ -6,6 +6,26 @@ const nodemailer = require("nodemailer");
 const { json } = require("express");
 
 module.exports = {
+  getUser: (req, res) => {
+    const {
+      params: { route, id },
+      body,
+    } = req;
+    const availableTables = ["customers", "sellers"];
+
+    if (availableTables.includes(route)) {
+      authModel
+        .getUserById(route, id)
+        .then((data) => {
+          form.success(res, data, "ambil");
+        })
+        .catch((e) => {
+          form.error(res, e);
+        });
+    } else {
+      form.error(res, "rute tidak ditemukan");
+    }
+  },
   registerUser: (req, res) => {
     const {
       params: { route },

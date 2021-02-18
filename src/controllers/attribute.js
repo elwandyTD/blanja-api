@@ -41,14 +41,14 @@ module.exports = {
 
     AttrModel.insertAddress(body)
       .then((data) => {
-        const id = data.insertId;
-        AttrModel.updateUserAddress(body.user_id, id)
-          .then((update) => {
-            form.success(res, update, "ambil");
-          })
-          .catch((e) => {
-            form.error(res, e);
-          });
+        // const id = data.insertId;
+        form.success(res, data, "ambil");
+        // AttrModel.updateUserAddress(body.user_id, id)
+        //   .then((update) => {
+        //   })
+        //   .catch((e) => {
+        //     form.error(res, e);
+        //   });
       })
       .catch((e) => {
         form.error(res, e);
@@ -71,7 +71,7 @@ module.exports = {
   deleteAddress: (req, res) => {
     const { id } = req.params;
 
-    AttrModel.updateAddress(id)
+    AttrModel.deleteAddress(id)
       .then((data) => {
         form.success(res, data, "ambil");
       })

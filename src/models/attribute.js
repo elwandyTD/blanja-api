@@ -90,6 +90,18 @@ module.exports = {
       });
     });
   },
+  deleteAddress: (id) => {
+    return new Promise((resolve, reject) => {
+      const queryS = `DELETE FROM address WHERE id=${id}`;
+      db.query(queryS, (err, data) => {
+        if (!err) {
+          resolve(data);
+        } else {
+          reject(err);
+        }
+      });
+    });
+  },
   updateUserAddress: (idUser, idAddress) => {
     return new Promise((resolve, reject) => {
       const queryS = `UPDATE customers SET id_address=${idAddress} WHERE user_id=${idUser}`;
