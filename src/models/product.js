@@ -283,11 +283,11 @@ module.exports = {
       );
     });
   },
-  insertColors: (colors, product_id, table) => {
+  insertBatch: (colors, product_id, table) => {
     return new Promise((resolve, reject) => {
       for (let i = 0; i < colors.length; i++) {
         const queryS = `INSERT INTO ${table} VALUES ('', ${product_id}, ${colors[i]})`;
-        db.query(queryS, (err, data) => {
+        db.query(queryS, (err, _) => {
           if (err) {
             reject(err);
           }

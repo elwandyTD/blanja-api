@@ -89,6 +89,12 @@ module.exports = {
       updated_at: new Date(Date.now()),
     };
 
+    const colors = body.product_colors;
+    const sizes = body.product_sizes;
+
+    delete insertBody.product_colors;
+    delete insertBody.product_sizes;
+
     productModel
       .insertProduct(insertBody)
       .then((data) => {
@@ -101,11 +107,29 @@ module.exports = {
         attrModel
           .insertUploadImages(imagesArr)
           .then(() => {
-            const resObj = {
-              msg: "Data berhasil dimasukkan",
-              data: { id: data.insertId, ...insertBody, images: imagesArr },
-            };
-            res.json(resObj);
+            productModel
+              .insertBatch(colors, data.insertId, "product_colors")
+              .then(() => {
+                productModel
+                  .insertBatch(sizes, data.insertId, "product_sizes")
+                  .then(() => {
+                    const resObj = {
+                      msg: "Data berhasil dimasukkan",
+                      data: {
+                        id: data.insertId,
+                        ...insertBody,
+                        images: imagesArr,
+                      },
+                    };
+                    res.json(resObj);
+                  })
+                  .catch((err) => {
+                    form.error(res, err);
+                  });
+              })
+              .catch((err) => {
+                form.error(res, err);
+              });
           })
           .catch((err) => {
             form.error(res, err);
