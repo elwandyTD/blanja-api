@@ -45,15 +45,12 @@ module.exports = {
         where += concat.concatOneWhere(user_id, "p.user_id");
       }
       if (size) {
-        joins += ` JOIN product_sizes AS ps ON ps.product_id = p.product_id `;
-        where += concat.concatManyWhere(size, "ps.size_code");
+        joins += ` JOIN product_sizes AS ps ON ps.product_id = p.product_id JOIN sizes AS s ON s.size_id = ps.size_id `;
+        where += concat.concatManyWhere(size, "s.size_value");
       }
       if (color) {
-        joins += ` JOIN product_colors AS pc ON pc.product_id = p.product_id `;
-        where += concat.concatOneWhere(
-          "#" + color.toUpperCase(),
-          "pc.color_code"
-        );
+        joins += ` JOIN product_colors AS pc ON pc.product_id = p.product_id JOIN colors AS cl ON cl.color_id = pc.color_id `;
+        where += concat.concatOneWhere(color, "cl.color_name");
       }
 
       if (where !== "") {

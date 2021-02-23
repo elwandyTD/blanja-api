@@ -22,9 +22,9 @@ const server = require("http").createServer(app);
 
 const io = require("socket.io")(server).sockets;
 
-app.listen(port, () => {
-  console.log(`Server is running at port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server is running at port ${port}`);
+// });
 
 app.use(express.static("public"));
 
@@ -61,6 +61,6 @@ io.on("connection", (socket) => {
   }
 });
 
-server.listen(8001, () => console.log("server running on port:" + 8001));
+server.listen(8000, () => console.log("server running on port:" + 8000));
 
 module.exports = app;
