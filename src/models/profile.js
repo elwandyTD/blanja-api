@@ -39,4 +39,40 @@ module.exports = {
       });
     });
   },
+  getEachRating: (product_id) => {
+    return new Promise((resolve, reject) => {
+      const q = `SELECT (SELECT COUNT(review_rating) FROM reviews WHERE product_id = ${product_id} AND review_rating = 5) AS five, (SELECT COUNT(review_rating) FROM reviews WHERE product_id = ${product_id} AND review_rating = 4) AS four, (SELECT COUNT(review_rating) FROM reviews WHERE product_id = ${product_id} AND review_rating = 3) AS three, (SELECT COUNT(review_rating) FROM reviews WHERE product_id = ${product_id} AND review_rating = 2) AS two, (SELECT COUNT(review_rating) FROM reviews WHERE product_id = ${product_id} AND review_rating = 1) AS one FROM reviews WHERE product_id = ${product_id} LIMIT 1`;
+      db.query(q, (err, data) => {
+        if (!err) {
+          resolve(data);
+        } else {
+          reject(err);
+        }
+      });
+    });
+  },
+  getAllReview: (product_id) => {
+    return new Promise((resolve, reject) => {
+      const q = `SELECT r.review_id, r.user_id, r.review_comment, r.created_at, c.user_name, c.user_email, c.user_image FROM reviews AS r JOIN customers AS c ON r.user_id = c.user_id WHERE product_id = ${product_id}`;
+      db.query(q, (err, data) => {
+        if (!err) {
+          resolve(data);
+        } else {
+          reject(err);
+        }
+      });
+    });
+  },
+  updatePhoto: (table, image, id) => {
+    return new Promise((resolve, reject) => {
+      const q = `UPDATE ${table} SET user_image='${image}' WHERE user_id='${id}'`;
+      db.query(q, (err, data) => {
+        if (!err) {
+          resolve(data);
+        } else {
+          reject(err);
+        }
+      });
+    });
+  },
 };
