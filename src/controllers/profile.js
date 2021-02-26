@@ -10,13 +10,17 @@ module.exports = {
     profileModel
       .updatePhoto(body.role, image, body.user_id)
       .then(() => {
-        fs.unlink("./public" + body.latest, (err) => {
-          if (err) {
-            form.error(res, err);
-          } else {
-            form.success(res, "success update", "update");
-          }
-        });
+        if (body.latest !== "/images/profile/user.png") {
+          fs.unlink("./public" + body.latest, (err) => {
+            if (err) {
+              form.error(res, err);
+            } else {
+              form.success(res, "success update", "update");
+            }
+          });
+        } else {
+          form.success(res, "success update", "update");
+        }
       })
       .catch((e) => {
         form.error(res, e);

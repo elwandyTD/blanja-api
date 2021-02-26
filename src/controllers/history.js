@@ -58,6 +58,8 @@ module.exports = {
       history_address: body.address,
       history_method: body.method,
       history_subtotal: body.subtotal,
+      coupon: body.code,
+      seller_id: body.seller,
       created_at: new Date(Date.now()),
     };
 

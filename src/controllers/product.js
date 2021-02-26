@@ -94,7 +94,8 @@ module.exports = {
 
     delete insertBody.product_colors;
     delete insertBody.product_sizes;
-
+    // console.log(body);
+    // res.json(body);
     productModel
       .insertProduct(insertBody)
       .then((data) => {
@@ -210,12 +211,13 @@ module.exports = {
     productModel
       .deleteProduct(id)
       .then((data) => {
-        return res.json({
-          msg:
-            data.affectedRow == 1
-              ? "Data berhasil dihapus"
-              : "Data tidak ditemukan",
-        });
+        form.success(res, data, "delete success");
+        // return res.json({
+        //   msg:
+        //     data.affectedRow== 1
+        //       ? "Data berhasil dihapus"
+        //       : "Data tidak ditemukan",
+        // });
       })
       .catch((e) => {
         form.error(res, e);

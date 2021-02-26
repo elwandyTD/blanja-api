@@ -84,8 +84,7 @@ module.exports = {
 
     AttrModel.updateUserAddress(id_user, id)
       .then((data) => {
-        res.send(data);
-        // form.success(res, data, "ambil");
+        form.success(res, data, "ambil");
       })
       .catch((e) => {
         form.error(res, e);
