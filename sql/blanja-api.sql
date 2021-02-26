@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2020 at 11:09 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Waktu pembuatan: 26 Feb 2021 pada 07.57
+-- Versi server: 10.1.38-MariaDB
+-- Versi PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,39 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `brands`
+-- Struktur dari tabel `address`
+--
+
+CREATE TABLE `address` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `recipient` varchar(255) NOT NULL,
+  `address` text NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `province` varchar(255) NOT NULL,
+  `recipient_number` varchar(15) NOT NULL,
+  `zip_code` int(11) NOT NULL,
+  `country` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `address`
+--
+
+INSERT INTO `address` (`id`, `user_id`, `title`, `recipient`, `address`, `city`, `province`, `recipient_number`, `zip_code`, `country`) VALUES
+(11, 11, 'New House', 'Jack', 'Jl. Kelewatan rt 008/02, tangsel', 'Tangerang ', 'Banten ', '085858855588', 8858085, 'Indonesia'),
+(12, 11, 'House 1', 'Wali', 'Jl.Kelewatan block A,  RT 002/02,  Serpong,  Banten', 'Serpong', 'Banten', '0896585588', 808780, 'Germany'),
+(13, 11, 'Rumah di Tangerang', 'Test', 'Test', 'Hahah', 'Huh', '08965555542', 805858, 'United State America'),
+(14, 11, 'Hahaha', 'Heheheh', 'Jjxjdn', 'Jdidjn', 'Jdkjb', '8580', 880550, 'Indonesia'),
+(15, 11, 'Alamat baru 123', 'Rijal', 'Jln.Kisaniin RT 09/02,  Tangerang ', 'Tangerang', 'Test', '087979789', 855985, 'Indonesia'),
+(17, 17, 'Rumah di Tangerang', 'Aku bang amat', 'New alamat', 'Jhhjdk', 'Hadir', '5468', 8888, 'Indonesia'),
+(18, 17, 'Hahah', 'Test', 'Jalan baru', 'Hdjh', 'Hai', '0859765', 585, 'Indonesia');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `brands`
 --
 
 CREATE TABLE `brands` (
@@ -34,7 +66,7 @@ CREATE TABLE `brands` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `brands`
+-- Dumping data untuk tabel `brands`
 --
 
 INSERT INTO `brands` (`brand_id`, `brand_name`) VALUES
@@ -48,57 +80,59 @@ INSERT INTO `brands` (`brand_id`, `brand_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Struktur dari tabel `categories`
 --
 
 CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
+  `category_link` varchar(255) NOT NULL,
   `category_color` varchar(20) NOT NULL,
   `category_image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `categories`
+-- Dumping data untuk tabel `categories`
 --
 
-INSERT INTO `categories` (`category_id`, `category_name`, `category_color`, `category_image`) VALUES
-(1, 'T-Shirt', '#CC0B04', 'https://s3-alpha-sig.figma.com/img/6b1b/11de/b984818831143e1889054e98377f4423?Expires=1607904000&Signature=VhgWnXbYc98-JCDEuE1a41stQZNV22Ai6b5oSc6penxiWiFg1sbbKZWh7HJtV~jORDefcqP8gCMRxIJ6hLMUMn-S6Pn3z6WYEnlsw8CFo79BDcdv~pOufo-aKvOAqOUXN1jv6T7EYX-gzWytL0-AbOv~EYwzecqaEmcJW83r9HmbjYCcjReYd3WfRAlSaF5rD-pU3Vm3ys~k~dYZhh8fT8lR8Cy4nUcri7Qd-SxfZVzRbhAM-3bPSxktmQmKktZ2NCCzSzWx68dU6Mzs-Wb-8IUFuEDT84tCBZKIa-N6O9n6kO~s6-w3PptUSA-v1kS0wP528HF9H8~dXLWmgbXVgQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-(2, 'Shorts', '#1C3391', 'https://s3-alpha-sig.figma.com/img/49a2/88f8/ad6aeec8a073aa0a657e7c7519263626?Expires=1607904000&Signature=Ktz-UMalSSlYyblQbMNCVOFNJI3FfzxSZwNBvpgsP5shD4gxs~bHmAi-vMS9FewuTe~ABVhdlYq1cmi93F2Fh~pIOiAfr4ZQdOcKGDs-hvACxVnWVWyZL~MQ7yNake~iOPKY~-5BvQoqsyd4SOnnlGQs-~p9wJ4B~WaUPrCSjKWyBuNojJK5J2z9ueDjb7zSzJ27VBREsjCWM0~g8cb0woeMl4P0raVm91TBtevFszGR1z87i~PGz35CzEdUR2yyggcIPq-8MNXZweho7uT8zLouN~f0GcVjBMMVrvxIV8PH8IiS4MPuyGaSv9WJK542vRwBEjdHy2bUM~k~XG9QTg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-(3, 'Jacket', '#F67B02', 'https://s3-alpha-sig.figma.com/img/65af/55c4/5d103020c208199aa0396789ad645df1?Expires=1607904000&Signature=Lmc5789rqrQN5z-vOh~8222F0hdNkf3aNJblDK9X6kLiZ7nhDniARnAaOiNKBVNppoH8xEl63DDi1cGiQHCbHTLPdCTAAdkos-S0jh~LxdtjrJGxqST-fBAWy56rQNdRWOYkZyaNFcje4Il63ghG2s7AP70s1XSmQ~8DDmkJol7yR6TB4Ry9VlbRPHv1Mi2Gilkr4Sh0XSzxUzo~Z35GqPuInMwPKxI~yMszBiSNkqJtg2ubV0W3YOYEsxlYbFMnsKSRT5aemB6ygyTow846-jKHW7mPmh5J4iwR7nmUF-Smk6MOs5LNHCIzcrK9OoSPJKXoqGmIPBQIbBJ04wZXVw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-(4, 'Pants', '#F31F51', 'https://s3-alpha-sig.figma.com/img/64b4/4714/896286200d422369861a2d608f35b6f4?Expires=1607904000&Signature=S5h7~WKYkNBs7qiyrRWGtlHSMrQhXv6HM2LXPUlLGOIMKDKqjht~LCOBudrebUbGn1I7q~Bufot1~R9SncYAu5ApD5GdkQ6NxorpwSFG9y426E4NbnwnD3cfLceyKsUgXSKoFhxF50nCF6CJLqcPd-uVwLUw2L99HIkc-Y65HLzk6mWrGfv60t4q3bCcNiiFiLjrvIDOuPHjPEJE9tIJVZaUblUSYcau0iSjD-i5PExBt1WvB1Oh7Qq04466wOMfisLdcCkWoPPK0M4~0RhcVx2o0AtPmknWb0DuJsBun-7r9eK2xthWsVmmSWE4hJIk~GUPG2If8Q7Ho6ECTm1zUg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-(7, 'Shoes', '#57CD9E', 'https://s3-alpha-sig.figma.com/img/fc9b/6b9b/45aad43ae695c2de7b3949ff451bd7a1?Expires=1607904000&Signature=AU~0FfPSuIp~gtH7Fi9oNAP~7YbM32SAs~aeNiYIcOS7xC9xwZeC6iC0YeVfYkCfqlfYXAmiUjYUmlbU00BIjHwRM9S9WwNqKPK4BKCMU3tr-JzHKq1KqR~k0eAAeZjt52CogXm4ySfSanM5bzoEB5RXbGWb0kaEBLViRw82vtif45UzeA3OVskayQtME6m6-T1AYhNyyeG1eOyMifwvwJwu5SGSKfbyKTLqjdfjuykg-QBo18pQTiWci9stpfNe3isi7toOEVMsaWv4KUFwpmOc7CMVdq-DTaifFe8Dla3XF1pPNfX~yEUa22t0XtzTYAF2AozF7h1gM2zDPDoTsQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-(8, 'High heels', '#5650D8', 'https://s3-alpha-sig.figma.com/img/e4ba/3e76/a9bf0f820f0f0a5c5b5c7383b26d989c?Expires=1607904000&Signature=HjMCzoiqUe9xP9FW6aMa7tWWV7APbCXDDXEO7P2vxLHANkwT9IJ8UxR5tRJHrbITbdylwBXyNioS2aMze~rSfOClWe5VhFl32VE03kc1rei7bh19EEXQS4a10Q-VaFNckVEzRMA8T3QrjZrpA0rNvJo-~WxNOmnwVWdMt7KJl9GBH9LNhYaqHxvxx3LRvI1neLnZ~e9gDtENglWVELAg1q19gFXYtP705RBM5MtekIConvrnzQhjB8oUeTNCVNjUKloXOoyUFag2H5myDT3oFPodgPceeuqfv0i2MnUN5DtuiILfJ5GsKDMoll2XWuQJStzwYSzQZ2ciZY9~6MBtxw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-(9, 'Handbag', '#50C8D8', 'https://s3-alpha-sig.figma.com/img/d554/5e85/c5a03743f4f3d8d7227b7cd1854213ac?Expires=1607904000&Signature=J2jKPwG6eczD~3KZ8wTuaeFH1HDRy99~lAFU1Jxoiv-DJV8MTGxsG98l3ZmP67trf1REUxsDiRci0iRiUWdNxLXGnFHcvbLklhhI2ScodeZgVgFRiDFlWsqGuyJWQmHqE6zzKEHCf39V4qADnVV266zjNXmwfXz64kbFqu3BxKL90TpHc-4ltOSzp5m9lhvLMCNa-MrMQ3Ift9FodLnqCq07z9GAp1AcjUITaL9DYY7RUp9JptJLqXnCbFlZwPjv4qngIN1H0QwjrP7sKBhM9lvMByRLX0iNnDpRadhlcQpPIhu0g8HQv9DOKSrD6WM~RO7LXiTKpoJ2aA7fpOTPAQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA');
+INSERT INTO `categories` (`category_id`, `category_name`, `category_link`, `category_color`, `category_image`) VALUES
+(1, 'T-Shirt', 't-shirt', '#CC0B04', 'https://s3-alpha-sig.figma.com/img/6b1b/11de/b984818831143e1889054e98377f4423?Expires=1610323200&Signature=TrW9bgpnZZFxJEuYMooWv-PdU3fFDqctSId~f3KGl1qHqeCB~oppnLjDWdMBQNIu-Y37lYi4t56jEGmDCV4~jnxTORj1Zoxzce0Ecg7MX9pAGgXWKB0r6LL8T57swSMhGBzj8zmtDUx8Vlr4SZdTGcQf-wo2pS5vK-zYdT81x42tq~2L25LKg4HnYaxujLtySicvqwsv6~GMlPluYXnNUQyY~kLNy4RhwMgl4-8uWPBr6anjLyVT7n86NZd5dIHSj07n0-TLZipiZPhlPV48lvAloFo0xdgnHvOAsniKMkgs4Q58oCmCmrgO3Jd6dR2d4NqUVRMA0Ni6kFFgW9Yc0w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+(2, 'Shorts', 'shorts', '#1C3391', 'https://s3-alpha-sig.figma.com/img/49a2/88f8/ad6aeec8a073aa0a657e7c7519263626?Expires=1610323200&Signature=e1u4YTOKkGaeQRys1rGKnzoEdGcjDeMzQAR1o0VgJMZuYSAHBl6arEjy0haRqgluDC-93B8cA5-UZ2K9RAZKyJxhC5zQVri9fcelzGM0778OfZoNCHa6sUDExMxlzxr46eAawuvG8Rlux9oFMWducEIZEto3XHAiaVrtd5lLqHW2oukOJ1-3mgLZKQCdtfZ5TiXT9ZOdS6nQ7kgOwM87rkQeI12qZFYgZVanLhwyEeFhiDQj4eDTJlX-iQp6xqBDVFwrCwgyFuINev5TknS6i~8CzMk812dgIBFbIeGosy54Pbp9o6L~~l8VND6tGTV~OlbWNQLDXp0OKQSMkWJfCA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+(3, 'Jacket', 'jacket', '#F67B02', 'https://s3-alpha-sig.figma.com/img/65af/55c4/5d103020c208199aa0396789ad645df1?Expires=1610323200&Signature=Kk8ac48GDlqIQCrIvM9iE2gcyKWQJUnz-bXJbdawdW809iLwBJVckbyS~yX3eR1WLTKBwaEc5EB1~1X7nR8JnGVJxeFqE6Xx-gU8d7cQ~AUhZ~GxioTzwtGY6wt3RgEj9JsfUqkuUYe6-jtM0pZPmMFjXwt7WXOWnUXVDR8q0UgZ1tXdeBl2Cn7N8trU4xXb9nPOtuXBSPPitT1ecGoQUmxTtx~~C-~7iUVJP2ryQJHSPIGShhWSq-33wW4BKQH-PRo-16cXHaMD9aum0pkoNJWjdhhQqrU8YX1EquUsq5L9~NqaOCVRTWVRxy0CxrsKNuVgBTwfIwnO9M3V42RMPw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+(4, 'Pants', 'pants', '#F31F51', 'https://s3-alpha-sig.figma.com/img/64b4/4714/896286200d422369861a2d608f35b6f4?Expires=1610323200&Signature=bKfFU5kAmY-VmqkAZt8x8X~CDfRr9Spw4iyWiZmVm0aeaVNU11KGWw4mrsXFk5cIP6fDa~mN~Ywygo3rX-Pokd3BZvHj-vnwHLcDhDqvilzJJxuLpKVwOJpsFUhnJFCxgyfTWKcxe1Z5MZ-u~YQ~I3xEc-kBvjw2tU~f5A58wgVJMmW~Iq9yROsCqqC~xLS4YBT-h70X9G2qxk~y1sXtLLI3XJfmDyRyVKa6~PaRmKyMfs4x0RBOnx3XQMr2-xlOt~CXUXWz7ROjx~o9xfLYAuBkNvMqvA~~Qjy~eUa9SPkZN5ttEHRTwThw5Z98CuraG9PxklUZ~kr6JQOrkdgT8w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+(7, 'Shoes', 'shoes', '#57CD9E', 'https://s3-alpha-sig.figma.com/img/fc9b/6b9b/45aad43ae695c2de7b3949ff451bd7a1?Expires=1610323200&Signature=hF5I7BkCK-3E9soTFK6riqDmcSuczIBkyn3RsYsuTXcnWkBZDDzP1ZARIdu17DUJzwd-R4Or01jfv-JZCkDQQpi~10xqo~jgMqR0ubaR6vQvlDPf27hnrw2beNt0lYiCiLBGsY~rum8fyNJULGWkumoCGz3UJBqNYxrqhvq7vg~7gOxkErhvYzqwxYiwWPq4ijvR5MH5ulHobMwl8Ja5~s4023SGkOCvp1yxFT7fU3o7nCrZ7I7x0EndhG0v2ev-G11d6M8s0dl8LaJlT1IexTP2FYjk3UFb6hUJU54zX5FlRJl-9aS1Xzc-~NCeZ6Gv23fiEGOG6U-SdN2ov6FFZw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+(8, 'High heels', 'high-heels', '#5650D8', 'https://s3-alpha-sig.figma.com/img/e4ba/3e76/a9bf0f820f0f0a5c5b5c7383b26d989c?Expires=1610323200&Signature=hw0~C31a8m7PtfMn2cgqf~tsRgo2QxxzX1iqBDEREJUm-Uvb9l1v1TQkeY54bjwUwwDll2-8zyl7F-Lyb4XLYexj8QBUE5GdsRfpc8wtz0HwUsd17D4pXTXr8UWEvNpq~HDEMnC8cuel4pTF2bAoxXZbpXU~38bOEnEvWuGfypdhm8ZIeMUNrz8BNFGJboIm11Ondlpn-b68NAp9uXwQaslIhNibkfehEC6bwa4kAZsPIegNgd3oOoljW7RxZJ-s1qUIgGWJckOhTRUtn-04vQkRgWMIIEag0B285M-V4Qsyvp-BvpoBHp3HcueRK0GcpiNJbimzRhZpPRSXCAEr7w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+(9, 'Handbag', 'handbag', '#50C8D8', 'https://s3-alpha-sig.figma.com/img/d554/5e85/c5a03743f4f3d8d7227b7cd1854213ac?Expires=1610323200&Signature=ZQXxJa8~T3ZH~Wxxryp67FWEThNpLhZsMBq3vBW9PVacnXCKbcXogUILNSxYxXe1hUf~K~19jZB7yD-PZ0XrurEL98gXtlXFPod81qXL3ySX0CuAXG363DwxspZa26bLcyZB8~jNuZmN8EHwxsLaQlW5n4w9~J9MRS8jflIJNYQAeIKImzw7Hku80OA1CJCIYJ8xd8XdHmuVrlB0~LDG5UJExdfx58ogeGqnMIs4NDC970luhf9ooO51vmp0VQ42DpOXKCn1crZrZQhZcVbHqL5~POsgsujDIMJhBey6sx-FFJhTJCoqAtrny5RRvwOWf9a7NxPMrBWF4iH2wIzP-Q__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `colors`
+-- Struktur dari tabel `colors`
 --
 
 CREATE TABLE `colors` (
   `color_id` int(11) NOT NULL,
-  `color_code` varchar(25) NOT NULL
+  `color_code` varchar(25) NOT NULL,
+  `color_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `colors`
+-- Dumping data untuk tabel `colors`
 --
 
-INSERT INTO `colors` (`color_id`, `color_code`) VALUES
-(1, '#020202'),
-(7, '#151867'),
-(3, '#B82222'),
-(5, '#BEA9A9'),
-(6, '#E2BB8D'),
-(4, '#F3F433'),
-(2, '#FFFFFF');
+INSERT INTO `colors` (`color_id`, `color_code`, `color_name`) VALUES
+(1, '#020202', 'Hitam'),
+(2, '#FFFFFF', 'Putih'),
+(3, '#B82222', 'Merah'),
+(4, '#F3F433', 'Kuning'),
+(5, '#BEA9A9', 'Abu-abu'),
+(6, '#E2BB8D', 'Orange'),
+(7, '#151867', 'Biru');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `conditions`
+-- Struktur dari tabel `conditions`
 --
 
 CREATE TABLE `conditions` (
@@ -107,7 +141,7 @@ CREATE TABLE `conditions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `conditions`
+-- Dumping data untuk tabel `conditions`
 --
 
 INSERT INTO `conditions` (`condition_id`, `condition_name`) VALUES
@@ -118,7 +152,7 @@ INSERT INTO `conditions` (`condition_id`, `condition_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customers`
+-- Struktur dari tabel `customers`
 --
 
 CREATE TABLE `customers` (
@@ -126,82 +160,117 @@ CREATE TABLE `customers` (
   `user_name` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
   `user_password` varchar(255) NOT NULL,
+  `id_address` int(11) NOT NULL,
+  `user_image` varchar(255) NOT NULL DEFAULT '/images/profile/user.png',
+  `user_phone` int(11) NOT NULL,
+  `user_gender` enum('Laki-laki','Perempuan') NOT NULL,
+  `user_date_birth` datetime NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `customers`
+-- Dumping data untuk tabel `customers`
 --
 
-INSERT INTO `customers` (`user_id`, `user_name`, `user_email`, `user_password`, `created_at`, `updated_at`) VALUES
-(1, 'usman', 'usman231@gmail.com', '$2b$10$315E19f1tAnHw/Do3.8ncunGMunodTgRPIeX09Fj1lgcTh6wRfY9S', '2020-12-07 12:19:06', '2020-12-07 12:19:06'),
-(2, 'usman', 'usman231@gmail.com', '$2b$10$rULxnb5EkXSXpyKKIo9MKe7xNvpwFjbqwPbiwgZuxKfrp8E6H3eAe', '2020-12-07 12:19:26', '2020-12-07 12:19:26');
+INSERT INTO `customers` (`user_id`, `user_name`, `user_email`, `user_password`, `id_address`, `user_image`, `user_phone`, `user_gender`, `user_date_birth`, `created_at`, `updated_at`) VALUES
+(11, 'user13', 'user13@gmail.com ', '$2b$10$4gF7CQeUAltsImBmER09lOcCnzIsiHzsZiefuQPFLc7wFsb3K8z1C', 15, '/images/profile/user.png', 0, 'Laki-laki', '0000-00-00 00:00:00', '2021-01-08 15:18:23', '2021-01-08 15:18:23'),
+(17, 'Elwandy Tirtana Deriansyah', 'elwanditirtana1945a@gmail.com ', '$2b$10$xH9jqzBIoi087XHQcf5MEOL5BPqatZMCwd./4LYJrcaW.NhfpB9X2', 18, '/images/profile/1614281250435-photo.jpg', 0, 'Laki-laki', '0000-00-00 00:00:00', '2021-01-09 10:51:53', '2021-01-09 10:51:53'),
+(18, 'user15', 'user15@gmail.com', '$2b$10$yfaGgBpTVuNpYRfqX86xD..BEMX7j4dDbaBz0W93HxCw0m76SLxH.', 0, '/images/profile/user.png', 0, 'Laki-laki', '0000-00-00 00:00:00', '2021-02-02 03:16:40', '2021-02-02 03:16:40'),
+(19, 'Test', 'Test@gmail.com', '$2b$10$6Ozty9a8wJfGVAHkJZ6bGeB2BAEoU7KZlXyuQYhZ3vn7BMgZHwlpm', 0, '/images/profile/user.png', 0, 'Laki-laki', '0000-00-00 00:00:00', '2021-02-02 13:40:33', '2021-02-02 13:40:33'),
+(20, 'Apung', 'apung@gmail.com', '$2b$10$7UVPGdb2WJ0dBJbg8QKhzuylxrmxGCwSSIA.tKwiRFgzeIuo0orjy', 0, '/images/profile/user.png', 0, 'Laki-laki', '0000-00-00 00:00:00', '2021-02-11 13:46:51', '2021-02-11 13:46:51');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_histories`
+-- Struktur dari tabel `detail_histories`
 --
 
 CREATE TABLE `detail_histories` (
   `detail_history_id` int(11) NOT NULL,
   `history_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `product_color_id` int(11) NOT NULL,
-  `product_size_id` int(11) NOT NULL,
+  `product_title` varchar(255) NOT NULL,
+  `brand_name` varchar(255) NOT NULL,
+  `product_image` text NOT NULL,
+  `product_color` varchar(255) NOT NULL,
+  `product_size` varchar(255) NOT NULL,
   `product_qty` int(11) NOT NULL,
   `product_subtotal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `detail_histories`
+--
+
+INSERT INTO `detail_histories` (`detail_history_id`, `history_id`, `product_id`, `product_title`, `brand_name`, `product_image`, `product_color`, `product_size`, `product_qty`, `product_subtotal`) VALUES
+(39, 49, 19, 'Baju muslim sepasang cowok dan cewek ukuran XL', 'Bendz', '/images/products/1614059835205-upload_images.jpg', 'Hitam', 'xl', 2, 450000);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `histories`
+-- Struktur dari tabel `histories`
 --
 
 CREATE TABLE `histories` (
   `history_id` int(11) NOT NULL,
+  `seller_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `history_code` varchar(255) NOT NULL,
+  `history_address` text NOT NULL,
+  `history_method` varchar(255) NOT NULL,
   `history_subtotal` int(11) NOT NULL,
+  `coupon` varchar(10) NOT NULL,
+  `status` enum('packaging','delivering','completed') NOT NULL DEFAULT 'packaging',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `histories`
+-- Dumping data untuk tabel `histories`
 --
 
-INSERT INTO `histories` (`history_id`, `user_id`, `history_code`, `history_subtotal`, `created_at`) VALUES
-(26, 2, 'uksykm6nfkccuc9geijxqr', 80000, '2020-12-03 15:01:56'),
-(27, 1, 'p7k02eb6che9q0188t5uvt', 180000, '2020-12-03 15:06:46');
+INSERT INTO `histories` (`history_id`, `seller_id`, `user_id`, `history_code`, `history_address`, `history_method`, `history_subtotal`, `coupon`, `status`, `created_at`) VALUES
+(49, 5, 17, 'iquxd2pyb9h', 'Jalan baru', 'GoPay', 450000, 'Jihh', 'packaging', '2021-02-26 08:22:28');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `images`
+-- Struktur dari tabel `otp`
 --
 
-CREATE TABLE `images` (
-  `image_id` int(11) NOT NULL,
-  `image_link` text NOT NULL
+CREATE TABLE `otp` (
+  `id_otp` int(11) NOT NULL,
+  `otp` char(6) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `removed_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `images`
+-- Dumping data untuk tabel `otp`
 --
 
-INSERT INTO `images` (`image_id`, `image_link`) VALUES
-(1, 'adefsefsef');
+INSERT INTO `otp` (`id_otp`, `otp`, `created_at`, `removed_at`) VALUES
+(6, 'eQUmn2', '2021-01-09 08:29:32', '2021-01-10 08:29:32'),
+(7, 'gylt3Z', '2021-01-09 08:31:26', '2021-01-10 08:31:26'),
+(8, 'hn9m9J', '2021-01-09 08:33:05', '2021-01-10 08:33:05'),
+(9, 'H70XvB', '2021-01-09 10:55:46', '2021-01-10 10:55:46'),
+(11, 'bbFiNl', '2021-02-10 05:43:50', '2021-02-11 05:43:50'),
+(12, 'iHU4EM', '2021-02-10 05:48:39', '2021-02-11 05:48:39'),
+(13, '8ICVrF', '2021-02-10 05:52:29', '2021-02-11 05:52:29'),
+(14, '4NaIv0', '2021-02-10 05:55:19', '2021-02-11 05:55:19'),
+(16, '1ifHEl', '2021-02-11 02:05:28', '2021-02-12 02:05:28'),
+(20, 'qNP94u', '2021-02-11 03:26:44', '2021-02-12 03:26:44'),
+(22, 'hv5tt7', '2021-02-11 03:35:58', '2021-02-12 03:35:58');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Struktur dari tabel `products`
 --
 
 CREATE TABLE `products` (
   `product_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `product_title` varchar(255) NOT NULL,
   `brand_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -214,78 +283,147 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `products`
+-- Dumping data untuk tabel `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_title`, `brand_id`, `category_id`, `product_price`, `product_qty`, `product_condition`, `product_description`, `created_at`, `updated_at`) VALUES
-(16, 'KAOS PRIA / KAOS POLOS / T-SHIRT OVERSIZED OVERSIZE PREMIUM hitam - Hitam, M', 1, 1, 75000, 10, 'New', 'Deskripsi KAOS PRIA / KAOS POLOS / T-SHIRT OVERSIZED OVERSIZE PREMIUM hitam - Hitam, M\r\nVariation : BLACK, WHITE, NAVY BLUE, YELLOW, GREEN ARMY, GREEN BOTTLE, GREEN LIME, BEIGE CREAM, YELLOW ROTTEN, MISTY GREY\r\n\r\nSize chart (P x L)\r\n\r\nS (71 x 51)\r\nM (72 x 54)\r\nL (75 x 56\r\nXL (78 x 61)\r\n\r\nModel tinggi 168 berat 55 size S\r\n\r\nHallo\r\nSamwells Project ngeluarin kaos polos oversize pertama di TOKOPEDIA !!\r\n\r\ndengan bahan cotton Premium terbaik saat digunakan terasa nyaman dan tidak gerah, cocok dipakai sehari-hari.\r\n\r\n\r\nFabric : 100% Cotton Premium\r\nProfessional Cutting\r\n\r\n1000000% FOTO ASLI MODEL MENGGUNAKAN SIZE S ( Tinggi 168 cm )\r\n\r\nJIKA KALIAN BINGUNG MENENTUKAN UKURAN SILAHKAN TANYAKAN DI KOLOM DISKUSI DENGAN MENCANTUMKAN BERAT DAN TINGGI BADAN KALIAN YAA\r\n\r\nMOHON TANYAKAN STOK TERLEBIH DAHULU DI KOLOM DISKUSI AGAR TIDAK SALAH KIRIM\r\n\r\n\r\nUntuk stok tanyakan terlebih dahulu yaa\r\n\r\n#kaospria #kaosoversize #kaospolos #bajupolos', '2020-12-03 05:57:24', '2020-12-03 05:57:24'),
-(17, 'BAJU KAOS PRIA COTTON COMBED 30,s FASHION CASUAL BAJU DISTRO htm', 2, 1, 59900, 15, 'New', 'Deskripsi BAJU KAOS PRIA COTTON COMBED 30,s FASHION CASUAL BAJU DISTRO htm\r\nCantumkan ukuran (size) diketerangan\r\n\r\nPerhatikan size chart dan warna bahan sebelum order\r\n\r\n**MATERIAL YANG KAMI GUNAKAN**\r\n\r\n-KAOS/T SHIRT\r\nKatun combat 30\'s\r\ndengan kerapihan jahitan yg sempurna,halus dan lembut, tdk panas saat di kenakan dan mudah menyerap keringat\r\n\r\n=-SABLON-=\r\nflock-polyflex\r\nhasil sablon yg sangat luar biasa sempurna,tdk pecah,tdk berkerut dan awet ketika telah menempel di material.\r\n\r\n*--SIZE CHART--*(Lokal/Asia)\r\n(Lebar dada x Panjang badan)\r\n\r\nKAOS/T SHIRT\r\nM ~:49x69\r\nL ~ :52x73\r\nXL~:54x75\r\n\r\nCek toko mandala projec untuk model lainnya.\r\nHappy Shopping~', '2020-12-03 06:11:51', '2020-12-03 06:29:48'),
-(18, 'kaos pria sweater lengan panjang cowok babyterry baju SIMPLE THINGS - Merah, M', 2, 1, 59900, 5, 'New', 'Deskripsi kaos pria sweater lengan panjang cowok babyterry baju SIMPLE THINGS - Merah, M\r\nBaju Fashion Pria\r\nBahan babyterry premium\r\nLengan panjang\r\n\r\nTersedia 3 ukuran:\r\nM\r\nUkuran LD: 98cm, PB: 64cm.\r\nhttps://tokopedia.link/FojyE2EAJ5\r\n\r\nL\r\nUkuran LD: 106cm, PB: 69cm.\r\nhttps://tokopedia.link/n14rOfIAJ5\r\n\r\nXL\r\nUkuran LD: 114cm, PB: 74cm.\r\nhttps://tokopedia.link/vcky5rLAJ5\r\n\r\nWarna:\r\n- maroon\r\n- hitam\r\n- abu-abu\r\n- biru\r\n- putih\r\n- merah\r\n- navy\r\n- kuning\r\n\r\n- WAJIB TANYAKAN STOCK TERLEBIH DAHULU SEBELUM ORDER.\r\n- CANTUMKAN WARNA YANG DIINGINKAN KETIKA PESAN.\r\n\r\nMinat?\r\nSilakan langsung di order saja.\r\nREADY STOCK.\r\n\r\n(Setiap produk memiliki toleransi jahitan 2 - 4 cm, pastikan membeli produk untuk mengukur terlebih dahulu).\r\n\r\nWELCOME RESELLER & DROPSHIPPER.', '2020-12-03 06:17:59', '2020-12-03 06:17:59'),
-(19, 'T-Shirt Slugs / Baju Kaos Distro Pria & Wanita / Cotton 30s', 2, 1, 32900, 15, 'New', 'Deskripsi T-Shirt Slugs / Baju Kaos Distro Pria & Wanita / Cotton 30s\r\nHARAP BACA SEBELUM ORDER YAH\r\n\r\nEstimasi ukuran :\r\nALLSIZE FIT M - L\r\nQuality Import\r\nJahitan Double Stick dan Rapih\r\nDada 98CM-100CM*Barang Sesuai Dengan Foto Tanpa Edit\r\nLebar 50cm panjang 70cm\r\nBahan Cotton Combed 30S (Nyaman dan tidak panas)\r\n\r\nPertanyaan yang sering ditanyakan :\r\n1. Q : ada warna lain ?\r\nA : 1 warna yah setiap model, sesuai Foto\r\n\r\n2. Q : Bisa beli lebih dari 1 ?\r\nA : Bisa yah, caranya masukan item 1 per 1 ke keranjang atau kasi deskripsi\r\n\r\nCek toko Revenge Eleven untuk model lainnya.\r\nHappy Shopping~', '2020-12-03 06:25:10', '2020-12-03 06:29:42'),
-(20, 'LD 204 ( FREE SIZE FIT TO 4XL ) Baju atasan batwing SANGAT BESAR helen - Hitam', 1, 1, 69300, 10, 'New', 'Deskripsi LD 204 ( FREE SIZE FIT TO 4XL ) Baju atasan batwing SANGAT BESAR helen - Hitam\r\nORIGINAL merek STAYL ( Stanleyandyuly ) ada label dan handtag\r\n\r\nBAHAN KIRANA SPANDEX,\r\n\r\nBahan Produk : Kirana Spandex\r\n\r\nUkuran Produk:\r\n- Lingkar Dada : 204 cm\r\n- Lebar Bahu : 73 cm\r\n- Lingkar Ketiak : 38 cm\r\n- Panjang Lengan : 19 cm\r\n- Panjang Depan : 68 cm\r\n- Panjang Belakang : 79 cm\r\n\r\nKeterangan Produk:\r\n- Lengan Batwing / Dolman / Kelelawar\r\n- Leher O\r\n- Belahan Samping Kanan Kiri, Good Quality\r\n\r\n\r\n1. Semua product ready dan siap kirim\r\n\r\n2. Order anda sangat berharga bagi kami dan kami selalu mempertahankan pelayanan toko, semua product yang akan dikirim akan dicek dulu satu per satu, jika anda menerima product yg salah / reject ini bukan hal yang kami sengaja, silakan menghubungi admin jika ada kendala\r\n\r\n3. Jadwal Pengiriman di Coco Claire Fashion :\r\n\r\n- Buka setiap hari SENIN-JUMAT jam 8 pagi s/d jam 4 sore + SABTU s/d jam 1 siang.\r\n\r\n- SLOW Respon apabila diluar jam buka toko, tapi akan tetap kami balas CHAT nya ketika ada kesempatan.\r\n\r\nTransaksi yang selesai SEBELUM jam\r\n- 14.30 (Gosend + Grab)\r\n- 3 sore (Ekspedisi Reguler)\r\n- SABTU semua ekspedisi sebelum jam 11 siang akan dikirim di hari yang sama.\r\n\r\nMINGGU + CUTI Bersama + LIBUR Nasional selalu tutup (tidak ada pengiriman)\r\n\r\n4. Tidak menerima ganti warna / ukuran via chat... semua akan dikirim sesuai pesanan\r\n\r\n5. Terima kasih ????', '2020-12-03 06:30:49', '2020-12-03 06:30:49');
+INSERT INTO `products` (`product_id`, `user_id`, `product_title`, `brand_id`, `category_id`, `product_price`, `product_qty`, `product_condition`, `product_description`, `created_at`, `updated_at`) VALUES
+(1, 5, 'Products 1', 5, 2, 65000, 25, 'Used', 'Celana dengan bahan lentur, lembut dan serap air. Sering dipakai Difilm', '2020-12-21 08:47:35', '2021-01-07 14:59:11'),
+(2, 5, 'Products 2', 4, 3, 69999, 23, 'New', 'Test Product Description', '2020-12-21 09:07:15', '2021-01-07 14:59:27'),
+(3, 5, 'Inner Landes', 4, 7, 23000, 12, 'New', 'TEst Product 2 deskripsi', '2020-12-21 10:02:14', '2021-01-07 14:59:52'),
+(4, 6, 'Sepatu Eagle homiped style blink-blink biru', 2, 7, 47000, 29, 'Used', 'Sepatu merek bingo yang tidak, seperti sepatu lain yg seperti itu yang sebelumnya tidak sama dengan itu', '2021-01-01 11:08:06', '2021-01-21 00:12:31'),
+(5, 6, 'Sepatu tanpa alas dengan design elegant', 3, 7, 45000, 20, 'New', 'Sebuah sepatu yang sama aja dengan sepatu lain', '2021-01-21 03:19:38', '2021-01-21 03:19:38'),
+(6, 6, 'High heel abri, design ramping', 5, 8, 68000, 12, 'New', 'Sebuah high heel yg sangat cocok untuk bermain dan mendaki', '2021-01-21 03:48:15', '2021-01-21 03:48:15'),
+(7, 6, 'Celana macan tutul', 3, 4, 47000, 16, 'Used', 'Celana dari bahan bakar minyak ', '2021-01-21 03:52:14', '2021-01-21 03:52:14'),
+(8, 6, 'Test 1', 5, 1, 75000, 12, 'Used', 'Test product ', '2021-01-21 13:15:46', '2021-01-21 13:15:46'),
+(10, 6, 'Baju test 1', 2, 1, 24000, 22, 'New', 'Test', '2021-01-21 13:20:51', '2021-01-21 13:20:51'),
+(11, 6, 'Baju test 2', 1, 1, 12358, 22, 'New', 'Test', '2021-01-21 13:23:03', '2021-01-21 13:23:03'),
+(14, 6, 'Barang baru', 1, 7, 20000, 22, 'New', 'Deskripsi barang', '2021-01-21 18:03:13', '2021-01-21 18:03:13'),
+(15, 6, 'Sepatu baru', 4, 7, 47000, 87, 'New', 'Test', '2021-02-02 13:32:41', '2021-02-02 13:32:41'),
+(16, 7, 'Baju baru bahan asli', 3, 1, 45000, 20, 'New', 'Baju baru untuk testing', '2021-02-18 08:23:34', '2021-02-18 08:23:34'),
+(17, 5, 'Hahah', 1, 7, 5555, 21, 'New', 'New shoes', '2021-02-22 09:20:33', '2021-02-22 09:20:33'),
+(18, 5, 'Sendal baru', 4, 7, 85800, 5, 'New', 'Sendal', '2021-02-22 09:24:23', '2021-02-22 09:24:23'),
+(19, 5, 'Baju muslim sepasang cowok dan cewek ukuran XL', 6, 1, 225000, 5, 'New', 'Baju muslim sepasang warna abu-abu dan ukuran xl', '2021-02-23 12:57:15', '2021-02-23 12:57:15'),
+(20, 5, 'Baju Arema cowok warna Hitam/Biru ukuran L/XL', 3, 1, 80000, 12, 'New', 'Baju aremania', '2021-02-23 13:02:05', '2021-02-23 13:02:05'),
+(23, 8, 'Baju', 4, 1, 20000, 2, 'New', 'Test', '2021-02-26 08:50:35', '2021-02-26 08:50:35'),
+(24, 8, 'Baju kokoh', 1, 1, 50000, 20, 'New', 'Baju kokoh baru', '2021-02-26 08:53:44', '2021-02-26 08:53:44'),
+(28, 8, 'Baju 1', 6, 1, 35000, 25, 'New', 'Test', '2021-02-26 10:17:16', '2021-02-26 10:17:16'),
+(29, 8, 'Tas pinki baru versi 12', 1, 1, 125000, 10, 'New', 'Tas baru yang disuka wanita 1111', '2021-02-26 10:26:22', '2021-02-26 11:31:32');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_colors`
+-- Struktur dari tabel `product_colors`
 --
 
 CREATE TABLE `product_colors` (
   `product_color_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `product_attr_value` varchar(25) NOT NULL
+  `color_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `product_colors`
+-- Dumping data untuk tabel `product_colors`
 --
 
-INSERT INTO `product_colors` (`product_color_id`, `product_id`, `product_attr_value`) VALUES
-(3, 16, '#020202'),
-(4, 17, '#020202'),
-(5, 18, '#B82222'),
-(6, 18, '#020202'),
-(7, 19, '#151867'),
-(8, 20, '#BEA9A9'),
-(9, 20, '#151867');
+INSERT INTO `product_colors` (`product_color_id`, `product_id`, `color_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 7),
+(4, 3, 6),
+(5, 3, 4),
+(6, 4, 3),
+(7, 4, 1),
+(8, 4, 5),
+(9, 16, 1),
+(10, 16, 4),
+(11, 16, 5),
+(12, 16, 6),
+(13, 18, 1),
+(14, 18, 3),
+(15, 19, 1),
+(16, 19, 5),
+(17, 20, 7),
+(18, 20, 1),
+(23, 23, 3),
+(24, 24, 2),
+(30, 28, 5),
+(31, 28, 2),
+(32, 29, 2),
+(33, 29, 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_images`
+-- Struktur dari tabel `product_images`
 --
 
 CREATE TABLE `product_images` (
   `product_image_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `product_attr_value` text NOT NULL
+  `image_path` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `product_images`
+-- Dumping data untuk tabel `product_images`
 --
 
-INSERT INTO `product_images` (`product_image_id`, `product_id`, `product_attr_value`) VALUES
-(2, 16, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2020/9/17/72490828/72490828_da91b83b-df53-49d6-9111-4545afa75015_1737_1737'),
-(3, 16, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2020/9/17/72490828/72490828_ee06ef4f-b726-4980-be3d-0ae279e09269_1559_1559'),
-(4, 16, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2020/9/17/72490828/72490828_8db7ea12-824c-4cee-869c-a9ddc7cf6049_1765_1765'),
-(5, 16, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2020/9/17/72490828/72490828_e534f33e-020f-4660-8277-5abe645486c9_1833_1833'),
-(6, 16, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2020/9/19/72490828/72490828_c05aeaf8-95f1-4ae9-b503-d2b610c4e86f_1080_1080'),
-(7, 17, 'https://ecs7.tokopedia.net/img/cache/700/VqbcmM/2020/7/22/2d211d55-8f9e-46e8-b418-2010e06899e7.jpg'),
-(8, 17, 'https://ecs7.tokopedia.net/img/cache/700/VqbcmM/2020/6/20/cf68785d-0bd0-4634-a170-89361a21eee7.jpg'),
-(9, 17, 'https://ecs7.tokopedia.net/img/cache/700/VqbcmM/2020/6/20/99c4bb94-4186-43c1-850c-f5240e90bfd5.jpg'),
-(10, 17, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2020/6/27/955428238/955428238_768393dd-28bb-4c25-8bbf-05ada2b53758_960_960.jpg'),
-(11, 17, 'https://ecs7.tokopedia.net/img/cache/700/VqbcmM/2020/6/28/dc7a3548-d7f2-4fc4-b0f3-95d28f645f26.jpg'),
-(12, 18, 'https://ecs7.tokopedia.net/img/cache/900/product-1/2020/8/7/12657115/12657115_7ad72513-b434-4b9a-94b8-0caea4bc8d32_1084_1084'),
-(13, 18, 'https://ecs7.tokopedia.net/img/cache/900/VqbcmM/2020/8/3/eaee8a73-4c6c-4ddc-b54f-c1bb1d7effbe.png'),
-(14, 19, 'https://ecs7.tokopedia.net/img/cache/900/product-1/2020/4/28/4797930/4797930_083b6525-dd36-4b2a-b2f8-3e01a851e46e_1080_1080.jpg'),
-(15, 20, 'https://ecs7.tokopedia.net/img/cache/900/product-1/2019/2/26/43555772/43555772_5f63538e-0e1d-40b7-81c4-72a354db13d8_1080_1080.jpg'),
-(16, 20, 'https://ecs7.tokopedia.net/img/cache/900/product-1/2019/2/26/43555772/43555772_3d3f3e94-c401-414d-ba45-cabbeec7ad91_2048_2730.jpg');
+INSERT INTO `product_images` (`product_image_id`, `product_id`, `image_path`) VALUES
+(1, 1, '/images/products/1608515255058-upload_images.jpg'),
+(2, 1, '/images/products/1608515255078-upload_images.jpg'),
+(3, 1, '/images/products/1608515255085-upload_images.jpg'),
+(4, 2, '/images/products/1608516435293-upload_images.jpg'),
+(5, 2, '/images/products/1608516435298-upload_images.jpg'),
+(6, 2, '/images/products/1608516435323-upload_images.jpg'),
+(7, 2, '/images/products/1608516435331-upload_images.jpg'),
+(8, 2, '/images/products/1608516435355-upload_images.png'),
+(9, 3, '/images/products/1608519734830-upload_images.jpg'),
+(10, 3, '/images/products/1608519734838-upload_images.jpg'),
+(11, 4, '/images/products/1609474086495-upload_images.jpg'),
+(12, 4, '/images/products/1609474086512-upload_images.jpg'),
+(13, 4, '/images/products/1609474086562-upload_images.jpg'),
+(14, 4, '/images/products/1609474086568-upload_images.jpg'),
+(15, 5, '/images/products/1611173978575-upload_images.jpg'),
+(16, 5, '/images/products/1611173978602-upload_images.jpg'),
+(17, 5, '/images/products/1611173978647-upload_images.jpg'),
+(18, 5, '/images/products/1611173978654-upload_images.jpg'),
+(19, 6, '/images/products/1611175695356-upload_images.jpg'),
+(20, 6, '/images/products/1611175695457-upload_images.jpeg'),
+(21, 6, '/images/products/1611175695590-upload_images.jpeg'),
+(22, 7, '/images/products/1611175934043-upload_images.jpeg'),
+(23, 7, '/images/products/1611175934146-upload_images.jpeg'),
+(24, 7, '/images/products/1611175934282-upload_images.jpeg'),
+(25, 8, '/images/products/1611209745889-upload_images.jpg'),
+(26, 8, '/images/products/1611209746504-upload_images.jpg'),
+(27, 8, '/images/products/1611209746539-upload_images.jpg'),
+(31, 10, '/images/products/1611210051524-upload_images.jpg'),
+(32, 10, '/images/products/1611210051530-upload_images.jpeg'),
+(33, 11, '/images/products/1611210183002-upload_images.jpg'),
+(34, 11, '/images/products/1611210183075-upload_images.jpg'),
+(35, 11, '/images/products/1611210183079-upload_images.jpg'),
+(42, 14, '/images/products/1611226993427-upload_images.jpg'),
+(43, 14, '/images/products/1611226993436-upload_images.jpg'),
+(44, 14, '/images/products/1611226993463-upload_images.jpeg'),
+(45, 15, '/images/products/1612247560458-upload_images.jpg'),
+(46, 15, '/images/products/1612247560531-upload_images.jpg'),
+(47, 15, '/images/products/1612247561066-upload_images.jpg'),
+(48, 15, '/images/products/1612247561073-upload_images.jpeg'),
+(49, 16, '/images/products/1613611414866-upload_images.jpg'),
+(50, 16, '/images/products/1613611414886-upload_images.jpg'),
+(51, 17, '/images/products/1613960433425-upload_images.jpeg'),
+(52, 18, '/images/products/1613960663923-upload_images.jpeg'),
+(53, 19, '/images/products/1614059835205-upload_images.jpg'),
+(54, 20, '/images/products/1614060125424-upload_images.png'),
+(56, 23, '/images/products/1614304235103-upload_images.jpg'),
+(57, 24, '/images/products/1614304424012-upload_images.jpg'),
+(61, 28, '/images/products/1614309436679-upload_images.jpg'),
+(62, 29, '/images/products/1614309982014-upload_images.jpeg'),
+(63, 29, '/images/products/1614309982110-upload_images.jpeg'),
+(64, 29, '/images/products/1614309982240-upload_images.jpeg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_reviews`
+-- Struktur dari tabel `product_reviews`
 --
 
 CREATE TABLE `product_reviews` (
@@ -297,51 +435,43 @@ CREATE TABLE `product_reviews` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_sizes`
+-- Struktur dari tabel `product_sizes`
 --
 
 CREATE TABLE `product_sizes` (
   `product_size_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `product_attr_value` varchar(50) NOT NULL
+  `size_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `product_sizes`
+-- Dumping data untuk tabel `product_sizes`
 --
 
-INSERT INTO `product_sizes` (`product_size_id`, `product_id`, `product_attr_value`) VALUES
-(11, 16, 's'),
-(12, 16, 'm'),
-(13, 16, 'l'),
-(14, 16, 'xl'),
-(15, 17, 'm'),
-(16, 17, 'l'),
-(17, 17, 'xl'),
-(18, 18, 'm'),
-(19, 18, 'l'),
-(20, 18, 'xl'),
-(21, 19, 'm'),
-(22, 19, 'l'),
-(23, 20, 'm'),
-(24, 20, 'l');
+INSERT INTO `product_sizes` (`product_size_id`, `product_id`, `size_id`) VALUES
+(8, 1, 3),
+(9, 1, 4),
+(10, 2, 5),
+(11, 3, 2),
+(12, 3, 5),
+(13, 4, 5),
+(14, 4, 7),
+(15, 16, 3),
+(16, 16, 4),
+(17, 16, 5),
+(18, 18, 3),
+(19, 19, 5),
+(20, 23, 3),
+(21, 28, 4),
+(22, 28, 2),
+(23, 28, 1),
+(24, 29, 5),
+(25, 29, 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_tags`
---
-
-CREATE TABLE `product_tags` (
-  `product_tag_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `tag_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reviews`
+-- Struktur dari tabel `reviews`
 --
 
 CREATE TABLE `reviews` (
@@ -354,10 +484,56 @@ CREATE TABLE `reviews` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `reviews`
+--
+
+INSERT INTO `reviews` (`review_id`, `user_id`, `product_id`, `review_rating`, `review_comment`, `created_at`, `updated_at`) VALUES
+(11, 17, 1, 5, '', '2020-12-17 17:03:11', '2021-02-25 10:25:39'),
+(12, 2, 2, 5, '', '2020-12-17 17:03:11', '2021-01-07 07:23:20'),
+(13, 1, 3, 3, 'se', '2020-12-17 17:03:11', '2021-01-07 07:23:24'),
+(14, 4, 4, 2, '', '2020-12-17 17:03:11', '2021-01-07 07:23:28'),
+(15, 6, 2, 5, 'text', '2021-01-07 14:24:01', '2021-01-07 17:02:21'),
+(16, 7, 3, 4, 'sef', '2021-01-07 14:24:01', '2021-01-07 07:24:01'),
+(17, 20, 1, 2, 'se', '2021-01-07 14:26:53', '2021-02-25 10:25:48'),
+(18, 11, 1, 5, '', '2021-01-07 14:26:53', '2021-02-25 10:25:33'),
+(19, 17, 10, 5, 'Barang bagus', '2021-02-11 11:12:31', '2021-02-11 04:12:31'),
+(20, 17, 19, 5, 'Baju bagus, barang sampai dengan aman', '2021-02-23 13:07:22', '2021-02-23 06:07:22'),
+(21, 11, 19, 4, 'Bagus sekali', '2021-02-23 13:07:22', '2021-02-23 06:07:22');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sizes`
+-- Struktur dari tabel `sellers`
+--
+
+CREATE TABLE `sellers` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `user_email` varchar(255) NOT NULL,
+  `user_password` varchar(255) NOT NULL,
+  `user_store` varchar(255) NOT NULL,
+  `user_image` varchar(255) NOT NULL DEFAULT '/images/profile/user.png',
+  `user_phone` varchar(25) NOT NULL,
+  `user_store_desc` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `sellers`
+--
+
+INSERT INTO `sellers` (`user_id`, `user_name`, `user_email`, `user_password`, `user_store`, `user_image`, `user_phone`, `user_store_desc`, `created_at`, `updated_at`) VALUES
+(5, 'seller', 'seller@gmail.com', '$2b$10$Pwc3fbZ/4gMA/OZb0WUZaunJ7niBSowjIlJIIqddEtrfMszgjx8GO', 'User Sells', '/images/profile/user.png', '098534523544', '', '2020-12-19 00:28:48', '2020-12-19 00:28:48'),
+(6, 'seller1', 'seller1@gmail.com', '$2b$10$8DmgeO4i6uEUMis/0yz4SePquHfA5lqn4qHWDeopq8HrgHGEeAO5G', 'Store best', '/images/profile/user.png', '085565755585', '', '2021-01-20 16:28:44', '2021-01-20 16:28:44'),
+(7, 'Seller', 'seller12@gmail.com', '$2b$10$NvGHf143MLUALGeLSNS3w.4Ubr0RFKqMMxnTZyyhb5K2Ri2DfW6z6', 'New Seller', '/images/profile/user.png', '085885885880', '', '2021-01-21 14:38:52', '2021-01-21 14:38:52'),
+(8, 'Bang El', 'elwanditirtana1945a@gmail.com', '$2b$10$AX78mbI9PA97BkVIrrZnHeIBQDK.Xj3gBkjGKKo2.Vmcn3bPTeU6S', 'Skuy Skraplkp', '/images/profile/1614310210752-photo.jpg', '8085809799', '', '2021-02-26 02:32:20', '2021-02-26 02:32:20');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `sizes`
 --
 
 CREATE TABLE `sizes` (
@@ -367,7 +543,7 @@ CREATE TABLE `sizes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sizes`
+-- Dumping data untuk tabel `sizes`
 --
 
 INSERT INTO `sizes` (`size_id`, `size_value`, `is_type`) VALUES
@@ -395,107 +571,128 @@ INSERT INTO `sizes` (`size_id`, `size_value`, `is_type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tags`
+-- Struktur dari tabel `token_whitelist`
 --
 
-CREATE TABLE `tags` (
-  `tag_id` int(11) NOT NULL,
-  `tag_name` varchar(255) NOT NULL
+CREATE TABLE `token_whitelist` (
+  `id` int(11) NOT NULL,
+  `token` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tags`
+-- Dumping data untuk tabel `token_whitelist`
 --
 
-INSERT INTO `tags` (`tag_id`, `tag_name`) VALUES
-(1, 'Jeans'),
-(2, 'Men');
+INSERT INTO `token_whitelist` (`id`, `token`) VALUES
+(18, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyIiwidXNlcl9lbWFpbCI6InVzZXJAZ21haWwuY29tIiwibGV2ZWwiOiJjdXN0b21lciIsImlhdCI6MTYwODMxMzUyNCwiZXhwIjoxNjA4MzQ5NTI0fQ.DVbSON9MoCrm-yaEhyfw0RC-dR2Wlk2gybsgODyRY-w'),
+(19, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJzZWxsZXIiLCJ1c2VyX2VtYWlsIjoic2VsbGVyQGdtYWlsLmNvbSIsImxldmVsIjoic2VsbGVyIiwiaWF0IjoxNjA5NDczOTA4LCJleHAiOjE2MDk1MDk5MDh9.lVs3zrFxVy6dyls7w6OMWPyfzoXeMarO0fJJvP8OxkI'),
+(20, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSAiLCJsZXZlbCI6ImN1c3RvbWVyIiwiaWF0IjoxNjEwMTAzNjI4LCJleHAiOjE2MTAxMzk2Mjh9.uerzbNKePTiyt8RS1EV-CYZH6Di6pzBVs6dt2LsFzJU'),
+(21, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSAiLCJsZXZlbCI6ImN1c3RvbWVyIiwiaWF0IjoxNjEwMTAzODAwLCJleHAiOjE2MTAxMzk4MDB9.jXBTMsFQiK63LZZButn4kO70dVu2hYHbD1Ip-HN7o5E'),
+(22, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSIsImxldmVsIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTAxNTc1NTEsImV4cCI6MTYxMDE5MzU1MX0.lyxrpFJ7Ns_vEbvuyn3PRT_tH0uCEnKh9qllcaGprzY'),
+(23, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSIsImxldmVsIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTAxNTc1NzgsImV4cCI6MTYxMDE5MzU3OH0.Dul-XwsFw1fWEDx50E9ccFV0kD4i_XWryORE7Zr5HEs'),
+(24, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSIsImxldmVsIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTAxNTc2MDAsImV4cCI6MTYxMDE5MzYwMH0.ybvHJ1cklkAfJeRW9gbzM9ytRclWP7L_V_4jscCIf-A'),
+(46, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSAiLCJsZXZlbCI6ImN1c3RvbWVyIiwiaWF0IjoxNjExMjExMTg3LCJleHAiOjE2MTEyNDcxODd9.JpVsekYBPNK__68nn2yBvyG74XztCW8qEWE0S6bvZ9M'),
+(49, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSAiLCJsZXZlbCI6ImN1c3RvbWVyIiwiaWF0IjoxNjExMjE1Mzg2LCJleHAiOjE2MTEyNTEzODZ9.eTQv4S6iA_rVuxdPqoP2D7GrxB08emBCgEJlTlnEz-c'),
+(50, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSIsImxldmVsIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTEyMTk2NjYsImV4cCI6MTYxMTI1NTY2Nn0.h4PBikz0dkF5KvCw2AsL0-HZPrSZLnrYqS3EY3jlFkk'),
+(62, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJzZWxsZXIxIiwidXNlcl9lbWFpbCI6InNlbGxlcjFAZ21haWwuY29tIiwibGV2ZWwiOiJzZWxsZXIiLCJpYXQiOjE2MTIyNDMxMDIsImV4cCI6MTYxMjI3OTEwMn0.Mfjh39N2o8xa2pBRGB1ENSQw0U1ulZEg0WDOZhztbio'),
+(64, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJTZWxsZXIiLCJ1c2VyX2VtYWlsIjoic2VsbGVyMTJAZ21haWwuY29tIiwibGV2ZWwiOiJzZWxsZXIiLCJpYXQiOjE2MTM2MTEyNzcsImV4cCI6MTYxMzY0NzI3N30._AjFeJP7uFcwSSVz6OvcAd5hZJiowCXJZ9whrH7evnI'),
+(79, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJFbHdhbmR5IFRpcnRhbmEgRGVyaWFuc3lhaCIsInVzZXJfZW1haWwiOiJlbHdhbmRpdGlydGFuYTE5NDVhQGdtYWlsLmNvbSIsImxldmVsIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTQyOTQ4ODgsImV4cCI6MTYxNDMzMDg4OH0.QYgadLYTKYBbdeMc_luQ5vxR_IrGjoljpavYvTK3pVY');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `brands`
+-- Indeks untuk tabel `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indeks untuk tabel `brands`
 --
 ALTER TABLE `brands`
   ADD PRIMARY KEY (`brand_id`);
 
 --
--- Indexes for table `categories`
+-- Indeks untuk tabel `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
--- Indexes for table `colors`
+-- Indeks untuk tabel `colors`
 --
 ALTER TABLE `colors`
   ADD PRIMARY KEY (`color_id`),
-  ADD KEY `color_code` (`color_code`);
+  ADD KEY `color_code` (`color_code`),
+  ADD KEY `color_name` (`color_name`);
 
 --
--- Indexes for table `conditions`
+-- Indeks untuk tabel `conditions`
 --
 ALTER TABLE `conditions`
   ADD PRIMARY KEY (`condition_id`),
   ADD KEY `condition_name` (`condition_name`);
 
 --
--- Indexes for table `customers`
+-- Indeks untuk tabel `customers`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `detail_histories`
+-- Indeks untuk tabel `detail_histories`
 --
 ALTER TABLE `detail_histories`
   ADD PRIMARY KEY (`detail_history_id`),
   ADD KEY `product_id` (`product_id`),
-  ADD KEY `product_color_id` (`product_color_id`),
-  ADD KEY `product_size_id` (`product_size_id`),
+  ADD KEY `product_color_id` (`product_color`),
+  ADD KEY `product_size_id` (`product_size`),
   ADD KEY `history_id` (`history_id`);
 
 --
--- Indexes for table `histories`
+-- Indeks untuk tabel `histories`
 --
 ALTER TABLE `histories`
   ADD PRIMARY KEY (`history_id`),
   ADD UNIQUE KEY `history_code` (`history_code`);
 
 --
--- Indexes for table `images`
+-- Indeks untuk tabel `otp`
 --
-ALTER TABLE `images`
-  ADD PRIMARY KEY (`image_id`);
+ALTER TABLE `otp`
+  ADD PRIMARY KEY (`id_otp`),
+  ADD UNIQUE KEY `otp` (`otp`);
 
 --
--- Indexes for table `products`
+-- Indeks untuk tabel `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`),
   ADD KEY `brand_id` (`brand_id`),
   ADD KEY `category_id` (`category_id`),
-  ADD KEY `product_condition` (`product_condition`);
+  ADD KEY `product_condition` (`product_condition`),
+  ADD KEY `seller_id` (`user_id`);
 
 --
--- Indexes for table `product_colors`
+-- Indeks untuk tabel `product_colors`
 --
 ALTER TABLE `product_colors`
   ADD PRIMARY KEY (`product_color_id`),
   ADD KEY `product_id` (`product_id`),
-  ADD KEY `product_attr_value` (`product_attr_value`);
+  ADD KEY `color_id_2` (`color_id`);
 
 --
--- Indexes for table `product_images`
+-- Indeks untuk tabel `product_images`
 --
 ALTER TABLE `product_images`
   ADD PRIMARY KEY (`product_image_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `product_reviews`
+-- Indeks untuk tabel `product_reviews`
 --
 ALTER TABLE `product_reviews`
   ADD PRIMARY KEY (`product_review_id`),
@@ -503,23 +700,15 @@ ALTER TABLE `product_reviews`
   ADD KEY `review_id` (`review_id`);
 
 --
--- Indexes for table `product_sizes`
+-- Indeks untuk tabel `product_sizes`
 --
 ALTER TABLE `product_sizes`
   ADD PRIMARY KEY (`product_size_id`),
   ADD KEY `product_id` (`product_id`),
-  ADD KEY `product_attr_value` (`product_attr_value`);
+  ADD KEY `product_attr_value` (`size_id`);
 
 --
--- Indexes for table `product_tags`
---
-ALTER TABLE `product_tags`
-  ADD PRIMARY KEY (`product_tag_id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `tag_id` (`tag_id`);
-
---
--- Indexes for table `reviews`
+-- Indeks untuk tabel `reviews`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`review_id`),
@@ -527,173 +716,184 @@ ALTER TABLE `reviews`
   ADD KEY `review_product` (`product_id`);
 
 --
--- Indexes for table `sizes`
+-- Indeks untuk tabel `sellers`
+--
+ALTER TABLE `sellers`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indeks untuk tabel `sizes`
 --
 ALTER TABLE `sizes`
   ADD PRIMARY KEY (`size_id`),
   ADD KEY `size_value` (`size_value`);
 
 --
--- Indexes for table `tags`
+-- Indeks untuk tabel `token_whitelist`
 --
-ALTER TABLE `tags`
-  ADD PRIMARY KEY (`tag_id`);
+ALTER TABLE `token_whitelist`
+  ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `brands`
+-- AUTO_INCREMENT untuk tabel `address`
+--
+ALTER TABLE `address`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT untuk tabel `brands`
 --
 ALTER TABLE `brands`
   MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT untuk tabel `categories`
 --
 ALTER TABLE `categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `colors`
+-- AUTO_INCREMENT untuk tabel `colors`
 --
 ALTER TABLE `colors`
   MODIFY `color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `conditions`
+-- AUTO_INCREMENT untuk tabel `conditions`
 --
 ALTER TABLE `conditions`
   MODIFY `condition_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `customers`
+-- AUTO_INCREMENT untuk tabel `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `detail_histories`
+-- AUTO_INCREMENT untuk tabel `detail_histories`
 --
 ALTER TABLE `detail_histories`
-  MODIFY `detail_history_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `detail_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT for table `histories`
+-- AUTO_INCREMENT untuk tabel `histories`
 --
 ALTER TABLE `histories`
-  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
--- AUTO_INCREMENT for table `images`
+-- AUTO_INCREMENT untuk tabel `otp`
 --
-ALTER TABLE `images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `otp`
+  MODIFY `id_otp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT for table `product_colors`
+-- AUTO_INCREMENT untuk tabel `product_colors`
 --
 ALTER TABLE `product_colors`
-  MODIFY `product_color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `product_color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT for table `product_images`
+-- AUTO_INCREMENT untuk tabel `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
--- AUTO_INCREMENT for table `product_reviews`
+-- AUTO_INCREMENT untuk tabel `product_reviews`
 --
 ALTER TABLE `product_reviews`
   MODIFY `product_review_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `product_sizes`
+-- AUTO_INCREMENT untuk tabel `product_sizes`
 --
 ALTER TABLE `product_sizes`
-  MODIFY `product_size_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `product_size_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `product_tags`
---
-ALTER TABLE `product_tags`
-  MODIFY `product_tag_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `reviews`
+-- AUTO_INCREMENT untuk tabel `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `sizes`
+-- AUTO_INCREMENT untuk tabel `sellers`
+--
+ALTER TABLE `sellers`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `sizes`
 --
 ALTER TABLE `sizes`
   MODIFY `size_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `tags`
+-- AUTO_INCREMENT untuk tabel `token_whitelist`
 --
-ALTER TABLE `tags`
-  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `token_whitelist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `detail_histories`
+-- Ketidakleluasaan untuk tabel `address`
+--
+ALTER TABLE `address`
+  ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `customers` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `detail_histories`
 --
 ALTER TABLE `detail_histories`
   ADD CONSTRAINT `detail_histories_ibfk_1` FOREIGN KEY (`history_id`) REFERENCES `histories` (`history_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `product_colors`
+-- Ketidakleluasaan untuk tabel `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `sellers` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `product_colors`
 --
 ALTER TABLE `product_colors`
   ADD CONSTRAINT `product_colors_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_colors_ibfk_2` FOREIGN KEY (`product_attr_value`) REFERENCES `colors` (`color_code`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `product_colors_ibfk_2` FOREIGN KEY (`color_id`) REFERENCES `colors` (`color_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `product_images`
+-- Ketidakleluasaan untuk tabel `product_images`
 --
 ALTER TABLE `product_images`
   ADD CONSTRAINT `product_images_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `product_reviews`
+-- Ketidakleluasaan untuk tabel `product_reviews`
 --
 ALTER TABLE `product_reviews`
   ADD CONSTRAINT `product_reviews_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `product_reviews_ibfk_2` FOREIGN KEY (`review_id`) REFERENCES `reviews` (`review_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `product_sizes`
+-- Ketidakleluasaan untuk tabel `product_sizes`
 --
 ALTER TABLE `product_sizes`
   ADD CONSTRAINT `product_sizes_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_sizes_ibfk_2` FOREIGN KEY (`product_attr_value`) REFERENCES `sizes` (`size_value`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `product_tags`
---
-ALTER TABLE `product_tags`
-  ADD CONSTRAINT `product_tags_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_tags_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`tag_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `reviews`
---
-ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `customers` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `product_sizes_ibfk_2` FOREIGN KEY (`size_id`) REFERENCES `sizes` (`size_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
