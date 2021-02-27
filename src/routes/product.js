@@ -6,6 +6,7 @@ const uploadImages = require("../helpers/middlewares/uploads");
 const token = require("../helpers/middlewares/checkToken");
 
 productRouter.get("/", productController.getAllProduct);
+productRouter.get("/test", productController.testUrl);
 productRouter.get("/:id", productController.getProductById);
 // productRouter.post('/', uploadImages,  productController.insertProduct)
 productRouter.post(
