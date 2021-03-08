@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Feb 2021 pada 07.57
+-- Waktu pembuatan: 08 Mar 2021 pada 06.48
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.2
 
@@ -96,13 +96,13 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`category_id`, `category_name`, `category_link`, `category_color`, `category_image`) VALUES
-(1, 'T-Shirt', 't-shirt', '#CC0B04', 'https://s3-alpha-sig.figma.com/img/6b1b/11de/b984818831143e1889054e98377f4423?Expires=1610323200&Signature=TrW9bgpnZZFxJEuYMooWv-PdU3fFDqctSId~f3KGl1qHqeCB~oppnLjDWdMBQNIu-Y37lYi4t56jEGmDCV4~jnxTORj1Zoxzce0Ecg7MX9pAGgXWKB0r6LL8T57swSMhGBzj8zmtDUx8Vlr4SZdTGcQf-wo2pS5vK-zYdT81x42tq~2L25LKg4HnYaxujLtySicvqwsv6~GMlPluYXnNUQyY~kLNy4RhwMgl4-8uWPBr6anjLyVT7n86NZd5dIHSj07n0-TLZipiZPhlPV48lvAloFo0xdgnHvOAsniKMkgs4Q58oCmCmrgO3Jd6dR2d4NqUVRMA0Ni6kFFgW9Yc0w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-(2, 'Shorts', 'shorts', '#1C3391', 'https://s3-alpha-sig.figma.com/img/49a2/88f8/ad6aeec8a073aa0a657e7c7519263626?Expires=1610323200&Signature=e1u4YTOKkGaeQRys1rGKnzoEdGcjDeMzQAR1o0VgJMZuYSAHBl6arEjy0haRqgluDC-93B8cA5-UZ2K9RAZKyJxhC5zQVri9fcelzGM0778OfZoNCHa6sUDExMxlzxr46eAawuvG8Rlux9oFMWducEIZEto3XHAiaVrtd5lLqHW2oukOJ1-3mgLZKQCdtfZ5TiXT9ZOdS6nQ7kgOwM87rkQeI12qZFYgZVanLhwyEeFhiDQj4eDTJlX-iQp6xqBDVFwrCwgyFuINev5TknS6i~8CzMk812dgIBFbIeGosy54Pbp9o6L~~l8VND6tGTV~OlbWNQLDXp0OKQSMkWJfCA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-(3, 'Jacket', 'jacket', '#F67B02', 'https://s3-alpha-sig.figma.com/img/65af/55c4/5d103020c208199aa0396789ad645df1?Expires=1610323200&Signature=Kk8ac48GDlqIQCrIvM9iE2gcyKWQJUnz-bXJbdawdW809iLwBJVckbyS~yX3eR1WLTKBwaEc5EB1~1X7nR8JnGVJxeFqE6Xx-gU8d7cQ~AUhZ~GxioTzwtGY6wt3RgEj9JsfUqkuUYe6-jtM0pZPmMFjXwt7WXOWnUXVDR8q0UgZ1tXdeBl2Cn7N8trU4xXb9nPOtuXBSPPitT1ecGoQUmxTtx~~C-~7iUVJP2ryQJHSPIGShhWSq-33wW4BKQH-PRo-16cXHaMD9aum0pkoNJWjdhhQqrU8YX1EquUsq5L9~NqaOCVRTWVRxy0CxrsKNuVgBTwfIwnO9M3V42RMPw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-(4, 'Pants', 'pants', '#F31F51', 'https://s3-alpha-sig.figma.com/img/64b4/4714/896286200d422369861a2d608f35b6f4?Expires=1610323200&Signature=bKfFU5kAmY-VmqkAZt8x8X~CDfRr9Spw4iyWiZmVm0aeaVNU11KGWw4mrsXFk5cIP6fDa~mN~Ywygo3rX-Pokd3BZvHj-vnwHLcDhDqvilzJJxuLpKVwOJpsFUhnJFCxgyfTWKcxe1Z5MZ-u~YQ~I3xEc-kBvjw2tU~f5A58wgVJMmW~Iq9yROsCqqC~xLS4YBT-h70X9G2qxk~y1sXtLLI3XJfmDyRyVKa6~PaRmKyMfs4x0RBOnx3XQMr2-xlOt~CXUXWz7ROjx~o9xfLYAuBkNvMqvA~~Qjy~eUa9SPkZN5ttEHRTwThw5Z98CuraG9PxklUZ~kr6JQOrkdgT8w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-(7, 'Shoes', 'shoes', '#57CD9E', 'https://s3-alpha-sig.figma.com/img/fc9b/6b9b/45aad43ae695c2de7b3949ff451bd7a1?Expires=1610323200&Signature=hF5I7BkCK-3E9soTFK6riqDmcSuczIBkyn3RsYsuTXcnWkBZDDzP1ZARIdu17DUJzwd-R4Or01jfv-JZCkDQQpi~10xqo~jgMqR0ubaR6vQvlDPf27hnrw2beNt0lYiCiLBGsY~rum8fyNJULGWkumoCGz3UJBqNYxrqhvq7vg~7gOxkErhvYzqwxYiwWPq4ijvR5MH5ulHobMwl8Ja5~s4023SGkOCvp1yxFT7fU3o7nCrZ7I7x0EndhG0v2ev-G11d6M8s0dl8LaJlT1IexTP2FYjk3UFb6hUJU54zX5FlRJl-9aS1Xzc-~NCeZ6Gv23fiEGOG6U-SdN2ov6FFZw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-(8, 'High heels', 'high-heels', '#5650D8', 'https://s3-alpha-sig.figma.com/img/e4ba/3e76/a9bf0f820f0f0a5c5b5c7383b26d989c?Expires=1610323200&Signature=hw0~C31a8m7PtfMn2cgqf~tsRgo2QxxzX1iqBDEREJUm-Uvb9l1v1TQkeY54bjwUwwDll2-8zyl7F-Lyb4XLYexj8QBUE5GdsRfpc8wtz0HwUsd17D4pXTXr8UWEvNpq~HDEMnC8cuel4pTF2bAoxXZbpXU~38bOEnEvWuGfypdhm8ZIeMUNrz8BNFGJboIm11Ondlpn-b68NAp9uXwQaslIhNibkfehEC6bwa4kAZsPIegNgd3oOoljW7RxZJ-s1qUIgGWJckOhTRUtn-04vQkRgWMIIEag0B285M-V4Qsyvp-BvpoBHp3HcueRK0GcpiNJbimzRhZpPRSXCAEr7w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-(9, 'Handbag', 'handbag', '#50C8D8', 'https://s3-alpha-sig.figma.com/img/d554/5e85/c5a03743f4f3d8d7227b7cd1854213ac?Expires=1610323200&Signature=ZQXxJa8~T3ZH~Wxxryp67FWEThNpLhZsMBq3vBW9PVacnXCKbcXogUILNSxYxXe1hUf~K~19jZB7yD-PZ0XrurEL98gXtlXFPod81qXL3ySX0CuAXG363DwxspZa26bLcyZB8~jNuZmN8EHwxsLaQlW5n4w9~J9MRS8jflIJNYQAeIKImzw7Hku80OA1CJCIYJ8xd8XdHmuVrlB0~LDG5UJExdfx58ogeGqnMIs4NDC970luhf9ooO51vmp0VQ42DpOXKCn1crZrZQhZcVbHqL5~POsgsujDIMJhBey6sx-FFJhTJCoqAtrny5RRvwOWf9a7NxPMrBWF4iH2wIzP-Q__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA');
+(1, 'T-Shirt', 't-shirt', '#CC0B04', '/images/category/t-shirt.png'),
+(2, 'Shorts', 'shorts', '#1C3391', '/images/category/shorts.png'),
+(3, 'Jacket', 'jacket', '#F67B02', '/images/category/jacket.png'),
+(4, 'Pants', 'pants', '#F31F51', '/images/category/pants.png'),
+(7, 'Shoes', 'shoes', '#57CD9E', '/images/category/shoes.png'),
+(8, 'High heels', 'high-heels', '#5650D8', '/images/category/high-heels.png'),
+(9, 'Handbag', 'handbag', '#50C8D8', '/images/category/handbag.png');
 
 -- --------------------------------------------------------
 
@@ -844,7 +844,7 @@ ALTER TABLE `sizes`
 -- AUTO_INCREMENT untuk tabel `token_whitelist`
 --
 ALTER TABLE `token_whitelist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
