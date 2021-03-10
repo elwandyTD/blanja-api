@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Mar 2021 pada 06.48
+-- Waktu pembuatan: 10 Mar 2021 pada 01.25
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.2
 
@@ -199,13 +199,6 @@ CREATE TABLE `detail_histories` (
   `product_subtotal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `detail_histories`
---
-
-INSERT INTO `detail_histories` (`detail_history_id`, `history_id`, `product_id`, `product_title`, `brand_name`, `product_image`, `product_color`, `product_size`, `product_qty`, `product_subtotal`) VALUES
-(39, 49, 19, 'Baju muslim sepasang cowok dan cewek ukuran XL', 'Bendz', '/images/products/1614059835205-upload_images.jpg', 'Hitam', 'xl', 2, 450000);
-
 -- --------------------------------------------------------
 
 --
@@ -224,13 +217,6 @@ CREATE TABLE `histories` (
   `status` enum('packaging','delivering','completed') NOT NULL DEFAULT 'packaging',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `histories`
---
-
-INSERT INTO `histories` (`history_id`, `seller_id`, `user_id`, `history_code`, `history_address`, `history_method`, `history_subtotal`, `coupon`, `status`, `created_at`) VALUES
-(49, 5, 17, 'iquxd2pyb9h', 'Jalan baru', 'GoPay', 450000, 'Jihh', 'packaging', '2021-02-26 08:22:28');
 
 -- --------------------------------------------------------
 
@@ -287,27 +273,31 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `user_id`, `product_title`, `brand_id`, `category_id`, `product_price`, `product_qty`, `product_condition`, `product_description`, `created_at`, `updated_at`) VALUES
-(1, 5, 'Products 1', 5, 2, 65000, 25, 'Used', 'Celana dengan bahan lentur, lembut dan serap air. Sering dipakai Difilm', '2020-12-21 08:47:35', '2021-01-07 14:59:11'),
-(2, 5, 'Products 2', 4, 3, 69999, 23, 'New', 'Test Product Description', '2020-12-21 09:07:15', '2021-01-07 14:59:27'),
-(3, 5, 'Inner Landes', 4, 7, 23000, 12, 'New', 'TEst Product 2 deskripsi', '2020-12-21 10:02:14', '2021-01-07 14:59:52'),
-(4, 6, 'Sepatu Eagle homiped style blink-blink biru', 2, 7, 47000, 29, 'Used', 'Sepatu merek bingo yang tidak, seperti sepatu lain yg seperti itu yang sebelumnya tidak sama dengan itu', '2021-01-01 11:08:06', '2021-01-21 00:12:31'),
-(5, 6, 'Sepatu tanpa alas dengan design elegant', 3, 7, 45000, 20, 'New', 'Sebuah sepatu yang sama aja dengan sepatu lain', '2021-01-21 03:19:38', '2021-01-21 03:19:38'),
-(6, 6, 'High heel abri, design ramping', 5, 8, 68000, 12, 'New', 'Sebuah high heel yg sangat cocok untuk bermain dan mendaki', '2021-01-21 03:48:15', '2021-01-21 03:48:15'),
-(7, 6, 'Celana macan tutul', 3, 4, 47000, 16, 'Used', 'Celana dari bahan bakar minyak ', '2021-01-21 03:52:14', '2021-01-21 03:52:14'),
-(8, 6, 'Test 1', 5, 1, 75000, 12, 'Used', 'Test product ', '2021-01-21 13:15:46', '2021-01-21 13:15:46'),
-(10, 6, 'Baju test 1', 2, 1, 24000, 22, 'New', 'Test', '2021-01-21 13:20:51', '2021-01-21 13:20:51'),
-(11, 6, 'Baju test 2', 1, 1, 12358, 22, 'New', 'Test', '2021-01-21 13:23:03', '2021-01-21 13:23:03'),
-(14, 6, 'Barang baru', 1, 7, 20000, 22, 'New', 'Deskripsi barang', '2021-01-21 18:03:13', '2021-01-21 18:03:13'),
-(15, 6, 'Sepatu baru', 4, 7, 47000, 87, 'New', 'Test', '2021-02-02 13:32:41', '2021-02-02 13:32:41'),
-(16, 7, 'Baju baru bahan asli', 3, 1, 45000, 20, 'New', 'Baju baru untuk testing', '2021-02-18 08:23:34', '2021-02-18 08:23:34'),
-(17, 5, 'Hahah', 1, 7, 5555, 21, 'New', 'New shoes', '2021-02-22 09:20:33', '2021-02-22 09:20:33'),
-(18, 5, 'Sendal baru', 4, 7, 85800, 5, 'New', 'Sendal', '2021-02-22 09:24:23', '2021-02-22 09:24:23'),
-(19, 5, 'Baju muslim sepasang cowok dan cewek ukuran XL', 6, 1, 225000, 5, 'New', 'Baju muslim sepasang warna abu-abu dan ukuran xl', '2021-02-23 12:57:15', '2021-02-23 12:57:15'),
-(20, 5, 'Baju Arema cowok warna Hitam/Biru ukuran L/XL', 3, 1, 80000, 12, 'New', 'Baju aremania', '2021-02-23 13:02:05', '2021-02-23 13:02:05'),
-(23, 8, 'Baju', 4, 1, 20000, 2, 'New', 'Test', '2021-02-26 08:50:35', '2021-02-26 08:50:35'),
-(24, 8, 'Baju kokoh', 1, 1, 50000, 20, 'New', 'Baju kokoh baru', '2021-02-26 08:53:44', '2021-02-26 08:53:44'),
-(28, 8, 'Baju 1', 6, 1, 35000, 25, 'New', 'Test', '2021-02-26 10:17:16', '2021-02-26 10:17:16'),
-(29, 8, 'Tas pinki baru versi 12', 1, 1, 125000, 10, 'New', 'Tas baru yang disuka wanita 1111', '2021-02-26 10:26:22', '2021-02-26 11:31:32');
+(30, 7, 'Baju Gamis Wanita Terbaru Gamis Polos Busui Katun Supernova 9965 (B) - Red, XL', 2, 1, 68000, 20, 'New', 'Detail:\nBahan Katun Supernova\nKancing Depan (Busui Friendly)\n\nSize L - ld 102 cm\nSize XL - ld 106 cm\nPb 135cm\n\nFoto kami semua asli dan sesuai barang, akan tetapi pasti ada perbedaan warna sekitar 10 persen bergantung dari masing masing smartphone/device customer. (Diluar kendali kami)\n\nJam kerja admin\nSenin s/d Sabtu 7.00 s/d 16.00\nMinggu & Hari Besar Libur\n\nMengapa memilih belanja di Toko kami?\n1. Jaminan barang SESUAI foto\n(Tidak ada istilah KEMIRIPAN 80-90% seperti toko online lainnya)\n\n2. Harga MURAH untuk KUALITAS terbaik\n\n3. Pengiriman CEPAT (hari sama untuk orderan masuk sebelum jam 12 Siang)\n\n4. Stok AMAN & varian produk yang LENGKAP untuk Reseller dan Dropshipper\n\nSelain reseller/dropshipper resmi, penggunaan foto untuk tujuan komersil tanpa seijin kami, akan diproses sesuai hukum yang berlaku. (Pasal 12 & Pasal 115 UU Hak Cipta No 28 tahun 2014, pidana denda Rp 500.000.000)', '2021-03-09 11:40:05', '2021-03-09 11:40:05'),
+(31, 7, 'Jaket Parka Cowok - Full Black, L', 3, 3, 95000, 10, 'New', 'Real Picture 100% Asli ORIGINAL kami bisa menjamin\nYANG TIDAK ADA KETERANGAN DI KIRIM RANDOM\nWARNA: Tanya/Diskusi sebelum membeli keterangan kosong akan kami kirim random.\n1kg muat 2 pcs\n\nKETERANGAN:\n- Bahan lembut tidak panas, cocok dipakai harian\n- Model memanjang kebawah ( best seller )\n- Tali pinggang\n- Hoodie bisa dilepas\n\nCode : PARKA COWOK ORIGINAL\nMaterial : Baby Canvas Katun\nPuring : Akrilik kotak-kotak\nSize : All size L fit XL\n(Panjang 72cm, Lebar 57cm)\n\nfast respon\nhp/wa. 089.656.152.176', '2021-03-09 11:43:14', '2021-03-09 11:43:14'),
+(32, 7, 'Jaket Camo BGSR / Jaket pria / Jaket Loreng / Jaket Army Pria / Jaket', 4, 3, 140000, 10, 'New', 'Halo kak selamat datang di Almondhsop\n\nJaket camo yang satu ini bahannya dari canvas premium ya kak. Gak akan luntur ketika dicuci, cara mencucinya cukup dikucek tanpa harus disikat agar tidak merubah kualitas.\n\nDETAIL PRODUK:\n- Nama: BGSR Jaket Camo\n- Matt: Canvas Premium\n- Size: L dan XL\n- Emblem Bordir\n- Terdapat Saku Dalam\n- Tidak Menerawang\n- Dilengkapi Kancing\n- 2 Saku Bagian Samping\n- 2 Saku Bagian Dada\n- Nyaman Dipakai\n- Tidak Mudah Luntur\n\nYuk segera order sekarang juga karena stock terbatas kak. Jangan sampai kehabisan ya :)', '2021-03-09 11:44:53', '2021-03-09 11:44:53'),
+(33, 7, 'MARCHEL MAN BAJU KEMEJA POLOS PRIA LENGAN PENDEK KEMEJA CASUAL PRIA - Maroon, S', 2, 1, 41000, 10, 'New', 'Detail Ukuran\nLebar Dada X Panjang\nAda di Gambar\nM (50x70)\nL (5272)\nXL ( 54x74)\n.\nToleransi +- ( 1 atau 2 cm dari Yang Tertera )\nKarna Beda Merk . Beda Potongan', '2021-03-09 11:46:24', '2021-03-09 11:46:24'),
+(34, 7, 'Kemeja Polos Hitam Cowok Panjang Kerja kantor Slimfit / Baju Pria - XL', 5, 1, 67500, 10, 'New', 'Detail Ukuran\nLebar Dada X Panjang\nAda di Gambar\nM (50x70)\nL (5272)\nXL ( 54x74)\n.\nToleransi +- ( 1 atau 2 cm dari Yang Tertera )\nKarna Beda Merk . Beda Potongan', '2021-03-09 11:47:58', '2021-03-09 11:47:58'),
+(35, 7, 'High heels cantik / Heels strap - KREM, 36', 4, 8, 100000, 10, 'New', 'Tinggi : 9 cm dan 5 cm\nBahan : Glossy stud\nWarna :\n- HITAM ,\n- KREM,\n- SILVER,\n- PUTIH\n- MERAH\n\nliat juga ulasan yg sudah beli jd jika tetap memberikan Feedback negatif pembelian selanjutnya kita tidak layani maaf, kami hanya bisa kerjasama dgn pembeli yg\nbijaksana.\n\nsize chart :\n1. size 36 = 21 cm\n2. size 37 = 22 cm\n3. size 38 = 23 cm\n4. size 39 = 24 cm\n5. size 40 = 25 cm', '2021-03-09 11:50:10', '2021-03-09 11:50:10'),
+(36, 7, ' Sepatu Sandal High Heels Wanita Hak Tahu HT60 - Hitam, 39', 3, 8, 44000, 10, 'New', 'kode HT60\nReady Hitam 36 - 40\nbahan double suede\nsize standar\nUkuran standar : 36=22cm, 37=23cm, 38=24cm, 39=24.5cm, 40=25cm\n\nMohon sertakan keterangan size dan warna saat order ya guna mempercepat proses pengiriman', '2021-03-09 11:52:06', '2021-03-09 11:52:06'),
+(37, 7, 'PHM Shoes Sepatu Pria Sneakers Import Sepatu Olahraga Kasual PHM205 - Merah, 39', 3, 7, 79000, 10, 'New', 'Hello everyone. Selamat datang di PHM Official Store.\nBrand terpercaya yang menjual sepatu berkualitas dan nyaman digunakan dengan harga terjangkau. Semua model sepatu selalu kami seleksi sebelum di kirimkan ke pembeli, untuk menjaga kualitas dari produk2 kami.\n\n???? Welcome Reseller , Dropshiper & Grosiran (Tanpa Logo Tokopedia & Logo Toko)\n???? Pembelian Grosir Silahkan Hubungi Admin Langsung untuk mendapatkan harga menarik\n???? Gratis ongkir tanpa minimal belanja & bisa COD (JNT)\n???? Bisa antar Via Kurir Sesama Jakarta jika Pengambilan Dalam jumlah Besar\n\n????Jangan lupa Follow Toko & Like Produk kita Untuk mendapatkan Diskon dan Update nya.\n\nBahan Upper : Cloth [ Sangat adem & Nyaman ]\nBahan Insole : Eva Sponge [ Empuk tapi kuat ]\nBahan Outsole : TPR / Thermoplastic Rubber [ Ringan & tidak licin ]\nBerat Sepatu : Size 39 - Lebih Kurang 570 Gr\nBerat Sepatu : Size 44 - Lebih Kurang 770 Gr\nBerat Kotak : Lebih Kurang 115 GR\n\nDisarankan mengukur kaki terlebih dahulu lalu ditambah 0.5cm kemudian disamakan dengan chart size.\n\nChart size (insole) :\nSize 39 : 24.5 cm\nSize 40 : 25 cm\nSize 41 : 25.5 cm\nSize 42 : 26 cm\nSize 43 : 26.5 cm\nSize 44 : 27 cm\n\nMisal : Setelah diukur kaki Kakak panjangnya 24.5cm, tambahkan 0,5cm maka didapat panjang 25cm. Maka kami sarankan pilih ukuran 40\n\n???? ???? PERATURAN TOKO\nMohon Lakukan Video Unboxing Saat Paket Diterima ????\nProduk yang masih bisa di klik Variasi = Ready Stok, boleh langsung di order ?\nTidak bisa di Klik = Kosong ?\nTidak menerima Sisipan warna di CATATAN / VIA CHAT ??\njika ada kesalahan produk / kurang barang, harap Melampirkan video unboxing, foto produk dan Label pengiriman. ????????\n\n???????? JANGAN LUPA BACA RULES TOKO DI BANNER YA SEBELUM ORDER\n\nTerima kasih banyak sudah berkunjung PHM Official Store, Happy Shopping Dear ????', '2021-03-09 11:55:18', '2021-03-09 11:55:18'),
+(38, 7, 'Jaket bomber pria zipper eksekutiv man premium - Abu-abu', 2, 3, 115000, 10, 'New', 'Jaket bomber pria EKSEKUTUV MAN premium\n.\nBrand :Sensor\nBahan :taslan waterprof\nWarna :hitam-navy-abu grey-marron\nUkuran :M-L\nDetail ukuran panjang x lebar dada :\nM.panjang 65cm x lebar dada 54cm x panjang lengan 60cm\nL.panjang 67cm x lebar dada 56cm x panjang lengan 62cm\n.\nJaket bomber eksekutuv man menggunakan resleting dan model saku di bagian kiri/kanan dan di bagian dalam ada saku nya juga\nBahan adem di pakai,nyaman,tidak berbulu,dan tidak mudah luntur\nJaket bomber juga yang lagi trending di kalangan anak muda sekarang\nJaket bomber 99% realpict sesua photo\nBest produk recomendeed\nStok masih tersedia\n.\nSelamat berbelanja di lapak kami\nHappy shoping good luckkk\n.\nSalam hormat kami play jeans ke puasan planggan adalah tujuan kami !!!', '2021-03-09 12:00:08', '2021-03-09 12:00:08'),
+(39, 7, 'Kaos Baju Tshirt Premium CAMOE Original Basic Army Green / Hijau Army - S', 1, 1, 65000, 10, 'New', 'Camoe 100% Original & Authentic Guaranteed\n\nThe collection’s T-Shirt From CAMOE signature\n\nA classic design, this T-shirt will be a useful addition to every wardrobe.\nIt will be a perfect match for any outfit.\n\nCrafted in a slightly Regular fit from a mix of luxurious Cotton and Polyester Blend with a soft hand feel\n\nThe label is signed with the collection’s signature\n\nDetail Featured:\n? 100% Cotton\n? Colour : Army Green\n? Available Size : S, M L XL\n? Regular Fit\n? Come with plastic and Sticker (With Tag and Label)\n\nProduct Care:\nTo preserve the quality of this garment, we recommend you to respect the care instructions :\n? Gentle dry clean\n? Dry on a flat surface / do not hang / reshape\n? Iron inside out\n\n\nInstagram : @Camoeclothing', '2021-03-09 12:02:11', '2021-03-09 12:02:11'),
+(40, 7, 'Kaos Baju Band The Offspring Kaos Musik - Karimake', 5, 1, 50000, 10, 'New', 'Selamat datang di toko Kaos KARIMAKE\n\nSetiap barang yang berada di etalase berarti READY STOCK\n\nKami menerima Dropshipper dan Reseller ya kak\n\nBahan 100% Cotton, Combed 30s\nSablon : Polyflex , kuat dan halus\n\nReady Size : S, M, L, XL, XXL\nS : 66 X 48 cm\nM : 68 X 50 cm\nL : 70 X 52 cm\nXL : 72 x 54 cm\nXXL : 74x 56 cm\n\nWarna : Hitam, Putih, Merah, Marun, Biru, Biru Navy / Dongker, Biru Turkis, Hijau, Kuning, Oranye, Pink dan Abu Misty\n\n\"Jangan lupa untuk mengukur baju yang ingin anda beli dan sesuaikan dengan ukuran dari kita, agar kaos sesuai dengan harapan kita\"\n\nSelamat Berbelanja.\n\nSalam dari Kami.', '2021-03-09 12:03:24', '2021-03-09 12:03:24'),
+(41, 7, 'Celana Pendek Chino Premium Quality - Hitam, 28', 5, 2, 65000, 10, 'New', '* Warna tidak mudah luntur jika dicuci berulang kali\n* 1000% REAL PICT / sesuai dengan gambar\n* Bahan lentur / ngaret\n* Nyaman dipakai\n* Fashionnable\n* Branded\n* Jahitan kuat dan sangat rapi\n* Serat kain tidak kaku\n* Cocok untuk digunakan semua kalangan usia\nTERMURAH\nTERLARIS\n\n*berikut adalah size chart*\nSize 27 (lebar pinggang 70 cm x panjang 50 cm)\nSize 28 (lebar pinggang 72 cm x panjang 50 cm)\nSize 29 (lebar pinggang 74 cm x panjang 50 cm)\nSize 30 (lebar pinggang 76 cm x panjang 50 cm)\nSize 31 (lebar pinggang 78 cm x panjang 51 cm)\nSize 32 (lebar pinggang 80 cm x panjang 51 cm)\nSize 33 (lebar pinggang 82 cm x panjang 52 cm)\nSize 34 (lebar pinggang 84 cm x panjang 52 cm)\n\nPERHATIAN PENTING\nJika Barang nya kosong Dalam 24jam Tidak Balas Chat/Tlpn dari kami Otomatis kita Kirim Barang Yg Ready!', '2021-03-09 12:05:01', '2021-03-09 12:05:01'),
+(42, 7, 'Celana Panjang Chino/Chinos/Cino Pria/Cowok - AbuMuda/Hitam/Krem/Cream - STANDAR-HITAM, L', 2, 4, 70000, 10, 'New', 'Tabel Ukuran ada juga \"Di SAMPING FOTO PRODUK\" (geser kekiri foto produknya)\n\nPERHATIAN; \"Harap Mencantumkan WARNA dan UKURAN di Keterangan PESANAN!!!\".\n\nKETERANGAN PRODUK:\nBahan : Cotton Stretch ( Bisa Melar / Ngaret)\nModel : Celana Panjang Chino Reguler Fit Pria\nWarna : Krem, Hitam, Abu-abu, Biru Navy\nUkuran : S=28, M=30, L=32, XL=34\n\nKETERANGAN UKURAN:\n(Size dalam keadaan TIDAK dipakai)\nSize S = No. 2 = LINGKAR PINGGANG 78Cm X PANJANG CELANA 98 Cm, utk BB 50 Kg\nSize M = No.30 = LINGKAR PINGGANG 82 Cm X PANJANG CELANA 99 Cm, utk BB 55 Kg\nSize L = No.32 = LINGKAR PINGGANG 85 Cm X PANJANG CELANA 100 Cm, utk BB 60 Kg\nSize XL = No 34 = LINGKAR PINGGANG 88 Cm X PANJANG CELANA 102 Cm, utk BB 65 Kg\n(bisa melar +/- 2~4 cm, sewaktu di pakai)\n\nSelamat berbelanja...', '2021-03-09 12:06:52', '2021-03-09 12:06:52'),
+(43, 7, 'Celana Badminton Lotto / Celana bulutangkis - Putih, L', 3, 2, 30000, 10, 'New', 'Mohon baca deskripsi sebelum memesan ya.\n\nCelana badminton lotto ini cocok buat yg hobi badminton , untuk olahraga lain juga bisa.\n\nSpesifikasi :\n-Terdapat ban karet pinggang yg tahan lama.\n-Saku tangan kiri dan kanan\n-Resleting kualitas standar nya.\n-Logo bordir\n-Jahitan rapi.\n\ntersedia ukuran L XL XXL XXXL\nL = lingkar pinggang 66cm masih melar sampai 76cm X panjang celana 38cm.\n\nXL = lingkar pinggang 70cm masih melar sampai 80cm X panjang celana 40cm.\n\nXXL = lingkar pinggang 74cm masih melar sampai 84cm X panjang celana 42cm.\n\nXXXL=lingkar pinggang 80cm masih melar sampai 90cm X\npanjang celana 44cm\n\nUkuran di ukuran mendatar ya kak , silahkan di ukur lingkar pinggang dulu. Toleransi 1-2cm.\n\nNb. pemesanan di atas jam 16.00 akan kami proses dan kirim pada keesokan hari nya.\npengiriman setiap hari dan juga bisa bayar di tempat (COD)\n\nTerima kasih.', '2021-03-09 12:09:04', '2021-03-09 12:09:04'),
+(44, 7, 'Jubah Snk Attack On Titan, Jubah Anime Cosplay Jaket Cewe,cowo - all size', 6, 3, 150000, 10, 'New', 'Jubah ini bisa dipakai untuk cewek dan cowok, dapat dipakai untuk kegiatan sehari-hari maupun Acara Event / Cosplay\n\nTersedia ukuran all size\nBahan / Material Premium Quality Distro\n- 100% Drill\n- Sablon\n- Adem\n- Halus\n- Nyaman dipakai\n\nKontak ANIME MARKET ZONE:\nWhatsApp 081394339030\nFacebook Anime Market Zone\nInstagram @animemarketzone\n\nUntuk pemesanan pembelian bisa langsung klik Beli Langsung / Beli ya', '2021-03-09 12:10:44', '2021-03-09 12:10:44'),
+(45, 7, 'Celana Pendek Pria Surfing Distro Premium Renang Pantai Santai Kolor - Cream, 22', 6, 2, 29000, 10, 'New', 'DIBACA DISKIRPSI\n\nJujur celana model ini sangat keren dan nyaman banget dipakai,\nterbuat dari American drill (Terbaik dikelasnya) yang mempunyai standart kualitas import.\njadi tidak perlu diragukan lagi tentang bahan baku dari produk ini.\n\nDetail model celana :\n- Pinggang memakai karet kolor\n- Kain memakai bahan combet tebel dan halus (Great A)\n- Saku depan ada 2 (Kanan - kiri) Model samping\n- Saku belakang (Model bobok / paspol / saku dalam)\n- Size lengkap M / L / XL / XXL / 3xl / 4xl\n- Warna : Hitam / Abu-abu / Coklat / Cream / Mocca\n\n- Foto 100% Asli (dijamin)\n- Karena kita sendiri yang mengambil gambar\n\nDetail ukuran celana :\n\nsize 20 USIA 5-6\nSize 22 USIA 7-9\nSize 24 USIA 10-11\n\nDetail ukuran celana :\nM (29/30)\n- Lingkar pinggang : 75-76 cm\n- Panjang celana : 55 cm\n- Lebar kaki : 24 cm\n- Lebar paha : 30 cm\n\nL (31/32)\n- Lingkar pinggang : 79-80 cm\n- Panjang celana : 55 cm\n- Lebar kaki : 25 cm\n- Lebar paha : 32 cm\n\nXL (33/34)\n- Lingkar pinggang : 84-85 cm\n- Panjang celana : 58 cm\n- Lebar kaki : 26 cm\n- Lebar paha : 34 cm\n\nXXL (35/36)\n- Lingkar pinggang : 89-90 cm\n- Panjang celana : 59 cm\n- Lebar kaki : 28 cm\n- Lebar paha : 35 cm\n\nSPESIAL BIG SIZE\n3XL (37/38)\n- Lingkar pinggang : 94-97 cm\n- Panjang celana : 61 cm\n- Lebar kaki : 29 cm\n- Lebar paha : 36 cm\n\nNB : Pinggang melar 2-4 cm & Toleransi jahitan 1-2 cm\n\nKebijakan penjual :\n- Barang yang kita jual adalah produk sendiri\n- Kondisi baru dan barang bagus\n- Kita memakai bahan baku yang terbaik dikelasnya ya kakak\n- Transaksi aman dan terpercaya\n\nNB = NO CANCEL ORDER!!! Pastikan checkout barang sesuai dengan produk yang di inginkan, bukan tanggung jawab kami jika barang yg dikirim tidak sesuai yang di harapkan karena kesalahan Checkout, WARNA dan UKURAN wajib di cantumkan di NOTE.\n\n*** NANTI KITA GANTI DENGAN YANG BARU. ***\n\nKITA JUGA OPEN RESELLER DAN DROPSHIP YA KAKAK ...\nSemoga bisa menambah keberkahan buat teman-teman semua.\nProduk lain di toko kami.', '2021-03-09 12:12:19', '2021-03-09 12:12:19'),
+(46, 7, 'Okechuku JAY Celana Chino Panjang Pria Celana Chino Pria Celana Pria - Abu, Size 28', 6, 4, 95000, 10, 'New', 'Okechuku JAY Celana Chino Panjang Pria Celana Chino Pria Celana Pria\n\nCelana chino pria model terbaru dari Okechuku, kualitas premium, terbuat dari bahan twill katun stretch. Sifat bahan halus, nyaman di kulit, dan tidak panas. Model simple, basic, dan elegan dengan kantong depan di bagian kiri, kanan dan belakang. Cocok untuk di pakai dalam acara formal maupun casual. Bisa dipakai menggunakan ikat pinggang.\n\nZipper: Auto Lock (Anti Melorot & macet)\n\nPilihan ukuran :\n\n1. size 28 :\nLingkar Pinggang : 71cm\nPanjang celana : 95cm\nLingkar paha : 56cm\nLingkar betis : 30cm\n\n2. size 30 :\nLingkar Pinggang : 73cm\nPanjang celana : 97cm\nLingkar paha : 58cm\nLingkar betis : 32cm\n\n3. size 32 :\nLingkar Pinggang : 82cm\nPanjang celana : 97cm\nLingkar paha : 60cm\nLingkar betis : 36cm\n\n4. size 34 :\nLingkar Pinggang : 88cm\nPanjang celana : 99cm\nLingkar paha : 62cm\nLingkar betis : 38cm\n\n5. size 36 :\nLingkar Pinggang : 90cm\nPanjang celana : 99cm\nLingkar paha : 64cm\nLingkar betis : 40cm\n\nPilihan warna :\n1. Hitam\n2. Coklat\n3. Abu\n4. Navy\n5. Kopi\n6. Beige\n\nFoto produk 100 persen adalah foto asli yang di foto di studio foto, namun demikian ada kemungkinan perbedaan warna sedikit di karenakan efek resolusi layar dan pencahayaan.\n\nPembeli harap memperhatikan dan mempertimbangkan detail ukuran di atas sebelum membeli.\n\nJam kerja :\nSenin - Sabtu\n08.00 - 16.00 WIB\nFast respon pada jam kerja, pemesanan dan pertanyaan di luar jam kerja akan diproses keesokan harinya.\n\nBUDAYAKAN MEMBACA SEBELUM MEMBELI\n*) Pemilihan warna&ukuran hanya melalui kolom \"KETERANGAN\" saat order, bukan melalui CHAT & DISKUSI, Jika tidak di tulis maka akan di kirim secara acak.\n*) Juga Harap TULIS warna CADANGAN, jika warna utama tidak tersedia.\n*) Wajib mendokumentasikan saat membuka paket dalam bentuk video untuk berjaga-jaga jika ada barang yang tidak sesuai /rusak/cacat sebagai syarat retur di toko kami.\n*) Jika anda memutuskan untuk MEMBELI maka kami anggap anda SETUJU dengan aturan di atas.', '2021-03-09 12:18:01', '2021-03-09 12:18:01'),
+(47, 7, 'Tas Selempang Slingbag Wanita Find Pingoo Korea - VONA Pixie - Merah Muda', 2, 9, 66000, 10, 'New', '- Tas Selempang / Sling Bag Wanita.\n- Bahan Kulit Sintetis Tebal.\n- 1 ruang utama dengan penutup magnet dan kaitan.\n- Ukuran : Panjang 19 x Lebar 14 x Tinggi 21 cm.\n- Tali panjang tetap/fix 100 cm. Dilengkapi juga dgn Tali Pendek.\n- Muat untuk HP, dompet, powerbank, kunci, kacamata, dll.\n- Foto produk = real picture. Deviasi warna produk = 10% (pencahayaan studio foto berbeda dengan cahaya ruangan biasa).\n- Tersedia warna Pink, Red dan Blue.\n\n=======\n\nCEK STOK\nUntuk cek ready stock, silakan klik tombol \"Beli\". Setelah itu akan muncul pilihan variasi warnanya. Untuk variasi warna yang bisa dipilih berarti stoknya ready.\n\nPENGIRIMAN\n- Berikut adalah batas waktu pengiriman pesanan setiap harinya:\n- Senin-Sabtu, order yang kami terima sebelum pukul 14.00 WIB, akan dikirim pada hari itu juga.\n- Order yang masuk setelah batas waktu pengiriman di atas, akan dikirim pada hari kerja berikutnya.\n- Hari minggu & hari libur nasional, tidak ada pengiriman.\n\nNOTE\n- Seluruh foto produk VONA adalah foto produk sesungguhnya. Namun karena pencahayaan & pengaturan layar, warna produk dapat tampak lebih gelap atau lebih terang.\n- Sehubungan dengan proses pembuatan dan pengukuran produk yang dilakukan secara manual, ukuran produk dapat bergeser kurang lebih 1 cm.\n- Pastikan alamat pengiriman sudah benar.\n- GO-SEND: Semua barang dari VONA Official Shop READY untuk dikirim via GO-SEND untuk wilayah Jabodetabek.\n\nRESELLER, DROPSHIP & GROSIR ARE WELCOMED!\nSilakan Chat kami.\n\nJangan lupa +Follow store VONA di Tokopedia & klik tanda LOVE di produk favoritmu!\nSelamat Berbelanja!', '2021-03-09 12:20:04', '2021-03-09 12:20:04'),
+(48, 7, 'Tas Wanita Import New 2020 - (JHF19) Tas Selempang Wanita - Tas Cewek - Biru', 3, 9, 90000, 10, 'New', 'Tas Wanita Import 2020 (JHF19)\n\nMaterial ; Premium PU Leather\nUkuran Tas\nPanjang 21cm\nLebar 9cm\nTinggi 13cm\nTersedia Warna Silver / Biru / Hitam / Putih / Pink', '2021-03-09 12:21:06', '2021-03-09 12:21:06'),
+(50, 7, 'Techdoo Sepatu Pria Olahraga Running Sepatu Sneakers Pria MR104 - Hitam Putih, 39', 3, 7, 99000, 10, 'New', 'BONUS : FREE BOX\nMohon dibaca dulu sebelum membeli : Sepatu free box sepatu cocok untuk segala acara kamu.\n\nsepatu sangat ringan dipakai sepatu dengan kualitas grade original, sepatu yg dipacking dengan box sesuai originalnya sepatu denagan kualitas unggulan dibuat menggunakan bahan lembut yang mengikuti lekuk kaki tidak keras sangat elegan dan cocok buat teman teman memberikan kesan modis casual dan trendy sangat berkualitas Sepatu sesuai dengan pic + box Perkiraan size\n\nMohon diperhatikan :\n- Bahan kanvas\n- Warna Sesuai Dengan Gambar\n- Ukuran sesuai panduan ukuran\n- Mohon dimaklumkan jika warna dan produk ada sedikit perbedaan\n\nSize 39-44\nPerincian Size\n39=24.5 cm\n40=25 cm\n41=25.5 cm\n42=26 cm\n43=26.5 cm\n44=27 cm\n\nInformasi:\n1. Kualitas import.\n2. Barang baru+box.\n3. Jam Operasional ( senin-sabtu ) jam 08:00 wib s/d 17:00 wib.\n4. Harap bersabar menunggu chat dibalas.\n5. Barang sesuai gambar. Jika ada sedikit perbedaan warna karena sebab dari pencahayaan saat memotret.\n6. Jika menerima barang yang bebeda dari pesanan, silahkan langsung chat saja ke kami dengan mengirimkan bukti foto barang yang diterima dan invoice pesanannya.\n7. Masa diperbolehkan retur adalah 2 hari setelah barang diterima.\n\nLebih detailnya bisa ditanyakan di chat ya ka. Terima kasih', '2021-03-09 12:24:27', '2021-03-09 12:24:27'),
+(51, 7, 'STOUREG Sepatu Pantai Olahraga Air - 6688 [38-44] - Cokelat, 39', 3, 7, 82000, 10, 'New', 'Harap untuk membaca deskripsi produk sebelum belanja di rnc18\n\nSelamat datang di rnc18. Sebelum dibeli ada baiknya kita membaca spesifikasi produk di bawah ini :\n\nSepatu dengan desain fleksibel ini memberikan perlindungan terhadap kaki Anda pada saat bermain air dipantai, berolahraga air seperti selancar, dan lain sebagainya. Kaki tetap terlindungi namun tetap ringan seperti tidak memakai sepatu. Anda juga dapat menggunakan sepatu ini sebagai sepatu yoga ataupun olahraga ringan lainnya. Dapat dipakai oleh pria ataupun wanita.\n\nDengan memakai sepatu ini kaki Anda akan terlindungi dari kerikil kecil di pasir pantai ataupun sengatan panas matahari yang memanaskan pasir di pantai. Kaki Anda akan tetap terasa nyaman dan ringan walaupun menggunakan sepatu ini.\n\nBanyak orang enggan menggunakan alas ke pantai karena mengganggu pergerakan mereka ketika di pantai. Hal ini dapat diminimalisir ketika Anda menggunakan sepatu ini. Material perpaduan karet dan spandex membuat sepatu ini tetap ringan dan cepat kering ketika terkena air.\n\nSpesifikasi STOUREG Sepatu Pantai Olahraga Air - 6688\nMaterial : rubber + Spandex\n\nMOHON DISESUAIKAN UKURAN DENGAN GAMBAR KELIMA KARENA KEBESARAN / KEKECILAN TIDAK BISA DITUKAR\n\nno retur jika kesalahan dari customer.\n\nHappy shopping\nrnc18', '2021-03-09 12:26:26', '2021-03-09 12:26:26'),
+(52, 7, 'HIGH HEELS WANITA IMPORT CM-10 BLACK - 37', 3, 8, 210000, 10, 'New', 'MERK : KOKOWAI\nWARNA : HITAM\nSIZE : 36, 37, 38, 39, 40\nHEELS : 7CM\nQUALITY : SEMI PREMIUM\nKONDISI : 100% BARU + BOX\n\nMATERIAL : SATEN\nINSOLE : DOUBLE FOAM SUPER NYAMAN\nSOL : KARET ANTI SLIP\n\nFOTO 100% REALPIC\n\nPENTING : HARAP TANYAKAN STOK SEBELUM MENGORDER\n\nSTOK DIUPDATE SETIAP HARI KARENA KAMI SUPPLY KE BERBAGAI DAERAH.\n\nYANG MINAT GABUNG MENJADI RESELLER SILAHKAN\nWA 0812.1077.6291\n\nINSOLE SIZE CHART\n36 : 23CM\n37 : 23,5CM\n38 : 24CM\n39 : 24,5CM\n40 : 25CM', '2021-03-09 12:28:12', '2021-03-09 12:28:12'),
+(53, 7, 'Sepatu Sneakers Olahraga Pria Ambigo JKT27 Running Shoes - Abu-abu, 40', 3, 7, 76000, 10, 'New', 'Sepatu Sneakers Olahraga Pria Ambigo JKT27 Running Shoes\n\nSpecification:\nQuality: Import\nBahan: Canvas\nBahan Sole: Rubber\nInsole Material: Fabric ( Inject )\nModel sole: Lentur\n\nPilihan warna dan ukuran:\nHitam: 40, 41, 42, 43\nGrey: : 40, 41, 42, 43\n\nDetail Size:\n40: 24,5cm\n41: 25,5cm\n42: 26cm\n43: 27cm\n\nPackage Content:\n1 pair: Ambigo JKT27 Running Shoes Sepatu Lari Sneakers Kets Olahraga Pria\n\nMengapa harus di Jagonya Case ?\n1. Kami adalah importir case besar dari Cina\n2. Semua barang Ready Stock\n3. Respon cepat\n4. Harga MURAH kualitas WAH\n5. Menggunakan Bubble Wrap untuk menjaga kualitas barang tetap OK saat kamu terima.\n\nPesan Sekarang!', '2021-03-09 12:30:47', '2021-03-09 12:30:47'),
+(54, 7, 'SANDAL HIGH HEELS WANITA KACA TALI PERMATA DY', 6, 8, 55000, 10, 'New', 'Bahan premium dengan pengerjaan oleh pengrajin terbaik serta dipadukan dengan mesin produksi kami yang terbaru sehingga menciptakan produk yang jauh lebih baik.\n\n• Bahan : PU Leather\n• Sol : Non Slip\n• Warna : SILVER DAN CREAM\n• Tinggi Heel : 7 cm\n\nPatokan Panjang Kaki dan Size :\n• 37 : 22,5 cm\n• 38 : 23 cm\n• 39 : 23,5 cm\n• 40 : 24 cm', '2021-03-09 12:32:59', '2021-03-09 12:32:59'),
+(55, 7, 'Blackkelly Sepatu High Heel Casual Wanita Original Branded LRM 269 - 36', 6, 8, 138000, 10, 'New', 'Handmade asli produk Indonesia, Paris Van Java. Dibuat dengan Bahan yang nyaman digunakan. Kualitas terbaik, desain trendy dan tidak pasaran.\n\nDetail Produk\n- Bahan : PU-PVC, SOL FIBER, HAK 7 CM\n- Warna : KREM\n- Size : 36 - 40\n\nCatatan :\n*Jika Tidak Sesuai, Silahkan Ajukan Retur Ya ( Tukar / Kembalikan )\n*Foto model asli (real picture). Objek utama tidak direkayasa, kalaupun ada sedikit perbedaan antara foto dengan aslinya maksimal 5% - 10% karena pengaruh cahaya sekitar\n\nSelamat Belanja Kakak & Semoga Bermanfaat Produknya :)', '2021-03-09 12:34:10', '2021-03-09 12:34:10');
 
 -- --------------------------------------------------------
 
@@ -326,30 +316,65 @@ CREATE TABLE `product_colors` (
 --
 
 INSERT INTO `product_colors` (`product_color_id`, `product_id`, `color_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 2, 7),
-(4, 3, 6),
-(5, 3, 4),
-(6, 4, 3),
-(7, 4, 1),
-(8, 4, 5),
-(9, 16, 1),
-(10, 16, 4),
-(11, 16, 5),
-(12, 16, 6),
-(13, 18, 1),
-(14, 18, 3),
-(15, 19, 1),
-(16, 19, 5),
-(17, 20, 7),
-(18, 20, 1),
-(23, 23, 3),
-(24, 24, 2),
-(30, 28, 5),
-(31, 28, 2),
-(32, 29, 2),
-(33, 29, 3);
+(34, 30, 1),
+(35, 30, 4),
+(36, 30, 6),
+(37, 31, 2),
+(38, 31, 3),
+(39, 32, 3),
+(40, 32, 4),
+(41, 32, 5),
+(42, 33, 3),
+(43, 33, 5),
+(44, 34, 1),
+(45, 34, 3),
+(46, 34, 5),
+(47, 35, 1),
+(48, 35, 3),
+(49, 35, 5),
+(50, 36, 1),
+(51, 36, 2),
+(52, 36, 3),
+(53, 37, 3),
+(54, 37, 6),
+(55, 37, 7),
+(56, 38, 1),
+(57, 38, 5),
+(58, 38, 7),
+(59, 39, 1),
+(60, 39, 2),
+(61, 40, 1),
+(62, 40, 2),
+(63, 40, 4),
+(64, 40, 5),
+(65, 40, 6),
+(66, 41, 1),
+(67, 41, 2),
+(68, 42, 1),
+(69, 42, 2),
+(70, 42, 4),
+(71, 42, 5),
+(72, 43, 1),
+(73, 43, 5),
+(74, 44, 1),
+(75, 44, 2),
+(76, 44, 5),
+(77, 45, 1),
+(78, 45, 2),
+(79, 45, 5),
+(80, 46, 1),
+(81, 46, 5),
+(82, 47, 3),
+(83, 47, 7),
+(84, 48, 7),
+(87, 50, 1),
+(88, 50, 2),
+(89, 51, 1),
+(90, 51, 5),
+(91, 52, 1),
+(92, 53, 5),
+(93, 54, 5),
+(94, 55, 5);
 
 -- --------------------------------------------------------
 
@@ -368,57 +393,79 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`product_image_id`, `product_id`, `image_path`) VALUES
-(1, 1, '/images/products/1608515255058-upload_images.jpg'),
-(2, 1, '/images/products/1608515255078-upload_images.jpg'),
-(3, 1, '/images/products/1608515255085-upload_images.jpg'),
-(4, 2, '/images/products/1608516435293-upload_images.jpg'),
-(5, 2, '/images/products/1608516435298-upload_images.jpg'),
-(6, 2, '/images/products/1608516435323-upload_images.jpg'),
-(7, 2, '/images/products/1608516435331-upload_images.jpg'),
-(8, 2, '/images/products/1608516435355-upload_images.png'),
-(9, 3, '/images/products/1608519734830-upload_images.jpg'),
-(10, 3, '/images/products/1608519734838-upload_images.jpg'),
-(11, 4, '/images/products/1609474086495-upload_images.jpg'),
-(12, 4, '/images/products/1609474086512-upload_images.jpg'),
-(13, 4, '/images/products/1609474086562-upload_images.jpg'),
-(14, 4, '/images/products/1609474086568-upload_images.jpg'),
-(15, 5, '/images/products/1611173978575-upload_images.jpg'),
-(16, 5, '/images/products/1611173978602-upload_images.jpg'),
-(17, 5, '/images/products/1611173978647-upload_images.jpg'),
-(18, 5, '/images/products/1611173978654-upload_images.jpg'),
-(19, 6, '/images/products/1611175695356-upload_images.jpg'),
-(20, 6, '/images/products/1611175695457-upload_images.jpeg'),
-(21, 6, '/images/products/1611175695590-upload_images.jpeg'),
-(22, 7, '/images/products/1611175934043-upload_images.jpeg'),
-(23, 7, '/images/products/1611175934146-upload_images.jpeg'),
-(24, 7, '/images/products/1611175934282-upload_images.jpeg'),
-(25, 8, '/images/products/1611209745889-upload_images.jpg'),
-(26, 8, '/images/products/1611209746504-upload_images.jpg'),
-(27, 8, '/images/products/1611209746539-upload_images.jpg'),
-(31, 10, '/images/products/1611210051524-upload_images.jpg'),
-(32, 10, '/images/products/1611210051530-upload_images.jpeg'),
-(33, 11, '/images/products/1611210183002-upload_images.jpg'),
-(34, 11, '/images/products/1611210183075-upload_images.jpg'),
-(35, 11, '/images/products/1611210183079-upload_images.jpg'),
-(42, 14, '/images/products/1611226993427-upload_images.jpg'),
-(43, 14, '/images/products/1611226993436-upload_images.jpg'),
-(44, 14, '/images/products/1611226993463-upload_images.jpeg'),
-(45, 15, '/images/products/1612247560458-upload_images.jpg'),
-(46, 15, '/images/products/1612247560531-upload_images.jpg'),
-(47, 15, '/images/products/1612247561066-upload_images.jpg'),
-(48, 15, '/images/products/1612247561073-upload_images.jpeg'),
-(49, 16, '/images/products/1613611414866-upload_images.jpg'),
-(50, 16, '/images/products/1613611414886-upload_images.jpg'),
-(51, 17, '/images/products/1613960433425-upload_images.jpeg'),
-(52, 18, '/images/products/1613960663923-upload_images.jpeg'),
-(53, 19, '/images/products/1614059835205-upload_images.jpg'),
-(54, 20, '/images/products/1614060125424-upload_images.png'),
-(56, 23, '/images/products/1614304235103-upload_images.jpg'),
-(57, 24, '/images/products/1614304424012-upload_images.jpg'),
-(61, 28, '/images/products/1614309436679-upload_images.jpg'),
-(62, 29, '/images/products/1614309982014-upload_images.jpeg'),
-(63, 29, '/images/products/1614309982110-upload_images.jpeg'),
-(64, 29, '/images/products/1614309982240-upload_images.jpeg');
+(65, 30, '/images/products/1615264805350-upload_images.jpg'),
+(66, 30, '/images/products/1615264805357-upload_images.jpg'),
+(67, 30, '/images/products/1615264805370-upload_images.jpg'),
+(68, 31, '/images/products/1615264994664-upload_images.jpg'),
+(69, 31, '/images/products/1615264994675-upload_images.jpg'),
+(70, 32, '/images/products/1615265093646-upload_images.jpg'),
+(71, 32, '/images/products/1615265093666-upload_images.jpg'),
+(72, 32, '/images/products/1615265093670-upload_images.jpg'),
+(73, 33, '/images/products/1615265184259-upload_images.jpg'),
+(74, 33, '/images/products/1615265184268-upload_images.jpg'),
+(75, 34, '/images/products/1615265278118-upload_images.jpg'),
+(76, 35, '/images/products/1615265410614-upload_images.jpg'),
+(77, 35, '/images/products/1615265410620-upload_images.jpg'),
+(78, 35, '/images/products/1615265410625-upload_images.jpg'),
+(79, 35, '/images/products/1615265410629-upload_images.jpg'),
+(80, 36, '/images/products/1615265526385-upload_images.jpg'),
+(81, 36, '/images/products/1615265526388-upload_images.jpg'),
+(82, 36, '/images/products/1615265526397-upload_images.jpg'),
+(83, 37, '/images/products/1615265718647-upload_images.png'),
+(84, 37, '/images/products/1615265718671-upload_images.png'),
+(85, 38, '/images/products/1615266008819-upload_images.jpg'),
+(86, 38, '/images/products/1615266008827-upload_images.jpg'),
+(87, 38, '/images/products/1615266008833-upload_images.jpg'),
+(88, 38, '/images/products/1615266008840-upload_images.jpg'),
+(89, 39, '/images/products/1615266131142-upload_images.jpg'),
+(90, 39, '/images/products/1615266131148-upload_images.jpg'),
+(91, 39, '/images/products/1615266131160-upload_images.jpg'),
+(92, 40, '/images/products/1615266204548-upload_images.jpg'),
+(93, 40, '/images/products/1615266204554-upload_images.jpg'),
+(94, 40, '/images/products/1615266204557-upload_images.jpg'),
+(95, 40, '/images/products/1615266204561-upload_images.jpg'),
+(96, 40, '/images/products/1615266204566-upload_images.jpg'),
+(97, 41, '/images/products/1615266301907-upload_images.jpg'),
+(98, 41, '/images/products/1615266301911-upload_images.jpg'),
+(99, 42, '/images/products/1615266412880-upload_images.jpg'),
+(100, 42, '/images/products/1615266412888-upload_images.jpg'),
+(101, 42, '/images/products/1615266412893-upload_images.jpg'),
+(102, 42, '/images/products/1615266412896-upload_images.jpg'),
+(103, 43, '/images/products/1615266544642-upload_images.jpg'),
+(104, 43, '/images/products/1615266544647-upload_images.jpg'),
+(105, 43, '/images/products/1615266544651-upload_images.jpg'),
+(106, 44, '/images/products/1615266643992-upload_images.jpg'),
+(107, 45, '/images/products/1615266739863-upload_images.jpg'),
+(108, 45, '/images/products/1615266739883-upload_images.jpg'),
+(109, 45, '/images/products/1615266739894-upload_images.jpg'),
+(110, 46, '/images/products/1615267081496-upload_images.jpg'),
+(111, 46, '/images/products/1615267081500-upload_images.jpg'),
+(112, 46, '/images/products/1615267081506-upload_images.jpg'),
+(113, 47, '/images/products/1615267204570-upload_images.jpg'),
+(114, 47, '/images/products/1615267204574-upload_images.jpg'),
+(115, 47, '/images/products/1615267204583-upload_images.jpg'),
+(116, 48, '/images/products/1615267266064-upload_images.jpg'),
+(117, 48, '/images/products/1615267266069-upload_images.jpg'),
+(118, 48, '/images/products/1615267266073-upload_images.jpg'),
+(119, 48, '/images/products/1615267266078-upload_images.jpg'),
+(124, 50, '/images/products/1615267467369-upload_images.jpg'),
+(125, 50, '/images/products/1615267467373-upload_images.jpg'),
+(126, 50, '/images/products/1615267467376-upload_images.jpg'),
+(127, 50, '/images/products/1615267467380-upload_images.jpg'),
+(128, 50, '/images/products/1615267467384-upload_images.jpg'),
+(129, 51, '/images/products/1615267586968-upload_images.jpg'),
+(130, 51, '/images/products/1615267586974-upload_images.jpg'),
+(131, 51, '/images/products/1615267586978-upload_images.jpg'),
+(132, 52, '/images/products/1615267692749-upload_images.jpg'),
+(133, 52, '/images/products/1615267692757-upload_images.jpg'),
+(134, 53, '/images/products/1615267847794-upload_images.jpg'),
+(135, 53, '/images/products/1615267847800-upload_images.jpg'),
+(136, 53, '/images/products/1615267847804-upload_images.jpg'),
+(137, 54, '/images/products/1615267979294-upload_images.jpg'),
+(138, 54, '/images/products/1615267979306-upload_images.jpg'),
+(139, 55, '/images/products/1615268050495-upload_images.jpg'),
+(140, 55, '/images/products/1615268050503-upload_images.jpg'),
+(141, 55, '/images/products/1615268050510-upload_images.jpg');
 
 -- --------------------------------------------------------
 
@@ -449,24 +496,115 @@ CREATE TABLE `product_sizes` (
 --
 
 INSERT INTO `product_sizes` (`product_size_id`, `product_id`, `size_id`) VALUES
-(8, 1, 3),
-(9, 1, 4),
-(10, 2, 5),
-(11, 3, 2),
-(12, 3, 5),
-(13, 4, 5),
-(14, 4, 7),
-(15, 16, 3),
-(16, 16, 4),
-(17, 16, 5),
-(18, 18, 3),
-(19, 19, 5),
-(20, 23, 3),
-(21, 28, 4),
-(22, 28, 2),
-(23, 28, 1),
-(24, 29, 5),
-(25, 29, 4);
+(26, 30, 3),
+(27, 30, 4),
+(28, 30, 5),
+(29, 31, 3),
+(30, 31, 4),
+(31, 32, 4),
+(32, 32, 5),
+(33, 33, 3),
+(34, 33, 4),
+(35, 34, 3),
+(36, 34, 4),
+(37, 35, 1),
+(38, 35, 4),
+(39, 35, 1),
+(40, 35, 5),
+(41, 35, 1),
+(42, 35, 6),
+(43, 35, 1),
+(44, 35, 7),
+(45, 36, 1),
+(46, 36, 4),
+(47, 36, 1),
+(48, 36, 5),
+(49, 36, 1),
+(50, 36, 6),
+(51, 36, 1),
+(52, 36, 7),
+(53, 36, 1),
+(54, 36, 8),
+(55, 37, 1),
+(56, 37, 7),
+(57, 37, 1),
+(58, 37, 8),
+(59, 37, 1),
+(60, 37, 9),
+(61, 37, 2),
+(63, 38, 3),
+(64, 38, 4),
+(65, 39, 2),
+(66, 39, 3),
+(67, 40, 2),
+(68, 40, 3),
+(69, 40, 4),
+(70, 40, 5),
+(71, 41, 2),
+(72, 41, 3),
+(73, 42, 2),
+(74, 42, 3),
+(75, 42, 4),
+(76, 42, 5),
+(77, 43, 4),
+(78, 43, 5),
+(79, 43, 6),
+(80, 44, 2),
+(81, 44, 3),
+(82, 44, 4),
+(83, 44, 5),
+(84, 44, 6),
+(85, 45, 3),
+(86, 45, 4),
+(87, 45, 5),
+(88, 45, 6),
+(89, 46, 8),
+(90, 46, 9),
+(91, 46, 1),
+(93, 47, 8),
+(94, 48, 8),
+(103, 50, 1),
+(104, 50, 7),
+(105, 50, 1),
+(106, 50, 8),
+(107, 50, 1),
+(108, 50, 9),
+(109, 50, 2),
+(111, 51, 1),
+(112, 51, 7),
+(113, 52, 1),
+(114, 52, 4),
+(115, 52, 1),
+(116, 52, 5),
+(117, 52, 1),
+(118, 52, 6),
+(119, 52, 1),
+(120, 52, 7),
+(121, 52, 1),
+(122, 52, 8),
+(123, 53, 1),
+(124, 53, 8),
+(125, 53, 1),
+(126, 53, 9),
+(127, 53, 2),
+(129, 54, 1),
+(130, 54, 5),
+(131, 54, 1),
+(132, 54, 6),
+(133, 54, 1),
+(134, 54, 7),
+(135, 54, 1),
+(136, 54, 8),
+(137, 55, 1),
+(138, 55, 4),
+(139, 55, 1),
+(140, 55, 5),
+(141, 55, 1),
+(142, 55, 6),
+(143, 55, 1),
+(144, 55, 7),
+(145, 55, 1),
+(146, 55, 8);
 
 -- --------------------------------------------------------
 
@@ -489,17 +627,23 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`review_id`, `user_id`, `product_id`, `review_rating`, `review_comment`, `created_at`, `updated_at`) VALUES
-(11, 17, 1, 5, '', '2020-12-17 17:03:11', '2021-02-25 10:25:39'),
-(12, 2, 2, 5, '', '2020-12-17 17:03:11', '2021-01-07 07:23:20'),
-(13, 1, 3, 3, 'se', '2020-12-17 17:03:11', '2021-01-07 07:23:24'),
-(14, 4, 4, 2, '', '2020-12-17 17:03:11', '2021-01-07 07:23:28'),
-(15, 6, 2, 5, 'text', '2021-01-07 14:24:01', '2021-01-07 17:02:21'),
-(16, 7, 3, 4, 'sef', '2021-01-07 14:24:01', '2021-01-07 07:24:01'),
-(17, 20, 1, 2, 'se', '2021-01-07 14:26:53', '2021-02-25 10:25:48'),
-(18, 11, 1, 5, '', '2021-01-07 14:26:53', '2021-02-25 10:25:33'),
-(19, 17, 10, 5, 'Barang bagus', '2021-02-11 11:12:31', '2021-02-11 04:12:31'),
-(20, 17, 19, 5, 'Baju bagus, barang sampai dengan aman', '2021-02-23 13:07:22', '2021-02-23 06:07:22'),
-(21, 11, 19, 4, 'Bagus sekali', '2021-02-23 13:07:22', '2021-02-23 06:07:22');
+(1, 20, 30, 5, 'Barang bagus', '2021-03-10 07:14:23', '2021-03-10 00:14:23'),
+(2, 11, 30, 5, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:17:54', '2021-03-10 00:17:54'),
+(3, 11, 31, 3, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:20:04', '2021-03-10 00:20:04'),
+(4, 11, 32, 4, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:20:12', '2021-03-10 00:20:12'),
+(5, 17, 32, 5, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:20:20', '2021-03-10 00:20:20'),
+(6, 11, 33, 4, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:20:45', '2021-03-10 00:20:45'),
+(7, 11, 34, 3, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:20:55', '2021-03-10 00:20:55'),
+(8, 11, 35, 4, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:21:21', '2021-03-10 00:21:21'),
+(9, 11, 36, 4, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:21:26', '2021-03-10 00:21:26'),
+(10, 20, 36, 3, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:21:34', '2021-03-10 00:21:34'),
+(11, 18, 37, 5, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:21:48', '2021-03-10 00:21:48'),
+(12, 18, 38, 3, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:21:56', '2021-03-10 00:21:56'),
+(13, 11, 39, 4, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:22:04', '2021-03-10 00:22:04'),
+(14, 11, 40, 5, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:22:25', '2021-03-10 00:22:25'),
+(15, 17, 40, 5, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:22:38', '2021-03-10 00:22:38'),
+(16, 19, 40, 5, 'Barang bagus. Sampai dengan selamat, cepat dan sesuai gambar.', '2021-03-10 07:22:47', '2021-03-10 00:22:47'),
+(17, 11, 41, 1, 'Barang datangnya lama. Kemasannya juga rusak', '2021-03-10 07:23:51', '2021-03-10 00:23:51');
 
 -- --------------------------------------------------------
 
@@ -584,19 +728,7 @@ CREATE TABLE `token_whitelist` (
 --
 
 INSERT INTO `token_whitelist` (`id`, `token`) VALUES
-(18, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyIiwidXNlcl9lbWFpbCI6InVzZXJAZ21haWwuY29tIiwibGV2ZWwiOiJjdXN0b21lciIsImlhdCI6MTYwODMxMzUyNCwiZXhwIjoxNjA4MzQ5NTI0fQ.DVbSON9MoCrm-yaEhyfw0RC-dR2Wlk2gybsgODyRY-w'),
-(19, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJzZWxsZXIiLCJ1c2VyX2VtYWlsIjoic2VsbGVyQGdtYWlsLmNvbSIsImxldmVsIjoic2VsbGVyIiwiaWF0IjoxNjA5NDczOTA4LCJleHAiOjE2MDk1MDk5MDh9.lVs3zrFxVy6dyls7w6OMWPyfzoXeMarO0fJJvP8OxkI'),
-(20, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSAiLCJsZXZlbCI6ImN1c3RvbWVyIiwiaWF0IjoxNjEwMTAzNjI4LCJleHAiOjE2MTAxMzk2Mjh9.uerzbNKePTiyt8RS1EV-CYZH6Di6pzBVs6dt2LsFzJU'),
-(21, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSAiLCJsZXZlbCI6ImN1c3RvbWVyIiwiaWF0IjoxNjEwMTAzODAwLCJleHAiOjE2MTAxMzk4MDB9.jXBTMsFQiK63LZZButn4kO70dVu2hYHbD1Ip-HN7o5E'),
-(22, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSIsImxldmVsIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTAxNTc1NTEsImV4cCI6MTYxMDE5MzU1MX0.lyxrpFJ7Ns_vEbvuyn3PRT_tH0uCEnKh9qllcaGprzY'),
-(23, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSIsImxldmVsIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTAxNTc1NzgsImV4cCI6MTYxMDE5MzU3OH0.Dul-XwsFw1fWEDx50E9ccFV0kD4i_XWryORE7Zr5HEs'),
-(24, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSIsImxldmVsIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTAxNTc2MDAsImV4cCI6MTYxMDE5MzYwMH0.ybvHJ1cklkAfJeRW9gbzM9ytRclWP7L_V_4jscCIf-A'),
-(46, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSAiLCJsZXZlbCI6ImN1c3RvbWVyIiwiaWF0IjoxNjExMjExMTg3LCJleHAiOjE2MTEyNDcxODd9.JpVsekYBPNK__68nn2yBvyG74XztCW8qEWE0S6bvZ9M'),
-(49, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSAiLCJsZXZlbCI6ImN1c3RvbWVyIiwiaWF0IjoxNjExMjE1Mzg2LCJleHAiOjE2MTEyNTEzODZ9.eTQv4S6iA_rVuxdPqoP2D7GrxB08emBCgEJlTlnEz-c'),
-(50, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMTMiLCJ1c2VyX2VtYWlsIjoidXNlcjEzQGdtYWlsLmNvbSIsImxldmVsIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTEyMTk2NjYsImV4cCI6MTYxMTI1NTY2Nn0.h4PBikz0dkF5KvCw2AsL0-HZPrSZLnrYqS3EY3jlFkk'),
-(62, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJzZWxsZXIxIiwidXNlcl9lbWFpbCI6InNlbGxlcjFAZ21haWwuY29tIiwibGV2ZWwiOiJzZWxsZXIiLCJpYXQiOjE2MTIyNDMxMDIsImV4cCI6MTYxMjI3OTEwMn0.Mfjh39N2o8xa2pBRGB1ENSQw0U1ulZEg0WDOZhztbio'),
-(64, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJTZWxsZXIiLCJ1c2VyX2VtYWlsIjoic2VsbGVyMTJAZ21haWwuY29tIiwibGV2ZWwiOiJzZWxsZXIiLCJpYXQiOjE2MTM2MTEyNzcsImV4cCI6MTYxMzY0NzI3N30._AjFeJP7uFcwSSVz6OvcAd5hZJiowCXJZ9whrH7evnI'),
-(79, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJFbHdhbmR5IFRpcnRhbmEgRGVyaWFuc3lhaCIsInVzZXJfZW1haWwiOiJlbHdhbmRpdGlydGFuYTE5NDVhQGdtYWlsLmNvbSIsImxldmVsIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTQyOTQ4ODgsImV4cCI6MTYxNDMzMDg4OH0.QYgadLYTKYBbdeMc_luQ5vxR_IrGjoljpavYvTK3pVY');
+(80, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJTZWxsZXIiLCJ1c2VyX2VtYWlsIjoic2VsbGVyMTJAZ21haWwuY29tIiwibGV2ZWwiOiJzZWxsZXIiLCJpYXQiOjE2MTUyNjQ3NTksImV4cCI6MTYxNTMwMDc1OX0.MZD5OtNSB34VTNwy8R9Qmh27ouzzk21BGaeOv7GKNAs');
 
 --
 -- Indexes for dumped tables
@@ -778,13 +910,13 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT untuk tabel `detail_histories`
 --
 ALTER TABLE `detail_histories`
-  MODIFY `detail_history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `detail_history_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `histories`
 --
 ALTER TABLE `histories`
-  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `otp`
@@ -796,19 +928,19 @@ ALTER TABLE `otp`
 -- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT untuk tabel `product_colors`
 --
 ALTER TABLE `product_colors`
-  MODIFY `product_color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `product_color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT untuk tabel `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT untuk tabel `product_reviews`
@@ -820,13 +952,13 @@ ALTER TABLE `product_reviews`
 -- AUTO_INCREMENT untuk tabel `product_sizes`
 --
 ALTER TABLE `product_sizes`
-  MODIFY `product_size_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `product_size_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT untuk tabel `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `sellers`
@@ -844,7 +976,7 @@ ALTER TABLE `sizes`
 -- AUTO_INCREMENT untuk tabel `token_whitelist`
 --
 ALTER TABLE `token_whitelist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -894,6 +1026,13 @@ ALTER TABLE `product_reviews`
 ALTER TABLE `product_sizes`
   ADD CONSTRAINT `product_sizes_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `product_sizes_ibfk_2` FOREIGN KEY (`size_id`) REFERENCES `sizes` (`size_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `customers` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
